@@ -8,8 +8,6 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en" @if(session()->get('rtl') == 1) dir="rtl" @endif >
 
-@dump(asset($themeTrue.'/bootstrap/bootstrap.min.css'))
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>

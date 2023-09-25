@@ -207,11 +207,12 @@ $(document).ready(function () {
    });
 });
 
+const sidebarCollapse = $('#sidebarCollapse');
 // dashboard sidebar
-if ($('#sidebarCollapse').length > 0) {
-   document.getElementById("sidebarCollapse").addEventListener("click", () => {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("content").classList.toggle("active");
+if (sidebarCollapse.length > 0) {
+    sidebarCollapse.addEventListener("click", () => {
+      $('#sidebar').classList.toggle("active");
+      $('#content').classList.toggle("active");
    });
 }
 

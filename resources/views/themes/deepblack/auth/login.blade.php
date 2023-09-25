@@ -42,8 +42,13 @@
                                     type="password"
                                     name="password"
                                     class="form-control"
+                                    id="password-field"
                                     placeholder="@lang('Password')"
                                 />
+                                <div id="password-toggle" class="password-toggle">
+                                    <img src="{{asset($themeTrue.'img/icon/eye.png')}}" alt="Show" class="show"/>
+                                    <img src="{{asset($themeTrue.'img/icon/hide.png')}}" alt="Show" class="hide"/>
+                                </div>
                             </div>
                             @error('password')
                                 <span class="text-danger mt-1">@lang($message)</span>
@@ -84,7 +89,7 @@
                                 </p>
                             </span>
                         </div>
-                        <button class="gold-btn-block" type="submit">@lang('Sign in')</button>
+                        <button class="gold-btn-block gold-btn" type="submit">@lang('Sign in')</button>
                     </form>
                     </div>
                 </div>

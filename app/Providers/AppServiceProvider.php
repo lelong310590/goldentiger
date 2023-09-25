@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        if (env('APP_ENV') == 'production') {
+            URL::forceScheme('https');
+        }
 
         $data['basic'] = (object)config('basic');
         $data['theme'] = template();
@@ -117,7 +119,5 @@ class AppServiceProvider extends ServiceProvider
         } catch (\Exception $e) {
 
         }
-
-
     }
 }

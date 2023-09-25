@@ -29,7 +29,7 @@ h2 {
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    font: {
-      size: auto;
+      size: inherit;
    }
 }
 
@@ -67,7 +67,7 @@ p {
    margin-bottom: 0;
 }
 .btn:focus {
-   box-shadow: 0 0 0 0rem #000;
+   box-shadow: 0 0 0 0 #000;
 }
 .gold-btn {
    font-family: "Barlow Condensed", sans-serif;
@@ -101,7 +101,7 @@ p {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font: {
-         size: auto;
+         size: inherit;
       }
    }
    p {
@@ -139,7 +139,7 @@ p {
          -webkit-text-fill-color: transparent;
          position: relative;
          font: {
-            size: auto;
+            size: inherit;
          }
          &::before {
             position: absolute;
@@ -344,7 +344,6 @@ p {
    padding: 100px 0;
    .box {
       padding: 30px;
-      padding: 30px;
       background: #222;
       border-radius: 10px;
       text-align: center;
@@ -369,7 +368,7 @@ p {
          height: 40px;
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -398,7 +397,7 @@ p {
          left: -15px;
          background: #222;
          border-radius: 10px;
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
          z-index: -1;
@@ -425,7 +424,7 @@ p {
          margin-bottom: 0;
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -450,7 +449,6 @@ p {
          text-align: center;
          padding: 28px;
          padding-top: 20px;
-         margin-right: 15px;
       }
       .text {
          p {
@@ -458,7 +456,7 @@ p {
          }
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -488,20 +486,20 @@ p {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font: {
-         size: auto;
+         size: inherit;
       }
       &:focus {
          z-index: 3;
          border-color: #86b7fe;
          outline: 0;
-         box-shadow: 0 0 0 0rem rgba(13, 110, 253, 0.25);
+         box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.25);
       }
       &::after {
          background-image: url(../img/icon/chevron.png);
       }
    }
    .accordion-body {
-      padding: 0px 30px 20px 30px;
+      padding: 0 30px 20px 30px;
       p {
          margin-bottom: 0;
          font-size: 14px;
@@ -512,7 +510,7 @@ p {
       color: #fff;
       background-color: #222;
       box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+      //box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
    }
 }
 
@@ -566,7 +564,7 @@ p {
          height: 45px;
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -584,11 +582,11 @@ p {
       height: 180px;
       margin: auto;
       position: relative;
-      background: linear-gradient(#222 0 0) padding-box,
+      background: linear-gradient(#222, #000) padding-box,
          $goldGradiant border-box;
       border: 2px solid transparent;
-      border-radius: 200px;
-      box-shadow: inset 0 0 0px 20px #000;
+      //border-radius: 200px;
+      box-shadow: inset 0 0 0 20px #000;
       h1 {
          margin-bottom: 0;
       }
@@ -631,7 +629,7 @@ p {
          left: -15px;
          background: #222;
          border-radius: 10px;
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
          z-index: -1;
@@ -651,7 +649,6 @@ p {
          height: 65px;
          text-align: center;
          padding-top: 20px;
-         margin-right: 15px;
       }
       .text {
          p {
@@ -659,7 +656,7 @@ p {
          }
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -696,7 +693,7 @@ p {
          height: 40px;
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -817,7 +814,7 @@ p {
          text-align: center;
          width: 60px;
          height: 60px;
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
          border-radius: 200px;
@@ -851,7 +848,7 @@ p {
          }
       }
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -935,8 +932,8 @@ p {
             background: #222;
             border-color: #86b7fe;
             outline: 0;
-            box-shadow: 0 0 0 0rem #222;
-            background: linear-gradient(#222 0 0) padding-box,
+            box-shadow: 0 0 0 0 #222;
+            background: linear-gradient(#222, #000) padding-box,
                $goldGradiant border-box;
             border: 2px solid transparent;
             border-left: 3px solid transparent;
@@ -980,7 +977,7 @@ p {
       text-align: center;
       border: 2px solid transparent;
       &:hover {
-         background: linear-gradient(#222 0 0) padding-box,
+         background: linear-gradient(#222, #000) padding-box,
             $goldGradiant border-box;
          border: 2px solid transparent;
       }
@@ -1020,7 +1017,7 @@ p {
          border: 2px solid #bf953f;
          border-radius: 100px;
          font: {
-            size: auto;
+            size: inherit;
          }
          &:hover,
          &.active {
@@ -1043,7 +1040,7 @@ p {
       margin: auto;
       .form-control {
          border: 2px solid #fff;
-         border-radius: 0px;
+         border-radius: 0;
          border-top-left-radius: 100px;
          border-bottom-left-radius: 100px;
          color: #222;
@@ -1057,10 +1054,10 @@ p {
          }
          &:focus {
             background: #fff;
-            border-color: #86b7fe;
+            //border-color: #86b7fe;
             outline: 0;
-            box-shadow: 0 0 0 0rem #222;
-            background: linear-gradient(#fff 0 0) padding-box,
+            box-shadow: 0 0 0 0 #222;
+            background: linear-gradient(#fff, #000) padding-box,
                $goldGradiant border-box;
             border: 2px solid transparent;
          }
@@ -1253,7 +1250,7 @@ p {
       background: #222;
       border-radius: 10px;
       text-align: center;
-      background: linear-gradient(#222 0 0) padding-box,
+      background: linear-gradient(#222, #000) padding-box,
          $goldGradiant border-box;
       border: 2px solid transparent;
       h4 {
@@ -1308,10 +1305,10 @@ p {
                background: #000;
                border-color: #86b7fe;
                outline: 0;
-               box-shadow: 0 0 0 0rem #000;
-               background: linear-gradient(#000 0 0) padding-box,
+               box-shadow: 0 0 0 0 #000;
+               background: linear-gradient(#000, #000) padding-box,
                   $goldGradiant border-box;
-               border: 2px solid transparent;
+               //border: 2px solid transparent;
                border-left: 3px solid transparent;
             }
          }
@@ -1339,7 +1336,7 @@ p {
                border: 2px solid #bf953f;
                cursor: pointer;
                &:focus {
-                  box-shadow: 0 0 0 0rem #000;
+                  box-shadow: 0 0 0 0 #000;
                }
                &:checked {
                   background: #bf953f;
@@ -1447,10 +1444,10 @@ p {
             }
             &:focus {
                background: #222;
-               border-color: #86b7fe;
+               //border-color: #86b7fe;
                outline: 0;
-               box-shadow: 0 0 0 0rem #222;
-               background: linear-gradient(#222 0 0) padding-box,
+               box-shadow: 0 0 0 0 #222;
+               background: linear-gradient(#222, #000) padding-box,
                   $goldGradiant border-box;
                border: 2px solid transparent;
                border-left: 3px solid transparent;
@@ -1584,10 +1581,10 @@ p {
             }
             &:focus {
                background: #222;
-               border-color: #86b7fe;
+               //border-color: #86b7fe;
                outline: 0;
-               box-shadow: 0 0 0 0rem #222;
-               background: linear-gradient(#222 0 0) padding-box,
+               box-shadow: 0 0 0 0 #222;
+               background: linear-gradient(#222, #000) padding-box,
                   $goldGradiant border-box;
                border: 2px solid transparent;
                border-left: 3px solid transparent;
@@ -1607,8 +1604,7 @@ p {
             font-size: 16px;
             font-weight: 500;
             color: #f7f7f8;
-            border: none;
-            background: linear-gradient(#000 0 0) padding-box,
+            background: linear-gradient(#000, #000) padding-box,
                $goldGradiant border-box;
             border: 2px solid transparent;
             width: auto;
@@ -1637,7 +1633,7 @@ p {
          .btn-secondary:focus {
             color: #000;
             background-color: #fff;
-            box-shadow: 0 0 0 0rem rgba(49, 132, 253, 0.5);
+            box-shadow: 0 0 0 0 rgba(49, 132, 253, 0.5);
          }
       }
       .gold-btn {
@@ -1690,8 +1686,8 @@ p {
             background: #222;
             border-color: #86b7fe;
             outline: 0;
-            box-shadow: 0 0 0 0rem #222;
-            background: linear-gradient(#222 0 0) padding-box,
+            box-shadow: 0 0 0 0 #222;
+            background: linear-gradient(#222, #000) padding-box,
                $goldGradiant border-box;
             border: 2px solid transparent;
             border-left: 3px solid transparent;
@@ -1793,7 +1789,7 @@ p {
       height: 40px;
       text-align: center;
       margin: 0 5px;
-      background: linear-gradient(#000 0 0) padding-box,
+      background: linear-gradient(#000, #000) padding-box,
          $goldGradiant border-box;
       border: 1px solid transparent;
       transition: 0.4s;
@@ -1808,10 +1804,10 @@ p {
          border-radius: 0;
          transition: 0.4s;
          font: {
-            size: auto;
+            size: inherit;
          }
          &:focus {
-            box-shadow: 0 0 0 0rem #000;
+            box-shadow: 0 0 0 0 #000;
          }
       }
       &:hover,
@@ -1942,10 +1938,10 @@ p {
             }
             &:focus {
                background: #111;
-               border-color: #86b7fe;
+               //border-color: #86b7fe;
                outline: 0;
-               box-shadow: 0 0 0 0rem #111;
-               background: linear-gradient(#111 0 0) padding-box,
+               box-shadow: 0 0 0 0 #111;
+               background: linear-gradient(#111, #000) padding-box,
                   $goldGradiant border-box;
                border: 2px solid transparent;
                border-left: 3px solid transparent;
@@ -2002,12 +1998,11 @@ p {
          font-family: "Impacted", sans-serif;
          text-transform: uppercase;
          font-size: 32px;
-         margin-bottom: 0;
          display: inline-block;
          width: auto;
          height: 90px;
          text-align: left;
-         margin: auto;
+         margin: 0 auto;
          padding: 23px 0 23px 30px;
       }
       .btn-toggle {
@@ -2015,17 +2010,15 @@ p {
          width: 100%;
          text-align: left;
          text-transform: uppercase;
-         padding: 0;
          padding: 15px 30px;
          font-family: "Barlow Condensed", sans-serif;
-         text-transform: uppercase;
          font-size: 18px;
          font-weight: 600;
          background: $goldGradiant;
          -webkit-background-clip: text;
          -webkit-text-fill-color: transparent;
          font: {
-            size: auto;
+            size: inherit;
          }
          img {
             margin-right: 10px;
@@ -2066,7 +2059,7 @@ p {
                -webkit-background-clip: text;
                -webkit-text-fill-color: transparent;
                font: {
-                  size: auto;
+                  size: inherit;
                }
                img {
                   margin-right: 10px;
@@ -2083,7 +2076,7 @@ p {
    min-height: 100vh;
    transition: all 0.3s;
    position: relative;
-   background: url(../img/Star_Universe_Earth_Moon_HD_Space_2880x1800.jpg);
+   background: url("../img/Star_Universe_Earth_Moon_HD_Space_2880x1800.jpg");
    background-size: cover;
    background-position: center;
    .overlay {
@@ -2108,6 +2101,21 @@ p {
          }
       }
    }
+}
+
+.password-toggle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+    .show {
+        display: block;
+    }
+    .hide {
+        display: none;
+    }
 }
 // ------------------------------------------------------------------------------------------
 // DASHBOARD PAGE END

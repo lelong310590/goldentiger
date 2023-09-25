@@ -1,7 +1,7 @@
 @extends($theme.'layouts.user')
 @section('title',trans('Dashboard'))
 @section('content')
-    
+
     <script>
         "use strict"
         function getCountDown(elementId, seconds) {
@@ -95,7 +95,7 @@
         </div>
         </div>
     </section>
-    
+
     <!-- Imvest history -->
     <section class="transaction-history mt-5 pt-5">
       <div class="container-fluid">
@@ -124,7 +124,7 @@
                                 <tr>
                                     <td>{{loopIndex($investments) + $key}}</td>
                                     <td>
-                                        {{trans(optional($invest->plan)->name)}}
+                                        {{trans(isset(optional($invest->plan)->name) ? optional($invest->plan)->name : 'Unknow')}}
                                         <br> {{getAmount($invest->amount).' '.trans($basic->currency)}}
                                     </td>
                                     <td>
@@ -153,7 +153,7 @@
                                         <td colspan="100%">{{trans('No Data Found!')}}</td>
                                     </tr>
                                 @endforelse
-                                
+
                             </tbody>
                             <thead>
                                 <tr>
@@ -166,9 +166,9 @@
             </div>
       </div>
     </section>
-    
-    
-    
+
+
+
 
     <!---- charts ----->
     <section class="chart-information mt-5">

@@ -151,7 +151,7 @@ class DashboardController extends Controller
 
     public function dayList()
     {
-        $totalDays = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+        $totalDays = date('d');
         $daysByMonth = [];
         for ($i = 1; $i <= $totalDays; $i++) {
             array_push($daysByMonth, ['Day ' . sprintf("%02d", $i) => 0]);

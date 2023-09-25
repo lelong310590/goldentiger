@@ -41,8 +41,6 @@
     <![endif]-->
 </head>
 
-@dump(asset($themeTrue.'assets/plugins/owlcarousel/animate.css'))
-
 <body  @if(session()->get('rtl') == 1) class="rtl" @endif>
 <div class="wrapper">
     <!------ sidebar ------->

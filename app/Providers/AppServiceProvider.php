@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-
+use App\Models\Configure;
 use App\Models\ContentDetails;
 use App\Models\Fund;
 use App\Models\Gateway;
@@ -51,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('pending', Ticket::whereIn('status', [0, 2])->latest()->with('user')->limit(10)->with('lastReply')->get());
             });
 
+            view()->composer([$data['theme'] . 'layouts.app'], function ($view) {
+                $view->with('configure', Configure::select('price_gtf')->firstOrNew());
+            });
+
             view()->composer([
                 $data['theme'] . 'partials.footer',
                 $data['theme'] . 'partials.topbar',
@@ -91,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
 
             view()->composer($data['theme'] . 'sections.investor', function ($view) {
                 $view->with('investors', Investment::selectRaw('user_id, SUM(amount) AS totalAmount')->with('user:id,firstname,lastname,username,image')
-                    ->groupBy('user_id')->orderBy('totalAmount', 'DESC')->get()->makeHidden('nextPayment'));
+                    ->groupBy('user_id')->orderBy('totalAmount', 'DESC')->where('type', 1)->get()->makeHidden('nextPayment'));
             });
 
             view()->composer($data['theme'] . 'sections.news-letter', function ($view) {

@@ -7,7 +7,6 @@
 <html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en" @if(session()->get('rtl') == 1) dir="rtl" @endif >
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -27,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/radial-progress/radialprogress.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/jquery/jquery-ui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/flags.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css') . '?id=' . time()}}">
     <script src="{{asset($themeTrue.'js/modernizr.custom.js')}}"></script>
 
 @stack('style')
@@ -37,10 +36,8 @@
     <!--[if lt IE 9]>
     <script type="application/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script type="application/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <![endif]-->
 </head>
-
 <body  @if(session()->get('rtl') == 1) class="rtl" @endif>
     <div class="wrapper">
         <!------ sidebar ------->

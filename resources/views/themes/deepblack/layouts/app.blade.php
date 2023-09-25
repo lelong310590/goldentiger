@@ -13,13 +13,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @include('partials.seo')
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/bootstrap/bootstrap.min.css')}}" />
-
     @stack('css-lib')
-
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/owl.carousel.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/owl.theme.default.min.css')}}">
@@ -27,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/radial-progress/radialprogress.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/flag-icon.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css')}}">
+
     <script src="{{asset($themeTrue.'js/modernizr.custom.js')}}"></script>
 
     @stack('style')
@@ -88,9 +86,9 @@
                     <div class="notification-panel user-panel">
                         <button class="dropdown-toggle">
                             @guest()
-                                <img src="{{asset($themeTrue.'img/icon/profile.png')}}" class="user-image" alt="@lang('profile')" />
+                                <img src="{{asset($themeTrue.'img/icon/profile.png')}}" class="user-image" alt="@lang('profile')" width="25" height="25"/>
                             @else
-                                <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" />
+                                <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" width="25" height="25"/>
                             @endguest
                         </button>
                         @guest
@@ -187,7 +185,7 @@
 <script src="{{asset('assets/global/js/axios.min.js')}}"></script>
 <!-- custom script -->
 <script src="{{asset($themeTrue.'js/script.js')}}"></script>
-<script src="https://goldentigerfund.com/ticker/js/script"></script>
+<script src="https://ticket.goldentigerfund.com/js/script"></script>
 <script type="text/javascript">
 function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
 }
@@ -223,7 +221,7 @@ function googleTranslateElementInit() { new google.translate.TranslateElement({p
                         .then(function (res) {
                             if (res.status) {
                                 app.getNotifications();
-                                if (link != '#') {
+                                if (link !== '#') {
                                     window.location.href = link
                                 }
                             }

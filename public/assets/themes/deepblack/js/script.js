@@ -74,6 +74,7 @@ const previewImage = () => {
 };
 
 $(document).ready(function () {
+    const body = $('body');
    $(".investors").owlCarousel({
       loop: true,
       margin: 25,
@@ -205,6 +206,21 @@ $(document).ready(function () {
          $(".scroll-top").fadeOut();
       }
    });
+
+    body.on('click', '#password-toggle', function (e) {
+        const target = e.currentTarget
+        const passwordField = $('#password-field')
+        if (passwordField.attr('type') === 'password') {
+            passwordField.attr('type', 'text')
+            $('.password-toggle img:first-child').attr('class', 'hide')
+            $('.password-toggle img:last-child').attr('class', 'show')
+        } else {
+            passwordField.attr('type', 'password')
+            $('.password-toggle img:first-child').attr('class', 'show')
+            $('.password-toggle img:last-child').attr('class', 'hide')
+        }
+    })
+
 });
 
 const sidebarCollapse = $('#sidebarCollapse');

@@ -12,7 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @include('partials.seo')
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/bootstrap/bootstrap.min.css')}}" />
@@ -68,7 +67,7 @@
                        <!---- user panel ---->
                        <div class="notification-panel user-panel">
                             <button class="dropdown-toggle">
-                                <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" />
+                                <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" width="25" height="25"/>
                             </button>
                             <ul class="notification-dropdown user-dropdown">
                                 <li>
@@ -152,7 +151,7 @@ function googleTranslateElementInit() { new google.translate.TranslateElement({p
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="https://goldentigerfund.com/ticker/js/script"></script>
+<script src="https://ticket.goldentigerfund.com/js/script"></script>
 <script>
     'use strict';
     let pushNotificationArea = new Vue({

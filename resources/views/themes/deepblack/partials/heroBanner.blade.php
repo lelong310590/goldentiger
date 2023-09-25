@@ -23,7 +23,7 @@
                                 <span>@lang(@$hero['description']->sub_title)</span>
                             </h1>
                             <p>@lang(@$hero['description']->short_description)</p>
-                            <a href="{{@$hero->templateMedia()->button_link}}" class="gold-btn">
+                            <a href="{{@$hero->templateMedia()->button_link}}" class="gold-btn d-flex justify-content-center align-items-center">
                                 @lang(@$hero['description']->button_name)
                             </a>
                         </div>

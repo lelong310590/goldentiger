@@ -7,7 +7,6 @@
             background: url({{getFile(config('location.content.path').@$hero->templateMedia()->background_image)}});
             background-size: cover;
             background-position: center top;
-            padding-top: 40px;
             overflow: hidden;
         }
     </style>

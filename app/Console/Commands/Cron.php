@@ -43,7 +43,8 @@ class Cron extends Command
     {
         $now = Carbon::now();
         $basic = (object) config('basic');
-        $investments = Investment::whereStatus(1)->where('afterward', '<=', $now)->with(['user:id,firstname,lastname,username,email,phone_code,phone,balance,interest_balance,f1_of,f2_of,f3_of,f4_of,f5_of,f6_of','plan'])->get();
+        $investments = Investment::whereStatus(1)->where('afterward', '<=', $now)->with(['user:id,firstname,lastname,username,email,phone_code,phone,balance,interest_balance,gtf_interest_balance,f1_of,f2_of,f3_of,f4_of,f5_of,f6_of','plan'])->get();
+        
         foreach ($investments as $data) {
             if($data){
                 $next_time = Carbon::parse($now)->addHours($data->point_in_time);
@@ -54,17 +55,29 @@ class Cron extends Command
                 $invest->formerly = $now; // Last Time Get Profit
 
                 // Return Amo   unt to user's Interest Balance
+
+                $isUserStakingType = $data->type == 2 ? true : false; 
                 $user = $data->user;
-                $new_balance = getAmount($user->interest_balance + $data->profit);
-                $user->interest_balance = $new_balance;
+                $balance_type = 'interest_balance';
+
+                if($isUserStakingType) {
+                    $new_balance = getAmount($user->gtf_interest_balance + $data->profit);
+                    $user->gtf_interest_balance = $new_balance;
+                    $remarks =  getAmount($data->profit) . ' GTF Interest From Staking';
+                    $balance_type = 'gtf_interest_balance';
+                } else {
+                    $new_balance = getAmount($user->interest_balance + $data->profit);
+                    $user->interest_balance = $new_balance;
+                    $remarks =  getAmount($data->profit) . ' ' . $basic->currency . ' Interest From '.optional($invest->plan)->name;
+                    $balance_type = 'interest_balance';
+                }
                 $user->save();
 
-                $remarks =  getAmount($data->profit) . ' ' . $basic->currency . ' Interest From '.optional($invest->plan)->name;
-                BasicService::makeTransaction($user, $data->profit, 0, $trx_type = '+', $balance_type = 'interest_balance',  $trx = strRandom(), $remarks);
+                BasicService::makeTransaction($user, $data->profit, 0, $trx_type = '+', $balance_type,  $trx = strRandom(), $remarks);
 
                 // Payment for commission for referral
                 // Check user is invest
-                if (BasicService::isUserInvested($user)) {
+                if (BasicService::isUserInvested($user) && !$isUserStakingType) {
                     BasicService::calculateComission($user, $data->profit);
                 }
 
@@ -91,3 +104,5 @@ class Cron extends Command
     }
 
 }
+
+

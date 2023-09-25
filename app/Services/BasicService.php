@@ -263,7 +263,7 @@ class BasicService
     }
 
     public function isUserInvested($user) {
-        $invest = Investment::where('user_id', $user->id)->first();
+        $invest = Investment::where('user_id', $user->id)->where('type', 1)->first();
         return $invest ? true : false;
     }
 
@@ -389,7 +389,7 @@ class BasicService
 
     function countValidF1($userRefId){
         $totalF1 = User::where('referral_id', $userRefId)->pluck('id')->toArray();
-        $investValidF1 = Investment::whereIn('user_id', $totalF1)->groupBy('user_id')->get()->count();
+        $investValidF1 = Investment::whereIn('user_id', $totalF1)->where('type', 1)->groupBy('user_id')->get()->count();
 
         return $investValidF1;
     }

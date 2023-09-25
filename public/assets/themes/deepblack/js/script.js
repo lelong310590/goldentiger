@@ -208,20 +208,15 @@ $(document).ready(function () {
 });
 
 // dashboard sidebar
-if ($('#sidebarCollapse').length > 0) {
-   document.getElementById("sidebarCollapse").addEventListener("click", () => {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("content").classList.toggle("active");
-   });
-}
+document.getElementById("sidebarCollapse").addEventListener("click", () => {
+   document.getElementById("sidebar").classList.toggle("active");
+   document.getElementById("content").classList.toggle("active");
+});
 
 // for datepicker
 $(function () {
-   const datePickerElem = $("#datepicker")
-   if (datePickerElem.length > 0) {
-      datePickerElem.datepicker({
-         dateFormat: "yy-mm-dd"
-      });
-      $("#salutation").selectmenu();
-   }
+    $("#datepicker").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+    $("#salutation").selectmenu();
  });

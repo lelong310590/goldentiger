@@ -7,11 +7,11 @@
     <section class="transaction-history mt-5 pt-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
-                    <div class="header-text-full">
-                        <h2>{{ 'Pay with '.optional($order->gateway)->name ?? '' }}</h2>
+                    <div class="col">
+                        <div class="header-text-full">
+                                <h2>{{ 'Pay with '.optional($order->gateway)->name ?? '' }}</h2>
+                        </div>
                     </div>
-                </div>
             </div>
 
             <div class="row">
@@ -106,6 +106,8 @@
                                         </div>
 
                                     </form>
+
+
                                 </div>
                             </div>
                         </div>

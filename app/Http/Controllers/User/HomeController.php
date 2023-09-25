@@ -6,6 +6,7 @@ use App\Helper\GoogleAuthenticator;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Notify;
 use App\Http\Traits\Upload;
+use App\Models\Configure;
 use App\Models\ContentDetails;
 use App\Models\Fund;
 use App\Models\Gateway;
@@ -25,6 +26,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +67,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $configure = $this->getConfigure();
         $data['walletBalance'] = getAmount($this->user->balance);
+        $data['priceGtf'] = (float) $configure->price_gtf;
+        $data['gtfBalance'] = getAmount($this->user->gtf_balance);
+        $data['gtfInterestBalance'] = getAmount($this->user->gtf_interest_balance);
         $data['interestBalance'] = getAmount($this->user->interest_balance);
         $data['referralBalance'] = getAmount($this->user->referral_balance);
         $data['totalDeposit'] = getAmount($this->user->funds()->whereNull('plan_id')->whereStatus(1)->sum('amount'));
@@ -83,6 +89,7 @@ class HomeController extends Controller
             ->selectRaw('COUNT(CASE WHEN status = 1  THEN id END) AS running')
             ->selectRaw('SUM(CASE WHEN maturity != -1  THEN maturity * profit END) AS expectedProfit')
             ->selectRaw('SUM(recurring_time * profit) AS returnProfit')
+            ->where('type', 1)
             ->get()->makeHidden('nextPayment')->toArray();
         $data['roi'] = collect($roi)->collapse();
         $data['ticket'] = Ticket::where('user_id', $this->user->id)->count();
@@ -98,6 +105,7 @@ class HomeController extends Controller
                 DB::raw("DATE_FORMAT(created_at,'%M') as months")
             )
             ->groupBy(DB::raw("MONTH(created_at)"))
+            ->where('type', 1)
             ->get()->makeHidden('nextPayment')->map(function ($item) use ($monthlyInvestment) {
                 $monthlyInvestment->put($item['months'], round($item['totalAmount'], 2));
             });
@@ -387,12 +395,17 @@ class HomeController extends Controller
     {
         $basic = (object)config('basic');
         $ga = new GoogleAuthenticator();
-        $secret = $ga->createSecret();
+        if($this->user->two_fa_code) {
+            $secret = $this->user->two_fa_code;
+        } else {
+            $secret = $ga->createSecret();
+            $this->user->two_fa_code = $secret;
+            $this->user->save();
+        }
+        
         $qrCodeUrl = $ga->getQRCodeGoogleUrl($this->user->username . '@' . $basic->site_title, $secret);
-        $previousCode = $this->user->two_fa_code;
-
-        $previousQR = $ga->getQRCodeGoogleUrl($this->user->username . '@' . $basic->site_title, $previousCode);
-        return view($this->theme . 'user.twoFA.index', compact('secret', 'qrCodeUrl', 'previousCode', 'previousQR'));
+        
+        return view($this->theme . 'user.twoFA.index', compact('secret', 'qrCodeUrl'));
     }
 
     public function twoStepEnable(Request $request)
@@ -501,9 +514,11 @@ class HomeController extends Controller
         if ($amount > $user->$balance_type) {
             return back()->with('error', 'Insufficient Balance');
         }
+        $configure = $this->getConfigure();
 
         $new_balance = getAmount($user->$balance_type - $amount);
         $user->$balance_type = $new_balance;
+        $user->gtf_balance = (int)$user->gtf_balance + (int)($amount / $configure->price_gtf);
         $user->save();
 
         $userRef = $user->referral;
@@ -594,6 +609,8 @@ class HomeController extends Controller
             "link" => route('admin.user.plan-purchaseLog', $user->id),
             "icon" => "fa fa-money-bill-alt "
         ];
+
+
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
         return back()->with('success', 'Plan has been Purchased Successfully');
     }
@@ -683,6 +700,154 @@ class HomeController extends Controller
         return view($this->theme . 'user.transaction.investLog', compact('investments'));
     }
 
+    public function staking()
+    {
+        $data['gtfBalance'] = getAmount($this->user->gtf_balance);
+        $data['gtfInterestBalance'] = (float)getAmount($this->user->gtf_interest_balance);
+        $data['price_gtf'] = (float)$this->getConfigure()->price_gtf;
+        $stakings = $this->getDataStaking();
+
+        return view($this->theme . 'user.transaction.staking', $data, compact('stakings', 'data'));
+    }
+    public function swapToken(Request $request)
+    {
+        if($request->gtf_amount > $this->user->gtf_interest_balance) {
+            session()->flash('flash_message', 'Please check your GTF interest balance');
+            return redirect()->back();
+        }
+        $configure = $this->getConfigure();
+        $data['price_gtf'] = (float)$configure->price_gtf;
+        $stakings = $this->getDataStaking();
+
+        // Update GTF interest balance, main balance, and log transaction
+        $trans = strRandom();
+        $wallet_type = 'interest_balance';
+
+        // Update balance
+        $usdtReceive = (float)$request->gtf_amount * $configure->price_gtf;
+        $this->user->gtf_interest_balance -= $request->gtf_amount;
+        $this->user->interest_balance += $usdtReceive;
+        $this->user->save();
+
+        // Log transaction
+        $transaction = new Transaction();
+        $transaction->user_id = $this->user->id;
+        $transaction->amount = $usdtReceive;
+        $transaction->trx_type = '+';
+        $transaction->balance_type = $wallet_type;
+        $transaction->remarks = 'Swap GTF ' . $request->gtf_amount .' to USDT.';
+        $transaction->trx_id = $trans;
+        $transaction->final_balance = $this->user[$wallet_type];
+        $transaction->save();
+
+        $data['gtfBalance'] = getAmount($this->user->gtf_balance);
+        $data['gtfInterestBalance'] = getAmount($this->user->gtf_interest_balance);
+
+        return redirect()->route('user.staking');
+    }
+    
+    public function addStaking()
+    {
+        $goldenTigerPlan = 4;
+        $goldenTigerPlanProfitRatio = 0.03;
+        $diamondPlan = 5;
+        $diamondPlanProfitRatio = 0.05;
+        $dayOfMonth = 30;
+        $investValidStakings = Investment::where('user_id', $this->user->id)
+        ->where('is_join_staked', 0)
+        ->where('type', 1)
+        ->where('status', 1)
+        ->whereIn('plan_id', [$goldenTigerPlan, $diamondPlan])
+        ->get();
+
+        $gtfBalance = getAmount($this->user->gtf_balance);
+
+        $configure = $this->getConfigure();
+
+        if($gtfBalance < 10000) {
+            session()->flash('flash_message', 'You must join the Golden Tiger, Diamond Plan, or GTF with a balance greater than 10,000 GTF.');
+            return redirect()->back();
+        }
+        try {
+            // foreach ($investValidStakings as $key => $invest) {
+
+            //     // Add staking
+            //     $numberOfGTF = $invest->amount / $configure->price_gtf;
+            //     $profitPerDay = $invest->plan_id === $goldenTigerPlan ? ($goldenTigerPlanProfitRatio * $numberOfGTF / $dayOfMonth) : ($diamondPlanProfitRatio * $numberOfGTF / $dayOfMonth);
+            //     $staking = new Investment();
+            //     $staking->user_id = $invest->user_id;
+            //     $staking->plan_id = $invest->plan_id;
+            //     $staking->amount = $invest->amount;
+            //     $staking->profit = $profitPerDay;
+            //     $staking->maturity = $invest->maturity;
+            //     $staking->point_in_time = $invest->point_in_time;
+            //     $staking->point_in_text = $invest->point_in_text;
+            //     $staking->afterward = Carbon::parse(now())->addHours(24);
+            //     $staking->status = 1;
+            //     $staking->capital_back = $invest->capital_back;
+            //     $staking->trx = $invest->trx;
+            //     $staking->type = 2;
+            //     $staking->save();
+
+            //     // Change invest
+            //     $invest->is_join_staked = 1;
+            //     $invest->save();
+            // }
+            
+                DB::beginTransaction();
+                    // Add staking
+                    $profitPerDay = $goldenTigerPlanProfitRatio * $gtfBalance / $dayOfMonth;
+                    $staking = new Investment();
+                    $staking->user_id = $this->user->id;
+                    $staking->plan_id = null;
+                    $staking->amount = $gtfBalance;
+                    $staking->profit = $profitPerDay;
+                    $staking->maturity = -1;
+                    $staking->point_in_time = 24;
+                    $staking->point_in_text = 'Day';
+                    $staking->afterward = Carbon::parse(now())->addHours(24);
+                    $staking->status = 1;
+                    $staking->capital_back = 1;
+                    $staking->trx = strRandom();
+                    $staking->type = 2; //Type 1 invest, type 2 staking
+                    $staking->save();
+
+                    // Change invest
+                    $this->user->gtf_balance -= $gtfBalance;
+                    $this->user->save();
+                DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back();
+        }
+
+        return redirect()->route('user.staking');
+    }
+
+    public function getDataStaking() {
+        return Investment::where('user_id', $this->user->id)
+        ->where('type', 2)
+        ->where('is_join_staked', 0)
+        ->where('status', 1)
+        ->paginate(config('basic.paginate'));
+    }
+
+    public function getConfigure() {
+        return Configure::firstOrNew();
+    }
+
+    public function cancelStaking(Request $request)
+    {
+        Investment::find($request->invest_id)->update([
+            'cancel_date' => now(),
+            'status' => 0
+        ]);
+
+        session()->flash('success', 'Cancel successful.');
+
+        return redirect()->back();
+    }
+
     public function investPlan()
     {
         if (auth()->user()) {
@@ -752,19 +917,22 @@ class HomeController extends Controller
     {
         $data['title'] = "Payout Money";
         $data['gateways'] = PayoutMethod::whereStatus(1)->get();
+        $data['configure'] = $this->getConfigure();
+        $data['gtfConvertUsdt'] = (float) $data['configure']->price_gtf * $this->user->gtf_interest_balance;
         return view($this->theme . 'user.payout.money', $data);
     }
 
     public function payoutMoneyRequest(Request $request)
     {
         $this->validate($request, [
-            'wallet_type' => ['required', Rule::in(['balance','interest_balance','referral_balance'])],
+            'wallet_type' => ['required', Rule::in(['balance','interest_balance','referral_balance','gtf_interest_balance'])],
             'gateway' => 'required|integer',
             'amount' => ['required', 'numeric'],
             'password' =>'required'
         ]);
 
-
+        $configure = $this->getConfigure();
+        $gtfConvertUsdt = (float) $configure->price_gtf * $this->user->gtf_interest_balance;
 
         $basic = (object)config('basic');
         $method = PayoutMethod::where('id', $request->gateway)->where('status', 1)->firstOrFail();
@@ -787,7 +955,16 @@ class HomeController extends Controller
             return back();
         }
 
-        if (getAmount($finalAmo) > $authWallet[$request->wallet_type]) {
+        if(in_array($request->wallet_type, ['balance','interest_balance','referral_balance'])) {
+            $existBalance = $authWallet[$request->wallet_type];
+        }
+
+        if($request->wallet_type === 'gtf_interest_balance') {
+            $existBalance = $gtfConvertUsdt;
+        }
+
+
+        if (getAmount($finalAmo) > $existBalance) {
             session()->flash('error', 'Insufficient '.snake2Title($request->wallet_type) .' For Withdraw.');
             return back();
         } else {
@@ -812,11 +989,14 @@ class HomeController extends Controller
     {
         $withdraw = PayoutLog::latest()->where('trx_id', session()->get('wtrx'))->where('status', 0)->latest()->with('method', 'user')->firstOrFail();
         $title = "Payout Form";
+        $configure = $this->getConfigure();
 
         if($withdraw['balance_type'] == 'balance'){
             $wallet =   auth()->user()->balance;
         }elseif($withdraw['balance_type'] == 'interest_balance'){
             $wallet =   auth()->user()->interest_balance;
+        }elseif($withdraw['balance_type'] == 'gtf_interest_balance'){
+            $wallet =   auth()->user()->gtf_interest_balance * (float)$configure->price_gtf;
         }else{
             $wallet =   auth()->user()->referral_balance;
         }
@@ -827,6 +1007,7 @@ class HomeController extends Controller
 
     public function payoutRequestSubmit(Request $request)
     {
+        $configure = $this->getConfigure();
         $basic = (object)config('basic');
         $withdraw = PayoutLog::latest()->where('trx_id', session()->get('wtrx'))->where('status', 0)->with('method', 'user')->firstOrFail();
         $rules = [];
@@ -851,8 +1032,12 @@ class HomeController extends Controller
 
         $this->validate($request, $rules);
         $user = $this->user;
-
-        if (getAmount($withdraw->net_amount) > $user[$withdraw->balance_type]) {
+        $balanceAmount = $user[$withdraw->balance_type];
+        if($withdraw->balance_type == 'gtf_interest_balance') {
+            $balanceAmount = $balanceAmount * (float)$configure->price_gtf;
+        }
+        
+        if (getAmount($withdraw->net_amount) > $balanceAmount) {
             session()->flash('error', 'Insufficient '.snake2Title($withdraw->balance_type).' For Payout.');
             return redirect()->route('user.payout.money');
         } else {
@@ -898,7 +1083,11 @@ class HomeController extends Controller
             $withdraw->status = 1;
             $withdraw->save();
 
-            $user[$withdraw->balance_type] -= $withdraw->net_amount ;
+            if($withdraw->balance_type == 'gtf_interest_balance') {
+                $user[$withdraw->balance_type] -= $withdraw->net_amount / (float)$configure->price_gtf;
+            } else {
+                $user[$withdraw->balance_type] -= $withdraw->net_amount;
+            }
             $user->save();
 
 
@@ -1009,7 +1198,10 @@ class HomeController extends Controller
     public function moneyTransfer()
     {
         $page_title = "Balance Transfer";
-        return view($this->theme . 'user.money-transfer', compact('page_title'));
+        
+        $data['configure'] = $this->getConfigure();
+        $data['gtfConvertUsdt'] = (float) $data['configure']->price_gtf * $this->user->gtf_interest_balance;
+        return view($this->theme . 'user.money-transfer', $data, compact('page_title'));
     }
 
     public function moneyTransferConfirm(Request $request)
@@ -1018,7 +1210,7 @@ class HomeController extends Controller
         $this->validate($request, [
             'email' => 'required',
             'amount' => 'required',
-            'wallet_type' => ['required', Rule::in(['balance', 'interest_balance', 'referral_balance'])],
+            'wallet_type' => ['required', Rule::in(['balance', 'interest_balance', 'referral_balance', 'gtf_interest_balance'])],
             'password' => 'required'
         ], [
             'wallet_type.required' => 'Please Select a wallet'
@@ -1291,3 +1483,5 @@ class HomeController extends Controller
 
 
 }
+
+

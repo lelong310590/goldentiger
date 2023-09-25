@@ -100,7 +100,7 @@
                                                 </svg>
                                             </span>
                                         </button>
-                                        
+
                                         <div class="usdt-to-gtf" style="display: none">
                                             <div class=" d-flex align-items-center">
                                                 <img class="fvzzkg" src="{{ asset($themeTrue . 'img/icon/usdt.png') }}" alt="@lang('Exchange icon')" />
@@ -351,8 +351,8 @@
             swapTypeUsdtToGtf = !swapTypeUsdtToGtf;
             if(swapTypeUsdtToGtf) {
             }
-            // $('.usdt-to-gtf').toggle();
-            // $('.gtf-to-usdt').toggle();
+            $('.usdt-to-gtf').toggle();
+            $('.gtf-to-usdt').toggle();
         }
     </script>
 

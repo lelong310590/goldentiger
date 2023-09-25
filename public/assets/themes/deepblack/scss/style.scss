@@ -138,13 +138,10 @@ p {
          -webkit-background-clip: text;
          -webkit-text-fill-color: transparent;
          position: relative;
-         font: {
-            size: inherit;
-         }
          &::before {
             position: absolute;
             content: "";
-            width: 0px;
+            width: 0;
             height: 2px;
             background: $goldGradiant;
             bottom: 0;

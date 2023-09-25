@@ -65,15 +65,13 @@
                     <th>@lang('SL')</th>
                     <th>@lang('Name')</th>
                     <th>@lang('Plan')</th>
-                    <th >@lang('Return Interest')</th>
+                    <th>@lang('Return Interest')</th>
                     <th>@lang('Received Amount')</th>
                     <th>@lang('Upcoming Payment')</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse($investments as $key => $invest)
-
-
 
                     <tr>
                         <td data-label="@lang('SL')">
@@ -95,7 +93,7 @@
                             </a>
                         </td>
                         <td data-label="@lang('Plan')">
-                            {{trans(optional($invest->plan)->name)}}
+                            {{trans(isset(optional($invest->plan)->name) ? optional($invest->plan)->name : 'Unknow')}}
                             <br> {{getAmount($invest->amount).' '.trans($basic->currency)}}
                         </td>
 
@@ -120,7 +118,6 @@
                             @else
                                 <span class="badge badge-success">@lang('Completed')</span>
                             @endif
-
                         </td>
                     </tr>
                 @empty

@@ -22,11 +22,6 @@
              <img src="{{asset($themeTrue.'img/icon/money-bag.png')}}" alt="@lang('Add Fund')"/>@lang('Add Fund')
           </a>
        </li>
-       <li class="{{menuActive(['user.staking', 'user.add.staking'])}}">
-          <a href="{{route('user.staking')}}" class="sidebar-link">
-             <img src="{{asset($themeTrue.'img/icon/padlock.png')}}" alt="@lang('Staking')"/>@lang('Staking')
-          </a>
-       </li>
        <li class="{{menuActive(['user.fund-history', 'user.fund-history.search'])}}">
           <a href="{{route('user.fund-history')}}" class="sidebar-link">
              <img src="{{asset($themeTrue.'img/icon/fund.png')}}" alt="@lang('Fund History')"/>@lang('Fund History')

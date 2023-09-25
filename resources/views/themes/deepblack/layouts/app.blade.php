@@ -8,12 +8,14 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en"  @if(session()->get('rtl') == 1) dir="rtl" @endif >
 
+{{--@dump(asset($themeTrue.'bootstrap/bootstrap.min.css'))--}}
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+{{--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
     @include('partials.seo')
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/bootstrap/bootstrap.min.css')}}" />

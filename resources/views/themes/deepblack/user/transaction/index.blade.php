@@ -71,19 +71,12 @@
                         </thead>
                         <tbody>
                             @forelse($transactions as $transaction)
-                            @php
-                                if ($transaction->balance_type === 'gtf_interest_balance' && $transaction->charge == 0) {
-                                    $currency = 'GTF';
-                                } else {
-                                    $currency = 'USDT';
-                                }
-                            @endphp
                                 <tr>
                                     <td>{{loopIndex($transactions) + $loop->index}}</td>
                                     <td>@lang($transaction->trx_id)</td>
                                     <td>
                                         <span
-                                        class="fontBold text-{{($transaction->trx_type == "+") ? 'success': 'danger'}}">{{($transaction->trx_type == "+") ? '+': '-'}}{{getAmount($transaction->amount, config('basic.fraction_number')). ' ' . $currency}}</span>
+                                        class="fontBold text-{{($transaction->trx_type == "+") ? 'success': 'danger'}}">{{($transaction->trx_type == "+") ? '+': '-'}}{{getAmount($transaction->amount, config('basic.fraction_number')). ' ' . trans(config('basic.currency'))}}</span>
                                     </td>
                                     <td>@lang($transaction->remarks)</td>
                                     <td>{{ dateTime($transaction->created_at, 'd M Y h:i A') }}</td>
@@ -105,4 +98,3 @@
     </section>
 
 @endsection
-

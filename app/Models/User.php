@@ -113,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function invests()
     {
-        return $this->hasMany(Investment::class)->where('type', 1)->latest();
+        return $this->hasMany(Investment::class)->latest();
     }
 
     public function scopeLevel()

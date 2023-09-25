@@ -69,8 +69,8 @@
                                 <h5 class="mb-2 golden-text d-block modal_text_level">@lang('Select wallet')</h5>
                                 <select class="form-control" name="wallet_type">
                                     <!--option value="balance" class="bg-dark text-white">@lang('Deposit Balance - '.$basic->currency_symbol.getAmount(auth()->user()->balance))</option-->
-                                    <option value="interest_balance" class="bg-dark text-white">@lang('Interest Balance: '.$basic->currency_symbol.getAmount(auth()->user()->interest_balance))</option>
-                                    <option value="referral_balance" class="bg-dark text-white">@lang('Referral Balance: '.$basic->currency_symbol.getAmount(auth()->user()->referral_balance))</option>
+                                    <option value="interest_balance" class="bg-dark text-white">@lang('Interest Balance -'.$basic->currency_symbol.getAmount(auth()->user()->interest_balance))</option>
+                                    <option value="referral_balance" class="bg-dark text-white">@lang('Referral Balance -'.$basic->currency_symbol.getAmount(auth()->user()->referral_balance))</option>
                                 </select>
                             </div>
 
@@ -163,5 +163,4 @@
 
     </script>
 @endpush
-
 

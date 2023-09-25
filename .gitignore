@@ -14,4 +14,3 @@ yarn-error.log
 /storage/*
 .idea
 .DS_Store
-public/assets/uploads

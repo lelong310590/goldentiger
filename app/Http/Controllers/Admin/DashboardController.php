@@ -59,7 +59,6 @@ class DashboardController extends Controller
             ->selectRaw('COUNT((CASE WHEN created_at >= CURDATE()  THEN id END)) AS todayInvest')
             ->selectRaw('SUM((CASE WHEN created_at >= CURDATE()  THEN amount END)) AS todayInvestmentAmount')
             ->selectRaw('SUM((CASE WHEN created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyInvestmentAmount')
-            ->where('type', 1)
             ->get()->makeHidden('nextPayment')->toArray())->collapse();
 
         $data['tickets'] = collect(Ticket::where('created_at', '>', Carbon::now()->subDays(30))
@@ -75,7 +74,6 @@ class DashboardController extends Controller
         $totalSell = $data['investment']['total'];
         $pieLog = collect();
         Investment::with('plan:id,name')
-            ->where('type', 1)
             ->get()->groupBy('plan.name')->map(function ($items, $key) use ($totalSell, $pieLog) {
                 $pieLog->push(['level' => $key, 'value' => round((0 < $totalSell) ? (count($items) / $totalSell * 100) : 0, 2)]);
                 return $items;
@@ -83,7 +81,6 @@ class DashboardController extends Controller
 
         $dailyInvest = $this->dayList();
         Investment::whereMonth('created_at', Carbon::now()->month)
-            ->where('type', 1)
             ->select(
                 DB::raw('sum(amount) as totalAmount'),
                 DB::raw('DATE_FORMAT(created_at,"Day %d") as date')
@@ -151,7 +148,11 @@ class DashboardController extends Controller
 
     public function dayList()
     {
+<<<<<<< HEAD
         $totalDays = date('d');
+=======
+        $totalDays = date('j');
+>>>>>>> parent of e0a54a8... on sync code
         $daysByMonth = [];
         for ($i = 1; $i <= $totalDays; $i++) {
             array_push($daysByMonth, ['Day ' . sprintf("%02d", $i) => 0]);

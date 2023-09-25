@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Upload;
 use App\Models\Configure;
-use App\Models\Investment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Image;
 use Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Stevebauman\Purify\Facades\Purify;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,7 +35,6 @@ class BasicController extends Controller
         $configure = Configure::firstOrNew();
         $reqData = Purify::clean($request->except('_token', '_method'));
         $request->validate([
-            'price_gtf' => 'required|numeric|gt:0',
             'site_title' => 'required',
             'base_color' => 'sometimes|required',
             'time_zone' => 'required',
@@ -79,11 +76,7 @@ class BasicController extends Controller
         fwrite($fp, '<?php return ' . var_export(config('basic'), true) . ';');
         fclose($fp);
 
-        // Calculate the amount of gtf after change the price
-        $this->calculateAmountGTF($reqData['price_gtf']);
 
-        // Adjust profit staking
-        $this->adjustProfitStaking($reqData['price_gtf']);
 
 		$configure->is_active_cron_notification = (int) $reqData['cron_set_up_pop_up'];
         $configure->fill($reqData)->save();
@@ -120,39 +113,6 @@ class BasicController extends Controller
     {
         $theme = config('theme');
         return view('admin.manage-theme',compact('theme'));
-    }
-
-    public function calculateAmountGTF($priceGTF)
-    {
-        // Assuming $priceGTF contains the new value for priceGTF
-        DB::table('users')
-        ->joinSub(function ($query) {
-            $query->select('user_id', DB::raw('SUM(amount) as totalAmountInvest'))
-                ->from('investments')
-                ->where('status', 1)
-                ->groupBy('user_id');
-        }, 'subquery', function ($join) {
-            $join->on('users.id', '=', 'subquery.user_id');
-        })
-        ->update(['gtf_balance' => DB::raw("`subquery`.`totalAmountInvest` / $priceGTF")]);
-    }
-    
-    public function adjustProfitStaking($priceGTF)
-    {
-        $goldenTigerPlan = 4;
-        $goldenTigerPlanProfitRatio = 0.03;
-        $diamondPlan = 5;
-        $diamondPlanProfitRatio = 0.05;
-        $dayOfMonth = 30;
-        // Get investments
-        $investments = Investment::where('type', 2)
-        ->where('status', 1)->get();
-        foreach ($investments as $invest) {
-            $numberOfGTF = $invest->amount / $priceGTF;
-            $profitPerDay = $invest->plan_id === $goldenTigerPlan ? ($goldenTigerPlanProfitRatio * $numberOfGTF / $dayOfMonth) : ($diamondPlanProfitRatio * $numberOfGTF / $dayOfMonth);
-            $invest->profit = $profitPerDay;
-            $invest->save();
-        }
     }
 
     public function activateTheme(Request $request, $name)

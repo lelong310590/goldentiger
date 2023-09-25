@@ -54,10 +54,9 @@
                             aria-label="Default select example"
                         >
                             <option value="" selected disabled class="text-white bg-dark">{{trans('Select Wallet')}}</option>
-                            <option value="balance" class="text-white bg-dark">{{trans('Main balance: '.$basic->currency_symbol.getAmount(auth()->user()->balance))}}</option>
-                            <option value="interest_balance" class="text-white bg-dark">{{trans('Interest Balance: '.$basic->currency_symbol.getAmount(auth()->user()->interest_balance))}}</option>
-                            <option value="referral_balance" class="bg-dark text-white">@lang('Referral Balance: '.$basic->currency_symbol.getAmount(auth()->user()->referral_balance))</option>
-                            <option value="gtf_interest_balance" class="bg-dark text-white">@lang('GTF Interest Balance: '.getAmount(auth()->user()->gtf_interest_balance))</option>
+                            <option value="balance" class="text-white bg-dark">{{trans('Main balance - '.$basic->currency_symbol.getAmount(auth()->user()->balance))}}</option>
+                            <option value="interest_balance" class="text-white bg-dark">{{trans('Interest Balance - '.$basic->currency_symbol.getAmount(auth()->user()->interest_balance))}}</option>
+                            <option value="referral_balance" class="bg-dark text-white">@lang('Referral Balance -'.$basic->currency_symbol.getAmount(auth()->user()->referral_balance))</option>
                         </select>
                         @error('wallet_type')
                             <div class="error text-danger">@lang($message) </div>
@@ -88,4 +87,3 @@
 
 
 @endsection
-

@@ -2,8 +2,6 @@
 
 namespace App\Helper;
 
-use Carbon\Carbon;
-
 
 class GoogleAuthenticator
 {
@@ -45,7 +43,7 @@ class GoogleAuthenticator
     public function getCode($secret, $timeSlice = null)
     {
         if ($timeSlice === null) {
-            $timeSlice = floor(Carbon::now()->timestamp/30);
+            $timeSlice = floor(time() / 30);
         }
 
         $secretkey = $this->_base32Decode($secret);
@@ -196,4 +194,3 @@ class GoogleAuthenticator
         return $result === 0;
     }
 }
-

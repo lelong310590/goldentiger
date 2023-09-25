@@ -25,7 +25,7 @@
                                 <div class="input-group">
                                     <input
                                         type="text"
-                                        value="{{$secret}}"
+                                        value="{{$previousCode}}"
                                         class="form-control"
                                         id="referralURL"
                                         readonly
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group mx-auto text-center py-4">
-                                <img class="mx-auto" src="{{$qrCodeUrl}}">
+                                <img class="mx-auto" src="{{$previousQR}}">
                             </div>
 
                             <div class="form-group mx-auto text-center">
@@ -196,5 +196,4 @@
         }
     </script>
 @endpush
-
 

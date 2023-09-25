@@ -1,7 +1,7 @@
 @extends($theme.'layouts.user')
 @section('title',trans('Dashboard'))
 @section('content')
-    
+
     <script>
         "use strict"
         function getCountDown(elementId, seconds) {
@@ -28,47 +28,13 @@
         <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="header-text-full d-flex justify-content-between align-items-center">
+                <div class="header-text-full">
                     <h2>@lang('dashboard')</h2>
-                    <div class="d-flex align-item-center wrap-gtf-price cc-coin">
-                        <div class="mx-2">
-                            <img class="coin-img" alt="litecoin" src="{{ asset('assets/uploads/logo/favicon.png') }}" style="max-height: 24px;">
-                        </div> (GTF) 
-                        <span style="text-align:center;margin-left:1ch;" class="">$ <span>{{ $priceGtf ?? 0 }}</span></span>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div
-                    class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
-                >
-                    <div class="img-box">
-                        <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
-                    </div>
-                    <h4>@lang('GTF amount')</h4>
-                    <h2>{{getAmount($gtfBalance, config('basic.fraction_number'))}}</h2>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div
-                    class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
-                >
-                    <div class="img-box">
-                        <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
-                    </div>
-                    <h4>@lang('GTF Interest Balance')</h4>
-                    <h2>{{getAmount($gtfInterestBalance, config('basic.fraction_number'))}}</h2>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div
                     class="box"
                     data-aos="fade-up"
@@ -82,7 +48,7 @@
                     <h2><small><sup>{{trans(config('basic.currency_symbol'))}}</sup></small>{{getAmount($walletBalance, config('basic.fraction_number'))}}</h2>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 mb-4">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div
                     class="box"
                     data-aos="fade-up"
@@ -129,7 +95,7 @@
         </div>
         </div>
     </section>
-    
+
     <!-- Imvest history -->
     <section class="transaction-history mt-5 pt-5">
       <div class="container-fluid">
@@ -158,7 +124,7 @@
                                 <tr>
                                     <td>{{loopIndex($investments) + $key}}</td>
                                     <td>
-                                        {{trans(optional($invest->plan)->name)}}
+                                        {{trans(isset(optional($invest->plan)->name) ? optional($invest->plan)->name : 'Unknow')}}
                                         <br> {{getAmount($invest->amount).' '.trans($basic->currency)}}
                                     </td>
                                     <td>
@@ -187,7 +153,7 @@
                                         <td colspan="100%">{{trans('No Data Found!')}}</td>
                                     </tr>
                                 @endforelse
-                                
+
                             </tbody>
                             <thead>
                                 <tr>
@@ -200,9 +166,9 @@
             </div>
       </div>
     </section>
-    
-    
-    
+
+
+
 
     <!---- charts ----->
     <section class="chart-information mt-5">
@@ -456,63 +422,6 @@
         </div>
     </section>
 
-    
-<!-- INVEST-NOW MODAL -->
-<div class="modal fade addFundModal" id="investNowModal" tabindex="-1" data-bs-backdrop="static"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title golden-text" id="exampleModalLabel">@lang('Notification')</h3>
-            <button
-                type="button"
-                data-bs-dismiss="modal"
-                class="btn-close btn-close-investment"
-                aria-label="Close"
-            >
-                <img src="{{asset($themeTrue.'img/icon/cross.png')}}" alt="@lang('cross img')" />
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-block">
-                <div class="signin ">
-                    <h2 class="title golden-text text-center plan-name"></h2>
-
-                    <div class="form-group mb-3">
-                        <div class="box">
-                            Notice From Goldentigerfund. <br>
-
-                            Sincere thanks to the Community and investors for accompanying GTF.<br>
-
-                            We ANNOUNCE to the community the launch issuance program and GTF Giveaway for investors who have participated and trusted us in the past.<br>
-
-                            On September 15, 2023, the GTF staking feature will be activated and unlocked.<br>
-
-                            We have been developing according to the roadmap of the project announced to the community.<br>
-
-                            The timing of holding and increasing GTF is great.<br>
-
-                            For all inquiries from customers and the community, please contact GTF's support department.<br>
-
-                            Best regards !<br>
-                        </div>
-                    </div>
-
-                    <div class="btn-area mb-30 modal-footer border-top-0 p-0">
-                        <button 
-                        type="button"
-                        data-bs-dismiss="modal"
-                        class="btn-close-investment gold-btn w-100"
-                        aria-label="Close">@lang('Close')</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-</div>
-<!-- INVEST-NOW MODAL -->
-
 @endsection
 
 
@@ -523,13 +432,6 @@
 
     <script>
         "use strict";
-        
-        (function ($) {
-            
-            var planModal = new bootstrap.Modal(document.getElementById('investNowModal'))
-            planModal.show()
-
-            })(jQuery);
 
         var options = {
             theme: {

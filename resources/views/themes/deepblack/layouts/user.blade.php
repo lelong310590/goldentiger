@@ -7,6 +7,7 @@
 <html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en" @if(session()->get('rtl') == 1) dir="rtl" @endif >
+
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -19,8 +20,6 @@
 
     @stack('css-lib')
 
-
-
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/owl.carousel.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/owl.theme.default.min.css')}}">
@@ -28,47 +27,50 @@
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/radial-progress/radialprogress.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/jquery/jquery-ui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/flags.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css') . '?id=' . time()}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css')}}">
     <script src="{{asset($themeTrue.'js/modernizr.custom.js')}}"></script>
 
-    @stack('style')
+@stack('style')
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script type="application/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script type="application/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of e0a54a8... on sync code
 <body  @if(session()->get('rtl') == 1) class="rtl" @endif>
-<div class="wrapper">
-    <!------ sidebar ------->
-    @include($theme.'partials.sidebar')
+    <div class="wrapper">
+        <!------ sidebar ------->
+        @include($theme.'partials.sidebar')
 
-    <!------- Nav + Content ---------->
-    <div id="content">
-        <div class="overlay">
-            <!----- navbar ------>
-            <nav class="navbar navbar-expand-lg fixed-top">
-                <div class="container-fluid">
+        <!------- Nav + Content ---------->
+        <div id="content">
+           <div class="overlay">
+              <!----- navbar ------>
+              <nav class="navbar navbar-expand-lg fixed-top">
+                 <div class="container-fluid">
                     <a class="navbar-brand golden-text" href="{{route('home')}}">
                         <img src="{{getFile(config('location.logoIcon.path').'logo.png')}}"
                              alt="{{config('basic.site_title')}}">
                     </a>
                     <button
-                        type="button"
-                        id="sidebarCollapse"
-                        class="sidebar-toggler p-0"
+                       type="button"
+                       id="sidebarCollapse"
+                       class="sidebar-toggler p-0"
                     >
-                        <img src="{{asset($themeTrue.'img/icon/hamburger.png')}}" alt="@lang('hamburger image')"/>
+                       <img src="{{asset($themeTrue.'img/icon/hamburger.png')}}" alt="@lang('hamburger image')"/>
                     </button>
 
                     <span class="navbar-text" id="pushNotificationArea">
                        <!---- notification panel ---->
                        @include($theme.'partials.pushNotify')
 
-                        <!---- user panel ---->
+                       <!---- user panel ---->
                        <div class="notification-panel user-panel">
                             <button class="dropdown-toggle">
                                 <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" />
@@ -105,27 +107,27 @@
                             </ul>
                        </div>
                     </span>
-                </div>
-            </nav>
+                 </div>
+              </nav>
 
-            <!------------- others main dashboard body content ------------>
-            @yield('content')
+              <!------------- others main dashboard body content ------------>
+              @yield('content')
 
+           </div>
         </div>
     </div>
-</div>
 
 
-<!-- scroll top icon -->
-<a href="#" class="scroll-top">
-    <img src="{{asset($themeTrue.'img/icon/up-arrow2.png')}}" alt="@lang('scroll to top')" />
-</a>
+     <!-- scroll top icon -->
+    <a href="#" class="scroll-top">
+        <img src="{{asset($themeTrue.'img/icon/up-arrow2.png')}}" alt="@lang('scroll to top')" />
+    </a>
 
-<!-- start preloader -->
-<div id="preloader">
-    <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />
-</div>
-<!-- end preloader -->
+    <!-- start preloader -->
+    <div id="preloader">
+        <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />
+    </div>
+    <!-- end preloader -->
 
 
 @stack('loadModal')
@@ -151,8 +153,8 @@
 <script src="{{asset($themeTrue.'js/script.js')}}"></script>
 <script src="{{asset('assets/global/js/plugins.js')}}"></script>
 <script type="text/javascript">
-    function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
-    }
+function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
+}
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="https://goldentigerfund.com/ticker/js/script"></script>

@@ -44,7 +44,7 @@ class LogController extends Controller
 
     public function investments()
     {
-        $investments = Investment::with('user','plan')->where('type', 1)->orderBy('id', 'DESC')->paginate(config('basic.paginate'));
+        $investments = Investment::with('user','plan')->orderBy('id', 'DESC')->paginate(config('basic.paginate'));
         return view('admin.transaction.investLog', compact('investments'));
     }
 
@@ -63,9 +63,7 @@ class LogController extends Controller
             ->when($date == 1, function ($query) use ($dateSearch) {
                 return $query->whereDate("created_at", $dateSearch);
             })
-            ->with('user','plan')
-            ->where('type', 1)
-            ->paginate(config('basic.paginate'));
+            ->with('user','plan')->paginate(config('basic.paginate'));
         $investments =  $investments->appends($search);
 
         return view('admin.transaction.investLog', compact('investments'));

@@ -52,8 +52,8 @@
                                                     <thead class="thead-dark">
                                                     <tr>
                                                         <th scope="col">@lang('Username')</th>
-                                                        {{-- <th scope="col">@lang('Email')</th> --}}
-                                                        {{-- <th scope="col">@lang('Phone Number')</th> --}}
+                                                        <th scope="col">@lang('Email')</th>
+                                                        <th scope="col">@lang('Phone Number')</th>
                                                         <th scope="col">@lang('Total invest')</th>
                                                         <th scope="col">@lang('Joined At')</th>
                                                     </tr>
@@ -61,14 +61,15 @@
                                                     <tbody>
                                                     @foreach($referral as $user)
                                                         <tr>
+
                                                             <td data-label="@lang('Username')">
                                                                 @lang($user->username)
                                                             </td>
-                                                            {{-- <td data-label="@lang('Email')" class="">{{$user->email}}</td>
+                                                            <td data-label="@lang('Email')" class="">{{$user->email}}</td>
                                                             <td data-label="@lang('Phone Number')">
                                                                 {{$user->mobile}}
-                                                            </td> --}}
-                                                            <td class="text-left" data-label="@lang('Total invest')" class="">{{$user->total_invest  ?? 0 }}$</td>
+                                                            </td>
+                                                            <td class="text-center" data-label="@lang('Total invest')" class="">{{$user->total_invest  ?? 0 }}$</td>
                                                             <td data-label="@lang('Joined At')">
                                                                 {{dateTime($user->created_at)}}
                                                             </td>

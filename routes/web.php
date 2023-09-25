@@ -75,10 +75,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
             Route::get('payout-history-search', 'User\HomeController@payoutHistorySearch')->name('payout.history.search');
 
             Route::get('invest-history', 'User\HomeController@investHistory')->name('invest-history');
-            Route::get('staking', 'User\HomeController@staking')->name('staking');
-            Route::post('staking', 'User\HomeController@addStaking')->name('add.staking');
-            Route::post('swap', 'User\HomeController@swapToken')->name('swap');
-            Route::post('/cancel-staking', 'User\HomeController@cancelStaking')->name('cancel-staking');
             Route::post('/purchase-plan', 'User\HomeController@purchasePlan')->name('purchase-plan');
 
             Route::get('invest-plan', 'User\HomeController@investPlan')->name('invest-plan');
@@ -369,6 +365,7 @@ Route::post('/contact', 'FrontendController@contactSend')->name('contact.send');
 Route::post('/subscribe', 'FrontendController@subscribe')->name('subscribe');
 
 Route::get('/{getLink}/{content_id}', 'FrontendController@getLink')->name('getLink');
+
 
 
 

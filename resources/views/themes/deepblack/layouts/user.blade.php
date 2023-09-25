@@ -40,10 +40,7 @@
 
     <![endif]-->
 </head>
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of e0a54a8... on sync code
 <body  @if(session()->get('rtl') == 1) class="rtl" @endif>
     <div class="wrapper">
         <!------ sidebar ------->

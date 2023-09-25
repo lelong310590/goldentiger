@@ -148,11 +148,7 @@ class DashboardController extends Controller
 
     public function dayList()
     {
-<<<<<<< HEAD
         $totalDays = date('d');
-=======
-        $totalDays = date('j');
->>>>>>> parent of e0a54a8... on sync code
         $daysByMonth = [];
         for ($i = 1; $i <= $totalDays; $i++) {
             array_push($daysByMonth, ['Day ' . sprintf("%02d", $i) => 0]);

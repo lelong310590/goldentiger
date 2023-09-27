@@ -21,8 +21,6 @@ class ManagePlan extends Model
     }
 
 
-
-
     public function getStatusMessageAttribute()
     {
         if ($this->status == 0) {

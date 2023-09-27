@@ -306,7 +306,6 @@
                                         @lang('No')
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>

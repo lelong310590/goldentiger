@@ -55,13 +55,13 @@
 
 
                         <div class="btn-list ">
-                            @if(adminAccessRoute(config('role.user_management.access.edit')))
-                                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                        data-target="#balance">
-                                    <span class="btn-label"><i class="fas fa-hand-holding-usd"></i></span>
-                                    @lang('Add/Subtract Fund')
-                                </button>
-                            @endif
+{{--                            @if(adminAccessRoute(config('role.user_management.access.edit')))--}}
+{{--                                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"--}}
+{{--                                        data-target="#balance">--}}
+{{--                                    <span class="btn-label"><i class="fas fa-hand-holding-usd"></i></span>--}}
+{{--                                    @lang('Add/Subtract Fund')--}}
+{{--                                </button>--}}
+{{--                            @endif--}}
 
                             @if(adminAccessRoute(config('role.user_management.access.view')))
                                 <a href="{{ route('admin.user.transaction',$user->id) }}"

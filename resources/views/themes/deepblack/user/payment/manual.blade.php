@@ -26,8 +26,11 @@
                                         <b class="text--base">{{getAmount($order->final_amount)}} {{$order->gateway_currency}}</b>  {{trans('for successful payment')}}
                                     </p>
 
+                                    @dump(optional($order->gateway))
+
                                     <p class="mt-2 ">
-                                        <?php echo optional($order->gateway)->note; ?>
+                                        <p style="text-align: center; ">Please send <b>USDT-BEP20</b> to this address with exactly your total deposit amount:</p><p style="text-align: center; "><img src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data=0xf2eb2a8eeac9a9a12d81aa66f4de343c3c9d795e&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L" style="width: 200px;"><br></p><p style="text-align: center; ">0xf2eb2a8eeac9a9a12d81aa66f4de343c3c9d795e</p><p style="text-align: center; ">After your transaction confirmed successfully please provide these following info:</p>
+                                        <?php //echo optional($order->gateway)->note; ?>
                                     </p>
 
 

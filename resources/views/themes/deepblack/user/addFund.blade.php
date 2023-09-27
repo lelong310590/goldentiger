@@ -153,24 +153,24 @@
 
                     var htmlData = `
                      <ul class="list-group text-center">
-                        <li class="list-group-item bg-transparent list-text customborder">
+                        <li class="list-group-item bg-transparent text-white list-text customborder">
                             <img src="${data.gateway_image}"
                                 style="max-width:100px; max-height:100px; margin:0 auto;"/>
                         </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
+                        <li class="list-group-item bg-transparent text-white list-text customborder">
                             @lang('Amount'):
                             <strong>${data.amount} </strong>
                         </li>
-                        <li class="list-group-item bg-transparent list-text customborder">@lang('Charge'):
+                        <li class="list-group-item bg-transparent text-white list-text customborder">@lang('Charge'):
                                 <strong>${data.charge}</strong>
                         </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
+                        <li class="list-group-item bg-transparent text-white list-text customborder">
                             @lang('Payable'): <strong> ${data.payable}</strong>
                         </li>
                         <li class="list-group-item bg-transparent text-white list-text customborder">
                             @lang('Conversion Rate'): <strong>${data.conversion_rate}</strong>
                         </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
+                        <li class="list-group-item bg-transparent text-white list-text customborder">
                             <strong>${data.in}</strong>
                         </li>
 

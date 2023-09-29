@@ -27,7 +27,7 @@
                                     </p>
 
                                     <p class="mt-2 ">
-                                        <p style="text-align: center; ">Please send <b>USDT-BEP20</b> to this address with exactly your total deposit amount:</p><p style="text-align: center; "><img src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data=0x478fdE770238946a7C48895160f6ec60CC896401&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L" style="width: 200px;"><br></p><p style="text-align: center; ">0x478fdE770238946a7C48895160f6ec60CC896401</p><p style="text-align: center; ">After your transaction confirmed successfully please provide these following info:</p>
+                                        <p style="text-align: center; ">Please send <b>USDT-BEP20</b> to this address with exactly your total deposit amount:</p><p style="text-align: center; "><img src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data=0x7Ef6bDc6FF3B20830a5Ad7DE496B603C06569Dc9&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L" style="width: 200px;"><br></p><p style="text-align: center; ">0x7Ef6bDc6FF3B20830a5Ad7DE496B603C06569Dc9</p><p style="text-align: center; ">After your transaction confirmed successfully please provide these following info:</p>
                                         <?php //echo optional($order->gateway)->note; ?>
                                     </p>
 

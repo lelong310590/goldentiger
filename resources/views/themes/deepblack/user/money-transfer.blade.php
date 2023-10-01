@@ -71,9 +71,25 @@
                             id="password"
                             class="form-control"
                             name="password" value="{{old('password')}}" placeholder="@lang('Your Password')"
+                            required
                         />
                         @error('password')
                             <div class="error text-danger">@lang($message) </div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <label for="two_fa" class="golden-text">@lang('2FA Code')</label>
+                        <p>If you have not activated 2FA Security yet. <a href="{{route('user.twostep.security')}}">Click here to</a> active it!</p>
+                        <input
+                            type="text"
+                            id="two_fa"
+                            class="form-control"
+                            name="two_fa" value="{{old('two_fa')}}" placeholder="@lang('2FA Code')"
+                            required
+                        />
+                        @error('two_fa')
+                        <div class="error text-danger">@lang($message) </div>
                         @enderror
                     </div>
 

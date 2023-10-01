@@ -1,4 +1,3 @@
-
 @if(isset($templates['investment'][0]) && $investment = $templates['investment'][0])
     <!-- plan start -->
     <section class="pricing-section">

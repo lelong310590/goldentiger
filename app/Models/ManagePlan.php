@@ -15,7 +15,12 @@ class ManagePlan extends Model
     public function getPriceAttribute()
     {
         if ($this->fixed_amount == 0) {
-            return config('basic.currency_symbol') . $this->minimum_amount . ' - ' . config('basic.currency_symbol') . $this->maximum_amount;
+            if ($this->maximum_amount > 100000) {
+                return 'More than '.config('basic.currency_symbol') . $this->minimum_amount;
+
+            } else {
+                return config('basic.currency_symbol') . $this->minimum_amount . ' - ' . config('basic.currency_symbol') . $this->maximum_amount;
+            }
         }
         return config('basic.currency_symbol').$this->fixed_amount;
     }

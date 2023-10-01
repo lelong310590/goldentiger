@@ -176,7 +176,4 @@ class VerificationController extends Controller
         throw ValidationException::withMessages(['error' => 'Wrong Verification Code']);
 
     }
-
-
-
 }

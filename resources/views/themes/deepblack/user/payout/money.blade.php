@@ -89,6 +89,22 @@
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
+
+                            <div class="form-group mb-30 mt-3">
+                                <div class="box">
+                                    <h5 class="golden-text">@lang('2FA Code')</h5>
+                                    <p>If you have not activated 2FA Security yet. <a href="{{route('user.twostep.security')}}">Click here to</a> active it!</p>
+                                    <div class="input-group">
+                                        <input
+                                            type="text" class="password form-control" name="two_fa"
+                                        />
+                                    </div>
+                                </div>
+                                @error('two_fa')
+                                <p class="text-danger">{{$message}}</p>
+                                @enderror
+                            </div>
+
                             <div class="form-group mb-30 mt-3">
                                 <div class="box">
                                     <h5 class="golden-text">@lang('Amount')</h5>

@@ -93,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
         ]);
     }
 
-    
+
     public function getReferralLinkAttribute()
     {
         return $this->referral_link = route('register', ['ref' => $this->username]);
@@ -101,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getTotalInvestAttribute()
     {
-        $invests = $this->hasMany(Investment::class)->get()->toArray();
+        $invests = $this->hasMany(Investment::class)->where('type', 1)->get()->toArray();
         return array_sum(array_column($invests, 'amount'));
     }
 

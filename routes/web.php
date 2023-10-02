@@ -120,6 +120,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', 'Admin\LoginController@showLoginForm')->name('login');
+    Route::get('/two-fa', 'Admin\LoginController@getTwoFactorValidate')->name('get.two-fa');
+    Route::post('/two-fa', 'Admin\LoginController@postTwoFactorValidate')->name('post.two-fa');
     Route::post('/', 'Admin\LoginController@login')->name('login');
     Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
 
@@ -139,6 +141,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('/profile', 'Admin\DashboardController@profileUpdate')->name('profileUpdate');
         Route::get('/password', 'Admin\DashboardController@password')->name('password');
         Route::put('/password', 'Admin\DashboardController@passwordUpdate')->name('passwordUpdate');
+
+        Route::post('profile/twoStep-enable', 'Admin\DashboardController@twoStepEnable')->name('twoStepEnable');
+        Route::post('profile/twoStep-disable', 'Admin\DashboardController@twoStepDisable')->name('twoStepDisable');
 
 
         Route::get('/staff', 'Admin\ManageRolePermissionController@staff')->name('staff');

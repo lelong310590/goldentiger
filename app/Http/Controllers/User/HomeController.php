@@ -402,9 +402,9 @@ class HomeController extends Controller
             $this->user->two_fa_code = $secret;
             $this->user->save();
         }
-        
+
         $qrCodeUrl = $ga->getQRCodeGoogleUrl($this->user->username . '@' . $basic->site_title, $secret);
-        
+
         return view($this->theme . 'user.twoFA.index', compact('secret', 'qrCodeUrl'));
     }
 
@@ -437,8 +437,6 @@ class HomeController extends Controller
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }
-
-
     }
 
 
@@ -531,7 +529,7 @@ class HomeController extends Controller
             $balance_type = 'referral_balance';
             $remarks = 'Level 1 Referral bonus From ' . $user->username;
             BasicService::makeTransaction($userRef, $com, 0, '+', $balance_type, $trx, $remarks);
-            
+
             // Add bonus log
             $bonus = new ReferralBonus();
             $bonus->from_user_id = $user->id;
@@ -554,7 +552,7 @@ class HomeController extends Controller
 
                 $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
                 BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
-                
+
                 // Add bonus log
                 $bonus = new ReferralBonus();
                 $bonus->from_user_id = $user->id;
@@ -625,7 +623,7 @@ class HomeController extends Controller
 
             $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
             BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
-            
+
             // Add bonus log
             $bonus = new ReferralBonus();
             $bonus->from_user_id = $user->id;
@@ -745,7 +743,7 @@ class HomeController extends Controller
 
         return redirect()->route('user.staking');
     }
-    
+
     public function addStaking()
     {
         $goldenTigerPlan = 4;
@@ -793,7 +791,7 @@ class HomeController extends Controller
             //     $invest->is_join_staked = 1;
             //     $invest->save();
             // }
-            
+
                 DB::beginTransaction();
                     // Add staking
                     $profitPerDay = $goldenTigerPlanProfitRatio * $gtfBalance / $dayOfMonth;
@@ -883,11 +881,11 @@ class HomeController extends Controller
         $investId = $request->get('invest_id');
         $invest = Investment::find($investId);
         $user = $invest->user()->first();
-        
+
         $createdInvest = new DateTime($invest->created_at);
         $now = new DateTime(now());
         $interval = $now->diff($createdInvest);
-        $days = intval($interval->format('%a')); 
+        $days = intval($interval->format('%a'));
         if($invest) {
             $invest->status = 2;
             $invest->cancel_date = now();
@@ -939,7 +937,7 @@ class HomeController extends Controller
         $authWallet = $this->user;
 
         $charge = $method->fixed_charge + ($request->amount * $method->percent_charge / 100);
-        
+
         $finalAmo = $request->amount + $charge;
 
         if (!Hash::check($request->password, $this->user->password)) {
@@ -1036,7 +1034,7 @@ class HomeController extends Controller
         if($withdraw->balance_type == 'gtf_interest_balance') {
             $balanceAmount = $balanceAmount * (float)$configure->price_gtf;
         }
-        
+
         if (getAmount($withdraw->net_amount) > $balanceAmount) {
             session()->flash('error', 'Insufficient '.snake2Title($withdraw->balance_type).' For Payout.');
             return redirect()->route('user.payout.money');
@@ -1198,7 +1196,7 @@ class HomeController extends Controller
     public function moneyTransfer()
     {
         $page_title = "Balance Transfer";
-        
+
         $data['configure'] = $this->getConfigure();
         $data['gtfConvertUsdt'] = (float) $data['configure']->price_gtf * $this->user->gtf_interest_balance;
         return view($this->theme . 'user.money-transfer', $data, compact('page_title'));

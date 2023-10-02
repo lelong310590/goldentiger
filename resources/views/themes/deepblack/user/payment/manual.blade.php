@@ -65,7 +65,7 @@
                                                             <div class="fileinput fileinput-new " data-provides="fileinput">
                                                                 <div class="fileinput-new thumbnail withdraw-thumbnail"
                                                                      data-trigger="fileinput">
-                                                                    <img class="w-150px"
+                                                                    <img class="w-150px img-fluid"
                                                                          src="{{ getFile(config('location.default')) }}"
                                                                          alt="...">
                                                                 </div>

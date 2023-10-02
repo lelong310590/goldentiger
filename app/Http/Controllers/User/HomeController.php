@@ -437,8 +437,6 @@ class HomeController extends Controller
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }
-
-
     }
 
 

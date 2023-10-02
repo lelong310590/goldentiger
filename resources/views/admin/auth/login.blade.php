@@ -31,8 +31,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-
-
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -51,12 +49,9 @@
                 </div>
 
 
-
-
                 <div class="col-lg-12 text-center mt-5">
                     <a href="{{route('admin.password.request')}}" class="text-danger">{{trans('Forgot Your Password?')}}</a>
                 </div>
-
 
             </div>
         </form>

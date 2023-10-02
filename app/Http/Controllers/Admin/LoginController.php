@@ -85,7 +85,6 @@ class LoginController extends Controller
                 session()->flash('error', "2FA Code is wrong!");
                 return back()->withInput();
             }
-
             if(auth()->guard('admin')->attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
                 return $this->sendLoginResponse($request);
             }

@@ -205,7 +205,8 @@ class DashboardController extends Controller
                 'browser' => $browser->browserName() . ', ' . $browser->platformName(),
                 'time' => date('d M, Y h:i:s A'),
             ]);
-            return back()->with('success', 'Google Authenticator Has Been Enabled.');
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.login')->with('success', 'Google Authenticator Has Been Enabled.');
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }
@@ -235,8 +236,8 @@ class DashboardController extends Controller
                 'browser' => $browser->browserName() . ', ' . $browser->platformName(),
                 'time' => date('d M, Y h:i:s A'),
             ]);
-
-            return back()->with('success', 'Google Authenticator Has Been Disabled.');
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.login')->with('success', 'Google Authenticator Has Been Disabled.');
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }

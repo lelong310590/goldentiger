@@ -433,12 +433,13 @@ class HomeController extends Controller
                 'browser' => $browser->browserName() . ', ' . $browser->platformName(),
                 'time' => date('d M, Y h:i:s A'),
             ]);
-            return back()->with('success', 'Google Authenticator Has Been Enabled.');
+
+            Auth::guard()->logout();
+            $request->session()->invalidate();
+            return $this->loggedOut($request) ?: redirect('/login')->with('success', 'Google Authenticator Has Been Enabled.');
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }
-
-
     }
 
 
@@ -467,7 +468,9 @@ class HomeController extends Controller
                 'time' => date('d M, Y h:i:s A'),
             ]);
 
-            return back()->with('success', 'Google Authenticator Has Been Disabled.');
+            Auth::guard()->logout();
+            $request->session()->invalidate();
+            return $this->loggedOut($request) ?: redirect('/login')->with('success', 'Google Authenticator Has Been Disabled.');
         } else {
             return back()->with('error', 'Wrong Verification Code.');
         }

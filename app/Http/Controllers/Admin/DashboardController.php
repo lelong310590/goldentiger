@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper\GoogleAuthenticator;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\Notify;
 use App\Http\Traits\Upload;
 use App\Models\Fund;
 use App\Models\Investment;
@@ -13,6 +15,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Rules\FileTypeValidate;
 use Carbon\Carbon;
+use hisorange\BrowserDetect\Parser as Browser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +25,7 @@ use \Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
-    use Upload;
+    use Upload, Notify;
 
     public function __construct()
     {
@@ -162,10 +165,83 @@ class DashboardController extends Controller
 
     public function profile()
     {
+        $basic = (object)config('basic');
         $admin = $this->user;
-        return view('admin.profile', compact('admin'));
+        $ga = new GoogleAuthenticator();
+        if($admin->two_fa_code) {
+            $secret = $admin->two_fa_code;
+        } else {
+            $secret = $ga->createSecret();
+            $admin->two_fa_code = $secret;
+            $admin->save();
+        }
+
+        $qrCodeUrl = $ga->getQRCodeGoogleUrl($admin->username . '@' . 'CMS '.$basic->site_title, $secret);
+        return view('admin.profile', compact('admin', 'qrCodeUrl', 'secret'));
     }
 
+    public function twoStepEnable(Request $request)
+    {
+        $user = $this->user;
+        $this->validate($request, [
+            'key' => 'required',
+            'code' => 'required',
+        ]);
+        $ga = new GoogleAuthenticator();
+        $secret = $request->key;
+        $oneCode = $ga->getCode($secret);
+
+        $userCode = $request->code;
+        if ($oneCode == $userCode) {
+            $user['two_fa'] = 1;
+            $user['two_fa_verify'] = 1;
+            $user['two_fa_code'] = $request->key;
+            $user->save();
+            $browser = new Browser();
+            $this->mail($user, 'TWO_STEP_ENABLED', [
+                'action' => 'Enabled',
+                'code' => $user->two_fa_code,
+                'ip' => request()->ip(),
+                'browser' => $browser->browserName() . ', ' . $browser->platformName(),
+                'time' => date('d M, Y h:i:s A'),
+            ]);
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.login')->with('success', 'Google Authenticator Has Been Enabled.');
+        } else {
+            return back()->with('error', 'Wrong Verification Code.');
+        }
+    }
+
+    public function twoStepDisable(Request $request)
+    {
+        $this->validate($request, [
+            'code' => 'required',
+        ]);
+        $user = $this->user;
+        $ga = new GoogleAuthenticator();
+
+        $secret = $user->two_fa_code;
+        $oneCode = $ga->getCode($secret);
+        $userCode = $request->code;
+
+        if ($oneCode == $userCode) {
+            $user['two_fa'] = 0;
+            $user['two_fa_verify'] = 1;
+            $user['two_fa_code'] = null;
+            $user->save();
+            $browser = new Browser();
+            $this->mail($user, 'TWO_STEP_DISABLED', [
+                'action' => 'Disabled',
+                'ip' => request()->ip(),
+                'browser' => $browser->browserName() . ', ' . $browser->platformName(),
+                'time' => date('d M, Y h:i:s A'),
+            ]);
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.login')->with('success', 'Google Authenticator Has Been Disabled.');
+        } else {
+            return back()->with('error', 'Wrong Verification Code.');
+        }
+    }
 
     public function profileUpdate(Request $request)
     {

@@ -17,4 +17,4 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('autoprefixer'),
 ]);
 
-mix.sass('public/assets/themes/deepblack/scss/style.scss', 'public/assets/themes/deepblack/scss/style.css');
+mix.sass('public/assets/themes/deepblack/scss/style.scss', 'public/assets/themes/deepblack/scss/style.min.css');

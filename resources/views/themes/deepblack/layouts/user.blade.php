@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/radial-progress/radialprogress.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/jquery/jquery-ui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/flags.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css') . '?id=' . time()}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.min.css') . '?id=' . time()}}">
     <script src="{{asset($themeTrue.'js/modernizr.custom.js')}}"></script>
 
 @stack('style')
@@ -117,11 +117,11 @@
         <img src="{{asset($themeTrue.'img/icon/up-arrow2.png')}}" alt="@lang('scroll to top')" />
     </a>
 
-    <!-- start preloader -->
-    <div id="preloader">
-        <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />
-    </div>
-    <!-- end preloader -->
+{{--    <!-- start preloader -->--}}
+{{--    <div id="preloader">--}}
+{{--        <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />--}}
+{{--    </div>--}}
+{{--    <!-- end preloader -->--}}
 
 
 @stack('loadModal')

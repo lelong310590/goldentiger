@@ -5,9 +5,8 @@
             <div class="row">
                 <div class="col">
                     <div class="header-text text-center">
-                        <h5>@lang(@$investment->description->title)</h5>
-                        <h2>@lang(@$investment->description->sub_title)</h2>
-                        <p>@lang(@$investment->description->short_details)</p>
+                        <h2>Join our investment plan</h2>
+                        <p>Help agencies to define their new business objectives and then create professional software</p>
                     </div>
                 </div>
             </div>
@@ -20,10 +19,16 @@
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div
                             class="box"
-                            data-aos="fade-up"
-                            data-aos-duration="800"
-                            data-aos-anchor-placement="center-bottom"
+{{--                            data-aos="fade-up"--}}
+{{--                            data-aos-duration="800"--}}
+{{--                            data-aos-anchor-placement="center-bottom"--}}
                             >
+                            <div class="plan-image">
+                                @php
+                                    $link = $themeTrue.'img/icon/price0'. $k+1 .'.png';
+                                @endphp
+                                <img src="{{asset($link)}}" alt="price-icon" class="img-fluid">
+                            </div>
                             <h2>@lang($data->name)</h2>
                             <h3>{{$data->price}}</h3>
                             <div class="bg">
@@ -75,7 +80,6 @@
                 class="btn-close btn-close-investment"
                 aria-label="Close"
             >
-                <img src="{{asset($themeTrue.'img/icon/cross.png')}}" alt="@lang('cross img')" />
             </button>
         </div>
         <div class="modal-body">

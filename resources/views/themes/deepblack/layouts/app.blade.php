@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/aos/aos.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/radial-progress/radialprogress.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/flag-icon.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'scss/style.min.css')}}">
 
     <script src="{{asset($themeTrue.'js/modernizr.custom.js')}}"></script>
 
@@ -54,7 +54,7 @@
                     <img src="{{asset($themeTrue.'img/icon/hamburger.png')}}" alt="@lang('hamburger image')" />
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link {{Request::routeIs('home') ? 'active' : ''}}" aria-current="page"
                                 href="{{route('home')}}">@lang('Home')</a>
@@ -161,11 +161,11 @@
     <img src="{{asset($themeTrue.'img/icon/up-arrow2.png')}}" alt="@lang('scroll to top')" />
 </a>
 
-<!-- start preloader -->
-<div id="preloader">
-    <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />
-</div>
-<!-- end preloader -->
+{{--<!-- start preloader -->--}}
+{{--<div id="preloader">--}}
+{{--    <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />--}}
+{{--</div>--}}
+{{--<!-- end preloader -->--}}
 
 
 <script src="{{asset($themeTrue.'assets/bootstrap/bootstrap.bundle.min.js')}}"></script>

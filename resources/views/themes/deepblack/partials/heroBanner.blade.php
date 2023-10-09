@@ -2,7 +2,7 @@
     @push('style')
         <style>
             .home-banner {
-                background-image: url({{getFile(config('location.content.path').@$hero->templateMedia()->background_image)}});
+                background-image: url({{asset($themeTrue.'img/hero-bg.png')}});
                 background-size: cover;
                 background-position: bottom center;
             }
@@ -27,7 +27,7 @@
                 <div
                 class="col-lg-6 text-right d-none d-lg-block animate__animated animate__bounce animate__delay-2s"
                 >
-                <img src="{{getFile(config('location.content.path').@$hero->templateMedia()->image)}}" alt="@lang('hero image')" class="img-fluid" />
+                <img src="{{asset($themeTrue.'img/world.png')}}" alt="@lang('hero image')" class="img-fluid" />
                 </div>
             </div>
         </div>

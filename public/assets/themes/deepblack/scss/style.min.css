@@ -1180,7 +1180,7 @@ p {
 }
 .login-section .login-box .bottom .form-check {
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  color: #1E3762;
   margin-bottom: 0;
   font-size: 13px;
   font-weight: 400;
@@ -1203,27 +1203,24 @@ p {
 }
 .login-section .login-box .bottom p {
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0;
+  color: #FC5A02;
+  margin-bottom: 20px;
   font-size: 13px;
   font-weight: 400;
 }
 .login-section .login-box .bottom p a {
   font-weight: 600;
-  font-family: "Teko", sans-serif;
   font-size: 16px;
 }
 .login-section .login-box p {
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0;
+  color: #1E3762;
   font-size: 13px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   font-weight: 400;
 }
 .login-section .login-box p a {
   font-weight: 600;
-  font-family: "Teko", sans-serif;
   font-size: 16px;
 }
 

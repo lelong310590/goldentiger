@@ -1433,7 +1433,7 @@ p {
 
             .form-check {
                 text-transform: uppercase;
-                color: rgba(255, 255, 255, 0.8);
+                color: $primaryColor;
                 margin-bottom: 0;
                 font-size: 13px;
                 font-weight: 400;
@@ -1461,14 +1461,12 @@ p {
 
             p {
                 text-transform: uppercase;
-                color: rgba(255, 255, 255, 0.8);
-                margin-bottom: 0;
+                color: $secondaryColor;
+                margin-bottom: 20px;
                 font-size: 13px;
                 font-weight: 400;
-
                 a {
                     font-weight: 600;
-                    font-family: "Teko", sans-serif;
                     font-size: 16px;
                 }
             }
@@ -1476,15 +1474,13 @@ p {
 
         p {
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0;
+            color: $primaryColor;
             font-size: 13px;
-            margin-bottom: 0;
+            margin-bottom: 20px;
             font-weight: 400;
 
             a {
                 font-weight: 600;
-                font-family: "Teko", sans-serif;
                 font-size: 16px;
             }
         }

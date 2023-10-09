@@ -58,7 +58,6 @@
                         class="btn-close"
                         aria-label="Close"
                         >
-                            <img src="{{asset($themeTrue.'img/icon/cross.png')}}" alt="@lang('modal dismiss')" />
                         </button>
                     </div>
 
@@ -74,7 +73,7 @@
 
                             <div class="form-group mb-30 mt-3">
                                 <div class="box">
-                                    <h5 class="text-white">@lang('Amount')</h5>
+                                    <h5 class=>@lang('Amount')</h5>
                                     <div class="input-group">
                                         <input
                                             type="text" class="amount form-control" name="amount"
@@ -153,24 +152,24 @@
 
                     var htmlData = `
                      <ul class="list-group text-center">
-                        <li class="list-group-item bg-transparent text-white list-text customborder">
+                        <li class="list-group-item bg-transparent list-text customborder">
                             <img src="${data.gateway_image}"
                                 style="max-width:100px; max-height:100px; margin:0 auto;"/>
                         </li>
-                        <li class="list-group-item bg-transparent text-white list-text customborder">
+                        <li class="list-group-item bg-transparent list-text customborder">
                             @lang('Amount'):
                             <strong>${data.amount} </strong>
                         </li>
-                        <li class="list-group-item bg-transparent text-white list-text customborder">@lang('Charge'):
+                        <li class="list-group-item bg-transparent list-text customborder">@lang('Charge'):
                                 <strong>${data.charge}</strong>
                         </li>
-                        <li class="list-group-item bg-transparent text-white list-text customborder">
+                        <li class="list-group-item bg-transparent list-text customborder">
                             @lang('Payable'): <strong> ${data.payable}</strong>
                         </li>
-                        <li class="list-group-item bg-transparent text-white list-text customborder">
+                        <li class="list-group-item bg-transparent list-text customborder">
                             @lang('Conversion Rate'): <strong>${data.conversion_rate}</strong>
                         </li>
-                        <li class="list-group-item bg-transparent text-white list-text customborder">
+                        <li class="list-group-item bg-transparent list-text customborder">
                             <strong>${data.in}</strong>
                         </li>
 

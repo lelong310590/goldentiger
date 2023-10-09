@@ -43,9 +43,9 @@
             <div class="col-md-6 col-lg-3 mb-4">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="800"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                         <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
@@ -57,9 +57,9 @@
             <div class="col-md-6 col-lg-3 mb-4">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="800"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                         <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
@@ -71,9 +71,9 @@
             <div class="col-md-6 col-lg-3 mb-4">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="800"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                         <img src="{{asset($themeTrue.'img/icon/fund.png')}}" alt="@lang('Main Balance')"/>
@@ -85,9 +85,9 @@
             <div class="col-md-6 col-lg-3 mb-4">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="1200"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="1200"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                     <img src="{{asset($themeTrue.'img/icon/money-bag.png')}}" alt="@lang('Interest Balance')"/>
@@ -99,9 +99,9 @@
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="800"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                     <img src="{{asset($themeTrue.'img/icon/invest.png')}}" alt="@lang('Total Deposit')"/>
@@ -115,9 +115,9 @@
             <div class="col-md-6 col-lg-3">
                 <div
                     class="box"
-                    data-aos="fade-up"
-                    data-aos-duration="1200"
-                    data-aos-anchor-placement="center-bottom"
+{{--                    data-aos="fade-up"--}}
+{{--                    data-aos-duration="1200"--}}
+{{--                    data-aos-anchor-placement="center-bottom"--}}
                 >
                     <div class="img-box">
                     <img src="{{asset($themeTrue.'img/icon/pay-history.png')}}" alt="@lang('Total Earn')"/>
@@ -191,7 +191,7 @@
                             </tbody>
                             <thead>
                                 <tr>
-                                    <th scope="col"><a style="color: black;" href="{{route('user.invest-history')}}">@lang('View All')</a></th>
+                                    <th scope="col"><a style="color: #fff;" href="{{route('user.invest-history')}}">@lang('View All')</a></th>
                                 </tr>
                             </thead>
                         </table>
@@ -200,9 +200,6 @@
             </div>
       </div>
     </section>
-
-
-
 
     <!---- charts ----->
     <section class="chart-information mt-5">

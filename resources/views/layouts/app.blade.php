@@ -13,9 +13,6 @@
     <link href="{{asset('assets/admin/css/style.min.css')}}" rel="stylesheet">
 
     @stack('css')
-
-
-
 </head>
 <body>
 <header class="topbar header-user" data-navbarbg="skin6">

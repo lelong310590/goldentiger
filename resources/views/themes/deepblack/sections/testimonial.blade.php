@@ -4,7 +4,6 @@
        <div class="row">
           <div class="col">
              <div class="header-text text-center">
-                <h5>@lang($testimonial->description->title)</h5>
                 <h2>@lang($testimonial->description->sub_title)</h2>
                 <p>@lang($testimonial->description->short_title)</p>
              </div>

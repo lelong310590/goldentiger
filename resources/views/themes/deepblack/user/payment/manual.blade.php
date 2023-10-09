@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card secbg br-4">
-                        <div class="card-body bg-dark">
+                        <div class="card-body">
                             <div class="row ">
                                 <div class="col-md-12">
                                     <h3 class="title text-center">{{trans('Please follow the instruction below')}}</h3>

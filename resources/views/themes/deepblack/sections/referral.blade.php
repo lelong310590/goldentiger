@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <img src="{{asset($themeTrue.'img/fiat-money.png')}}" class="user-image" alt="@lang('profile')"/>
+                    <img src="{{asset($themeTrue.'img/fiat-money.png')}}" class="user-image img-fluid" alt="@lang('profile')"/>
                 </div>
             </div>
             <div class="referral-wrapper">
@@ -48,10 +48,10 @@
                     </div>
 
                     <div class="how-wrapper">
-                        <img src="{{asset($themeTrue.'img/hand-coin.png')}}" class="user-image" alt="@lang('profile')"/>
+                        <img src="{{asset($themeTrue.'img/hand-coin.png')}}" class="user-image img-fluid d-none d-md-block" alt="@lang('profile')"/>
                         <div class="row">
                             @foreach($totalContents as $k =>  $item)
-                                <div class="col-6 col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div
                                         class="box box-{{$k+1}}"
                                         {{--                                    data-aos="fade-up"--}}

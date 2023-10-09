@@ -13,7 +13,7 @@
             <div class="col-md-6 mb-4 mb-md-0">
                 <div class="img-box">
                     <!--img class="img-fluid" src="{{getFile(config('location.content.path').@$aboutUs->templateMedia()->image)}}" width="576px" height="384px" alt="@lang('about image')"/-->
-                    <video controls autoplay loop muted name="media" style="width: 548px;">
+                    <video controls autoplay loop muted name="media" style="width: 100%;">
                         <source src="{{getFile(config('location.content.path').@$aboutUs->templateMedia()->image)}}" type="video/webm">
                     </video>
                 </div>

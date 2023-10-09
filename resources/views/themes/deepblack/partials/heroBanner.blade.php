@@ -58,7 +58,7 @@
                             @endforeach
                         </div>
 
-                        <div class="technology-wrapper d-flex align-items-center justify-content-between">
+                        <div class="technology-wrapper d-md-flex align-items-center justify-content-between">
                             <div class="technology-item d-flex align-items-center">
                                 <img src="{{asset($themeTrue.'img/icon/medical-cross.png')}}" class="user-image" alt="@lang('profile')" width="25" height="25"/>
                                 <span>Technology</span>

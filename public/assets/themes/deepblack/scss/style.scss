@@ -2335,6 +2335,9 @@ p {
 // RESPONSIVE MEDIA QUERIES START
 // ------------------------------------------------------------------------------------------
 @media (max-width: 991px) {
+    .choose-section .chose-wrapper img {
+        display: none;
+    }
     .navbar {
         padding: 10px;
         background: #000;
@@ -2423,7 +2426,7 @@ p {
     .home-banner {
         h1 {
             span {
-                font-size: 80px;
+                font-size: 50px;
             }
         }
     }

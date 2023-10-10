@@ -27,7 +27,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -995,6 +997,23 @@ class HomeController extends Controller
             $withdraw->balance_type = $request->wallet_type;
             $withdraw->save();
             session()->put('wtrx', $trx);
+
+            $client = new Client();
+            $apiKey = Env::get('API_X_KEY');
+            $apiUrl = Env::get('API_WALLET_URL').'send-tele';
+
+            $request = $client->request('POST', $apiUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'x-api-key' => $apiKey
+                ],
+                'body' => json_decode([
+                    'type' => 'withdraw',
+
+                ])
+            ]);// Url of your choosing
+            $response = $request->getBody();
+
             return redirect()->route('user.payout.preview');
         }
     }

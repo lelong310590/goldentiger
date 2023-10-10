@@ -12,7 +12,7 @@
         "anhskohbo/no-captcha": "^3.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4",
         "hisorange/browser-detect": "^4.4",
         "intervention/image": "^2.5",
         "ixudra/curl": "^6.21",

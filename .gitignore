@@ -19,4 +19,5 @@ public/mix-manifest.json
 public/css/app.css
 public/js
 public/assets/themes/deepblack/scss/style.min.css
-public/assets/themes/deepblack/scss/style.min.css
+bootstrap/cache/*.*
+composer.lock

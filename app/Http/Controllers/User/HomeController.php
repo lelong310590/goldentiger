@@ -27,7 +27,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -978,7 +980,6 @@ class HomeController extends Controller
             $existBalance = $gtfConvertUsdt;
         }
 
-
         if (getAmount($finalAmo) > $existBalance) {
             session()->flash('error', 'Insufficient '.snake2Title($request->wallet_type) .' For Withdraw.');
             return back();
@@ -995,6 +996,7 @@ class HomeController extends Controller
             $withdraw->balance_type = $request->wallet_type;
             $withdraw->save();
             session()->put('wtrx', $trx);
+
             return redirect()->route('user.payout.preview');
         }
     }
@@ -1129,6 +1131,25 @@ class HomeController extends Controller
                 "icon" => "fa fa-money-bill-alt "
             ];
             $this->adminPushNotification('PAYOUT_REQUEST', $msg, $action);
+
+            $client = new Client();
+            $apiKey = Env::get('API_X_KEY');
+            $apiUrl = Env::get('API_WALLET_URL').'send-tele';
+
+            try {
+                $client->request('POST', $apiUrl, [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'x-api-key' => $apiKey
+                    ],
+                    'body' => json_encode([
+                        'type' => 'withdraw',
+                        'message' => '🌟Người dùng '.$user->email.' vừa thực hiện yêu cầu rút tiền BEP20 tới địa chỉ ví: <b>'.$request->get('YourUSDT-BEP20Address').'</b>  với số tiên <b>'.getAmount($withdraw->amount).' USDT</b>.!'
+                    ])
+                ]);// Url of your choosing
+            } catch (\Exception $e) {
+                return redirect()->route('user.payout.preview');
+            }
 
             session()->flash('success', 'Payout request Successfully Submitted. Wait For Confirmation.');
             return redirect()->route('user.payout.money');

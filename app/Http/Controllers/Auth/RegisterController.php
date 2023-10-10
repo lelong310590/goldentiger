@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Traits\Notify;
 use App\Models\User;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
+use Illuminate\Support\Env;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -172,7 +174,7 @@ class RegisterController extends Controller
 
                     $refId = $userRef->referral_id;
                     $i++;
-                    
+
                 }  else {
                     $i = 0;
                 }
@@ -222,6 +224,24 @@ class RegisterController extends Controller
         ];
 
         $this->adminPushNotification('ADDED_USER', $msg, $action);
+
+        //create wallet
+        $client = new Client();
+        $apiKey = Env::get('API_X_KEY');
+        $apiUrl = Env::get('API_WALLET_URL').'create-wallet';
+        try {
+            $client->request('POST', $apiUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'x-api-key' => $apiKey
+                ],
+                'body' => json_encode([
+                    'id' => $user->id,
+                ])
+            ]);// Url of your choosing
+        } catch (\Exception $e) {
+            
+        }
 
         $this->guard()->login($user);
 

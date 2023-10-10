@@ -17,8 +17,8 @@
              <img src="{{asset($themeTrue.'img/icon/growth-graph.png')}}" alt="@lang('invest history ')"/>@lang('invest history')
           </a>
         </li>
-       <li class="{{menuActive(['user.addFund', 'user.addFund.confirm'])}}">
-          <a href="{{route('user.addFund')}}" class="sidebar-link">
+       <li class="{{menuActive(['user.addFundConfirm', 'user.addFund.confirm'])}}">
+          <a href="{{route('user.addFund.confirm')}}" class="sidebar-link">
              <img src="{{asset($themeTrue.'img/icon/money-bag.png')}}" alt="@lang('Add Fund')"/>@lang('Add Fund')
           </a>
        </li>

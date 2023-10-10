@@ -14,7 +14,7 @@
 
        <div class="row profile-setting">
             <div class="col-md-3">
-                <div class="card text-center bg-dark">
+                <div class="card text-center">
                     <ul class="list-group">
                         <li class="list-group-item font-weight-bold bg-transparent customborder">
                             <img
@@ -43,7 +43,7 @@
 
         <div class="col-md-8">
 
-            <div class="card card-type-1 bg-dark">
+            <div class="card card-type-1">
                 <div class="card-header custom-header text-center borderBottom">
                     <h3 class="golden-text card-title pt-2">@lang('Additional Information To Withdraw Confirm')</h3>
                 </div>

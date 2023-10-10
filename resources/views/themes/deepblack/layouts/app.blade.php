@@ -45,8 +45,8 @@
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid ">
                 <a class="navbar-brand golden-text" href="{{url('/')}}">
-                    <img src="{{getFile(config('location.logoIcon.path').'logo.png')}}"
-                         alt="{{config('basic.site_title')}}">
+                    <img src="{{getFile(config('location.logoIcon.path').'logo.jpg')}}"
+                         alt="{{config('basic.site_title')}}" width="50">
                 </a>
                 <button class="navbar-toggler p-0 " type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

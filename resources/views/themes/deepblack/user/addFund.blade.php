@@ -34,7 +34,7 @@
                             data-max_amount="{{getAmount($gateway->max_amount,$basic->fraction_number)}}"
                             data-percent_charge="{{getAmount($gateway->percentage_charge,$basic->fraction_number)}}"
                             data-fix_charge="{{getAmount($gateway->fixed_charge, $basic->fraction_number)}}"
-                            class="gold-btn addFund"
+                            class="gold-btn addFund mt-4"
                             data-bs-toggle="modal" data-bs-target="#addFundModal">@lang('Pay Now')
                         </button>
                     </div>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="modal-footer border-top-0">
-                        <button type="button" class="btn gold-btn checkCalc">@lang('Next')</button>
+                        <a href="{{route('user.addFund.confirm')}}" class="btn gold-btn d-flex align-items-center justify-content-center">@lang('Next')</a>
                     </div>
 
                 </div>
@@ -138,66 +138,66 @@
             $('#loading').show();
             $('.modal-backdrop.fade').addClass('show');
             amount = $('.amount').val();
-            $.ajax({
-                url: "{{route('user.addFund.request')}}",
-                type: 'POST',
-                data: {
-                    amount,
-                    gateway
-                },
-                success(data) {
+            {{--$.ajax({--}}
+            {{--    url: "{{route('user.addFund.request')}}",--}}
+            {{--    type: 'POST',--}}
+            {{--    data: {--}}
+            {{--        amount,--}}
+            {{--        gateway--}}
+            {{--    },--}}
+            {{--    success(data) {--}}
 
-                    $('.payment-form').addClass('d-none');
-                    $('.checkCalc').closest('.modal-footer').addClass('d-none');
+            {{--        $('.payment-form').addClass('d-none');--}}
+            {{--        $('.checkCalc').closest('.modal-footer').addClass('d-none');--}}
 
-                    var htmlData = `
-                     <ul class="list-group text-center">
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            <img src="${data.gateway_image}"
-                                style="max-width:100px; max-height:100px; margin:0 auto;"/>
-                        </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            @lang('Amount'):
-                            <strong>${data.amount} </strong>
-                        </li>
-                        <li class="list-group-item bg-transparent list-text customborder">@lang('Charge'):
-                                <strong>${data.charge}</strong>
-                        </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            @lang('Payable'): <strong> ${data.payable}</strong>
-                        </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            @lang('Conversion Rate'): <strong>${data.conversion_rate}</strong>
-                        </li>
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            <strong>${data.in}</strong>
-                        </li>
+            {{--        var htmlData = `--}}
+            {{--         <ul class="list-group text-center">--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                <img src="${data.gateway_image}"--}}
+            {{--                    style="max-width:100px; max-height:100px; margin:0 auto;"/>--}}
+            {{--            </li>--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                @lang('Amount'):--}}
+            {{--                <strong>${data.amount} </strong>--}}
+            {{--            </li>--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">@lang('Charge'):--}}
+            {{--                    <strong>${data.charge}</strong>--}}
+            {{--            </li>--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                @lang('Payable'): <strong> ${data.payable}</strong>--}}
+            {{--            </li>--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                @lang('Conversion Rate'): <strong>${data.conversion_rate}</strong>--}}
+            {{--            </li>--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                <strong>${data.in}</strong>--}}
+            {{--            </li>--}}
 
-                        ${(data.isCrypto == true) ? `
-                        <li class="list-group-item bg-transparent list-text customborder">
-                            ${data.conversion_with}
-                        </li>
-                        ` : ``}
+            {{--            ${(data.isCrypto == true) ? `--}}
+            {{--            <li class="list-group-item bg-transparent list-text customborder">--}}
+            {{--                ${data.conversion_with}--}}
+            {{--            </li>--}}
+            {{--            ` : ``}--}}
 
-                        <li class="list-group-item bg-transparent">
-                        <a href="${data.payment_url}" class="btn gold-btn addFund">@lang('Pay Now')</a>
-                        </li>
-                        </ul>`;
+            {{--            <li class="list-group-item bg-transparent">--}}
+            {{--            <a href="${data.payment_url}" class="btn gold-btn addFund">@lang('Pay Now')</a>--}}
+            {{--            </li>--}}
+            {{--            </ul>`;--}}
 
-                    $('.payment-info').html(htmlData)
-                },
-                complete: function () {
-                    $('#loading').hide();
-                },
-                error(err) {
-                    var errors = err.responseJSON;
-                    for (var obj in errors) {
-                        $('.errors').text(`${errors[obj]}`)
-                    }
+            {{--        $('.payment-info').html(htmlData)--}}
+            {{--    },--}}
+            {{--    complete: function () {--}}
+            {{--        $('#loading').hide();--}}
+            {{--    },--}}
+            {{--    error(err) {--}}
+            {{--        var errors = err.responseJSON;--}}
+            {{--        for (var obj in errors) {--}}
+            {{--            $('.errors').text(`${errors[obj]}`)--}}
+            {{--        }--}}
 
-                    $('.payment-form').removeClass('d-none');
-                }
-            });
+            {{--        $('.payment-form').removeClass('d-none');--}}
+            {{--    }--}}
+            {{--});--}}
         });
 
 

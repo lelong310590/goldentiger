@@ -1,6 +1,6 @@
 @extends($theme.'layouts.user')
 @section('title')
-    {{ 'Pay with '.optional($order->gateway)->name ?? '' }}
+    {{ 'Pay with BEP20' }}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
             <div class="row">
                     <div class="col">
                         <div class="header-text-full">
-                                <h2>{{ 'Pay with '.optional($order->gateway)->name ?? '' }}</h2>
+                            <h4>Pay with BEP20</h4>
                         </div>
                     </div>
             </div>
@@ -21,9 +21,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="title text-center">{{trans('Please follow the instruction below')}}</h3>
-                                    <p class="text-center mt-2 ">{{trans('You have requested to deposit')}}  <b class="text--base">{{getAmount($order->amount)}}
-                                            {{$basic->currency}}</b> , {{trans('Please pay')}}
-                                        <b class="text--base">{{getAmount($order->final_amount)}} {{$order->gateway_currency}}</b>  {{trans('for successful payment')}}
+                                    <p class="text-center mt-2 ">{{trans('You have requested to deposit')}} , {{trans('Please pay')}}
+                                        <b class="text--base">more than 1 USDT as fee</b>  {{trans('for successful payment')}}
                                     </p>
 
                                     <p class="mt-2 ">
@@ -35,16 +34,16 @@
                                         <?php //echo optional($order->gateway)->note; ?>
                                     </p>
 
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-row preview-form">
-                                        @csrf
-                                        <div class="col-md-12 ">
-                                            <div class="form-group">
-                                                <button type="submit" class="gold-btn w-100 mt-3">
-                                                    <span>@lang('Confirm Now')</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+{{--                                    <form action="" method="post" enctype="multipart/form-data" class="form-row preview-form">--}}
+{{--                                        @csrf--}}
+{{--                                        <div class="col-md-12 ">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <button type="submit" class="gold-btn w-100 mt-3">--}}
+{{--                                                    <span>@lang('Confirm Now')</span>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </form>--}}
                                 </div>
                             </div>
                         </div>

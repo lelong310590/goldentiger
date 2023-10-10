@@ -81,36 +81,37 @@ class PaymentController extends Controller
 
     public function depositConfirm(Request $request)
     {
-        $track = session()->get('track');
-        $order = Fund::where('transaction', $track)->orderBy('id', 'DESC')->with(['gateway','user'])->first();
-        if (is_null($order)) {
-            return redirect()->route('user.addFund')->with('error', 'Invalid Fund Request');
-        }
-        if ($order->status != 0) {
-            return redirect()->route('user.addFund')->with('error', 'Invalid Fund Request');
-        }
-        if(999 < $order->gateway->id){
-            return view(template() . 'user.payment.manual', compact('order'));
-        }
-
-        $method = $order->gateway->code;
-        try {
-
-            $getwayObj = 'App\\Services\\Gateway\\' . $method . '\\Payment';
-            $data = $getwayObj::prepareData($order, $order->gateway);
-            $data = json_decode($data);
-
-        } catch (\Exception $exception) {
-            return back()->with('error', $exception->getMessage());
-        }
-        if (isset($data->error)) {
-            return back()->with('error', $data->message);
-        }
-        if (isset($data->redirect)) {
-            return redirect($data->redirect_url);
-        }
+//        dd(1);
+//        $track = session()->get('track');
+//        $order = Fund::where('transaction', $track)->orderBy('id', 'DESC')->with(['gateway','user'])->first();
+//        if (is_null($order)) {
+//            return redirect()->route('user.addFund')->with('error', 'Invalid Fund Request');
+//        }
+//        if ($order->status != 0) {
+//            return redirect()->route('user.addFund')->with('error', 'Invalid Fund Request');
+//        }
+//        if(999 < $order->gateway->id){
+//            return view(template() . 'user.payment.manual', compact('order'));
+//        }
+//
+//        $method = $order->gateway->code;
+//        try {
+//
+//            $getwayObj = 'App\\Services\\Gateway\\' . $method . '\\Payment';
+//            $data = $getwayObj::prepareData($order, $order->gateway);
+//            $data = json_decode($data);
+//
+//        } catch (\Exception $exception) {
+//            return back()->with('error', $exception->getMessage());
+//        }
+//        if (isset($data->error)) {
+//            return back()->with('error', $data->message);
+//        }
+//        if (isset($data->redirect)) {
+//            return redirect($data->redirect_url);
+//        }
         $page_title = 'Payment Confirm';
-        return view(template(). $data->view, compact('data', 'page_title', 'order'));
+        return view(template(). 'user.payment.manual', compact( 'page_title'));
     }
 
     public function fromSubmit(Request  $request)

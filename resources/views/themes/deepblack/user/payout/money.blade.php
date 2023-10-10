@@ -53,7 +53,6 @@
                             class="btn-close"
                             aria-label="Close"
                         >
-                            <img src="{{asset($themeTrue.'img/icon/cross.png')}}" alt="@lang('modal dismiss')" />
                         </button>
                     </div>
 

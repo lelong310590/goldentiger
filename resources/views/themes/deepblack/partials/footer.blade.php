@@ -3,29 +3,29 @@
     <div class="overlay">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="footer-box">
-                        <a class="navbar-brand golden-text" href="{{url('/')}}">
-                            {{config('basic.site_title')}}
-                        </a>
-                        @if(isset($contactUs['contact-us'][0]) && $contact = $contactUs['contact-us'][0])
-                            <p>
-                                @lang(strip_tags(@$contact->description->footer_short_details))
-                            </p>
-                        @endif
-                        @if(isset($contentDetails['social']))
-                            <div class="social-links">
-                                @foreach($contentDetails['social'] as $data)
-                                    <a href="{{@$data->content->contentMedia->description->link}}" target="_blank">
-                                        <i class="{{@$data->content->contentMedia->description->icon}}"></i>
-                                    </a>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                </div>
+{{--                <div class="col-md-6 col-lg-3">--}}
+{{--                    <div class="footer-box">--}}
+{{--                        <a class="navbar-brand golden-text" href="{{url('/')}}">--}}
+{{--                            {{config('basic.site_title')}}--}}
+{{--                        </a>--}}
+{{--                        @if(isset($contactUs['contact-us'][0]) && $contact = $contactUs['contact-us'][0])--}}
+{{--                            <p>--}}
+{{--                                @lang(strip_tags(@$contact->description->footer_short_details))--}}
+{{--                            </p>--}}
+{{--                        @endif--}}
+{{--                        @if(isset($contentDetails['social']))--}}
+{{--                            <div class="social-links">--}}
+{{--                                @foreach($contentDetails['social'] as $data)--}}
+{{--                                    <a href="{{@$data->content->contentMedia->description->link}}" target="_blank">--}}
+{{--                                        <i class="{{@$data->content->contentMedia->description->icon}}"></i>--}}
+{{--                                    </a>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="col-md-6 col-lg-3 {{(session()->get('rtl') == 1) ? 'pe-lg-5': 'ps-lg-5'}}">
+                <div class="col-md-6 col-lg-3">
                     <div class="footer-box">
                         <h4 class="golden-text">{{trans('Useful Links')}}</h4>
                         <ul>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3 {{(session()->get('rtl') == 1) ? 'pe-lg-5': 'ps-lg-5'}}">
+                <div class="col-md-6 col-lg-3">
                     <div class="footer-box">
                         <h4 class="golden-text">@lang('Our Services')</h4>
                         @isset($contentDetails['support'])
@@ -89,8 +89,17 @@
                 </div>
                 @endif
             </div>
+
+            <div class="social-links">
+                @foreach($contentDetails['social'] as $data)
+                    <a href="{{@$data->content->contentMedia->description->link}}" target="_blank">
+                        <i class="{{@$data->content->contentMedia->description->icon}}"></i>
+                    </a>
+                @endforeach
+            </div>
+
             <div class="row copyright">
-                <div class="col-md-6">
+                <div class="col-md-12 d-flex justify-content-end">
                     <span>@lang('Copyright') &copy; {{date('Y')}} @lang($basic->site_title) @lang('All Rights Reserved')</span>
                 </div>
                 <div id="google_translate_element"></div>
@@ -108,5 +117,5 @@
             </div>
         </div>
     </div>
-    <div class="massive-shortcode" data-id="1"></div>
+{{--    <div class="massive-shortcode" data-id="1"></div>--}}
 </footer>

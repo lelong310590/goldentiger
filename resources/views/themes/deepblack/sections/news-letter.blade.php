@@ -5,7 +5,6 @@
        <div class="row">
           <div class="col">
              <div class="header-text text-center">
-                <h5>@lang(@$newsLetter->description->title)</h5>
                 <h2>@lang(@$newsLetter->description->sub_title)</h2>
              </div>
           </div>

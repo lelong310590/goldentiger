@@ -658,11 +658,11 @@ input.ui-button.ui-icon-notext .ui-icon {
    width: 100%;
    height: 60px;
    font-size: 13px;
-   background: #222 !important;
+   background: #fff !important;
    border: none !important;
    padding: 23px;
    text-transform: uppercase;
-   color: #e5e5e7 !important;
+   color: #1E3762 !important;
 }
 .ui-selectmenu-icon.ui-icon {
    float: right;
@@ -912,27 +912,13 @@ a.ui-button:active,
 .ui-button:active,
 .ui-button.ui-state-active:hover {
    border: 1px solid #000;
-   background: linear-gradient(
-      135deg,
-      #b38728,
-      #fcf6ba,
-      #bf953f,
-      #fbf5b7,
-      #aa771c
-   );
-   color: #000;
+   background: #FC5A02;
+   color: #fff;
    font-weight: normal;
 }
 .ui-state-default:hover {
-   background: linear-gradient(
-      135deg,
-      #b38728,
-      #fcf6ba,
-      #bf953f,
-      #fbf5b7,
-      #aa771c
-   );
-   color: #000;
+   background: #FC5A02;
+   color: #fff;
 }
 .ui-icon-background,
 .ui-state-active .ui-icon-background {

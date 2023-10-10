@@ -15,23 +15,23 @@ svg.radial-progress circle {
     stroke-dashoffset: 219.91148575129;
     stroke-width: 2.5px;
 }
-svg.radial-progress circle.incomplete { 
+svg.radial-progress circle.incomplete {
     opacity: 0.25;
 }
-svg.radial-progress circle.complete { 
-    stroke-dasharray: 219.91148575129; 
+svg.radial-progress circle.complete {
+    stroke-dasharray: 219.91148575129;
 }
 svg.radial-progress text {
-    fill: #ffffff;
+    fill: #1E3762;
     font: 400 10px/1 'Poppins', sans-serif;
     text-anchor: middle;
 }
-.cp_1 svg.radial-progress circle { 
-    stroke: #2853cc; 
+.cp_1 svg.radial-progress circle {
+    stroke: #2853cc;
 }
-.cp_2 svg.radial-progress circle { 
-    stroke: #f19910; 
+.cp_2 svg.radial-progress circle {
+    stroke: #f19910;
 }
-.cp_3 svg.radial-progress circle { 
+.cp_3 svg.radial-progress circle {
     stroke: #69e8a1;
 }

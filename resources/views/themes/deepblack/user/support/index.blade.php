@@ -15,9 +15,9 @@
 
        <div class="row">
           <div class="col">
-            <div class="card bg-dark">
+            <div class="card ">
                 <div class="card-header d-flex flex-row justify-content-between align-items-center borderBottom">
-                    <h4 class="card-title golden-text mb-3">@lang($page_title)</h5>
+                    <h4 class="card-title golden-text mb-3">@lang($page_title)</h4>
                     <a href="{{route('user.ticket.create')}}" class="gold-btn-sm"> <i class="fa fa-plus-circle"></i> @lang('Create Ticket')</a>
                 </div>
                 <div class="card-body">

@@ -28,9 +28,9 @@
                                     <p class="mt-2 ">
                                         <p style="text-align: center; ">Please send <b>USDT-BEP20</b> to this address with exactly your total deposit amount:</p>
                                         <p style="text-align: center; margin-top: 10px" class="mt-2">
-                                            <img src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data={{auth()->user()->wallet_address}}&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L" style="width: 200px;"><br></p>
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data={{auth()->user()->wallet_address}}&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L" style="width: 200px;" class="mt-4 mb-4"><br></p>
                                             <p style="text-align: center; " class="mt-2">{{auth()->user()->wallet_address}}</p>
-                                        <p style="text-align: center; margin-top: 10px;">After your transaction confirmed successfully please provide these following info:</p>
+{{--                                        <p style="text-align: center; margin-top: 10px;">After your transaction confirmed successfully please provide these following info:</p>--}}
                                         <?php //echo optional($order->gateway)->note; ?>
                                     </p>
 

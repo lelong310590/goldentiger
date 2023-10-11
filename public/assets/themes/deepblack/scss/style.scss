@@ -2336,8 +2336,16 @@ p {
 // RESPONSIVE MEDIA QUERIES START
 // ------------------------------------------------------------------------------------------
 @media (max-width: 991px) {
-    .choose-section .chose-wrapper img {
-        display: none;
+    .choose-section {
+        .chose-wrapper {
+            padding: 0 15px;
+            .golden-text {
+                font-size: 17px;
+            }
+            img {
+                display: none;
+            }
+        }
     }
     .navbar {
         padding: 10px;

@@ -29,6 +29,7 @@ use DateTime;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +44,7 @@ use hisorange\BrowserDetect\Parser as Browser;
 
 class HomeController extends Controller
 {
-    use Upload, Notify;
+    use Upload, AuthenticatesUsers, Notify;
 
 
     /**

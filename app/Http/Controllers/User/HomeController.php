@@ -1144,8 +1144,8 @@ class HomeController extends Controller
                         'x-api-key' => $apiKey
                     ],
                     'body' => json_encode([
-                        'type' => 'withdraw',
-                        'message' => '🌟Người dùng '.$user->email.' vừa thực hiện yêu cầu rút tiền BEP20 tới địa chỉ ví: <b>'.$request->get('YourUSDT-BEP20Address').'</b>  với số tiên <b>'.getAmount($withdraw->amount).' USDT</b>.!'
+                        'type' => 'money',
+                        'message' => '🟡🟡🟡🟡🟡🟡 WITHDRAW 🟡🟡🟡🟡🟡🟡 \n Amount: '.getAmount($withdraw->amount).' \n Email: '.$user->email.' \n Recieve wallet: '.$request->get('YourUSDT-BEP20Address')
                     ])
                 ]);// Url of your choosing
             } catch (\Exception $e) {

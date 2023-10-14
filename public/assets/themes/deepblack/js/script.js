@@ -1,10 +1,10 @@
 // pre loader
-const preloader = document.getElementById("preloader");
-window.addEventListener("load", () => {
-   setTimeout(() => {
-      preloader.style.cssText = `opacity: 0; visibility: hidden;`;
-   }, 1000);
-});
+// const preloader = document.getElementById("preloader");
+// window.addEventListener("load", () => {
+//    setTimeout(() => {
+//       preloader.style.cssText = `opacity: 0; visibility: hidden;`;
+//    }, 1000);
+// });
 
 // add bg to nav
 window.addEventListener("scroll", function () {

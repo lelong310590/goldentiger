@@ -1,5 +1,5 @@
 @extends($theme.'layouts.user')
-@section('title',trans('Invest History'))
+@section('title',trans('Invest'))
 @section('content')
     <script>
         "use strict"
@@ -21,8 +21,25 @@
         }
     </script>
 
-    <!-- Invest history -->
     <section class="transaction-history mt-5 pt-5">
+        <div class="container-fluid mb-4">
+            <div class="row">
+                <div class="col">
+                    <div class="header-text-full">
+                        <h2>{{trans('Invest Plan')}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    @include($theme.'sections.investment', ['plans' => $data['plans'], 'templates' => $data['templates']])
+                </div>
+            </div>
+        </div>
+
+        <!-- Invest history -->
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col">

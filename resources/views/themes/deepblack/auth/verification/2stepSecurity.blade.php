@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <button class="gold-btn-block" type="submit">@lang('Submit')</button>
+                            <button class="gold-btn btn" type="submit">@lang('Submit')</button>
                         </div>
                     </div>
                 </form>

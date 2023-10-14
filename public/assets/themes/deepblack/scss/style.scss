@@ -2336,6 +2336,9 @@ p {
 // RESPONSIVE MEDIA QUERIES START
 // ------------------------------------------------------------------------------------------
 @media (max-width: 991px) {
+    .investment-success-wrapper {
+        padding: 65px;
+    }
     .choose-section {
         .chose-wrapper {
             padding: 0 15px;

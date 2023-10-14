@@ -706,8 +706,28 @@ class HomeController extends Controller
 
     public function investHistory()
     {
+        $data['extend_blade'] = $this->theme . 'layouts.user';
+        $data['plans'] = ManagePlan::where('status', 1)->get();
+
+        $templateSection = ['investment', 'calculate-profit', 'faq', 'we-accept', 'deposit-withdraw'];
+        $data['templates'] = Template::templateMedia()->whereIn('section_name', $templateSection)->get()->groupBy('section_name');
+
+        $contentSection = ['investment', 'calculate-profit', 'faq', 'we-accept', 'deposit-withdraw'];
+        $data['contentDetails'] = ContentDetails::select('id', 'content_id', 'description', 'created_at')
+            ->whereHas('content', function ($query) use ($contentSection) {
+                return $query->whereIn('name', $contentSection);
+            })
+            ->with(['content:id,name',
+                'content.contentMedia' => function ($q) {
+                    $q->select(['content_id', 'description']);
+                }])
+            ->get()->groupBy('content.name');
+
+        session()->forget('amount');
+        session()->forget('plan_id');
+
         $investments = $this->user->invests()->paginate(config('basic.paginate'));
-        return view($this->theme . 'user.transaction.investLog', compact('investments'));
+        return view($this->theme . 'user.transaction.investLog', compact('investments', 'data'));
     }
 
     public function staking()
@@ -1157,7 +1177,7 @@ class HomeController extends Controller
             }
 
             session()->flash('success', 'Payout request Successfully Submitted. Wait For Confirmation.');
-            return redirect()->route('user.payout.money');
+            return redirect()->route('user.payout.history');
         }
     }
 
@@ -1167,6 +1187,9 @@ class HomeController extends Controller
         $user = $this->user;
         $data['payoutLog'] = PayoutLog::whereUser_id($user->id)->where('status', '!=', 0)->latest()->with('user', 'method')->paginate(config('basic.paginate'));
         $data['title'] = "Payout Log";
+        $data['gateways'] = PayoutMethod::whereStatus(1)->get();
+        $data['configure'] = $this->getConfigure();
+        $data['gtfConvertUsdt'] = (float) $data['configure']->price_gtf * $this->user->gtf_interest_balance;
         return view($this->theme . 'user.payout.log', $data);
     }
 

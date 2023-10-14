@@ -330,7 +330,7 @@ class BasicService
                 break;
             }
         }
-    
+
     }
     public function calculateComission($user, $profit) {
         if($user->f1_of) {
@@ -399,7 +399,8 @@ class BasicService
         $userRef->referral_balance = getAmount($userRef->referral_balance + $amount);
         $userRef->save();
 
-        $remarks =  getAmount($amount) . ' ' . $basic->currency . ' Interest Commission ' . $percent . '% From F' . $level;
+//        $remarks =  getAmount($amount) . ' ' . $basic->currency . ' Interest Commission ' . $percent . '% From F' . $level;
+        $remarks =  getAmount($amount) . ' ' . $basic->currency . ' Interest Commission ' . $percent . '% From F' . $userRef->username;
         self::makeTransaction($userRef, $amount, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarks);
 
         // Add bonus log

@@ -1,4 +1,7 @@
-@if(isset($templates['investment'][0]) && $investment = $templates['investment'][0])
+@if(isset($templates['investment'][0]))
+    @php
+        $investment = $templates['investment'][0]
+    @endphp
     <!-- plan start -->
     <section class="pricing-section">
         <div class="container">

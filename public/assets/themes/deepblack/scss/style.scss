@@ -3041,3 +3041,28 @@ html[dir=rtl] .newsletter-section .gold-btn {
         bottom: 100%;
     }
 }
+
+.investment-success {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 300;
+    background: rgba(0,0,0,.5);
+    &-wrapper {
+        background-image: url("../img/success.png");
+        background-size: cover;
+        background-position: center center;
+        color: #fff;
+        border-radius: 32px;
+        padding: 125px;
+    }
+    &-title {
+        color: #fff;
+        font-size: 35px;
+    }
+}

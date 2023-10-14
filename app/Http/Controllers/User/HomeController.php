@@ -618,7 +618,11 @@ class HomeController extends Controller
 
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
-        return back()->with('success', 'Plan has been Purchased Successfully');
+        $msg = 'and gain '.$plan->profit.'%';
+        if ($plan->is_lifetime == 1) {
+            $msg .= '- lifetime earning';
+        }
+        return back()->with('invest-success', $msg);
     }
 
     function updateCommissionLevel3($user) {

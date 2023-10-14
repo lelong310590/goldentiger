@@ -66,6 +66,20 @@
     <!-- plan end -->
 @endif
 
+@if (session('invest-success'))
+<div class="investment-success">
+    <div class="investment-success-wrapper">
+        <h2 class="investment-success-title text-center">CONGRATULATIONS!</h2>
+        <div class="investment-success-content text-center">
+            <p>You are successfully registered</p>
+            <p>{{session('invest-success')}}</p>
+        </div>
+        <div class="investment-success-button d-flex justify-content-center">
+            <a href="javascript:;" class="gold-btn btn close-success d-flex justify-content-center align-items-center mt-3">Continue</a>
+        </div>
+    </div>
+</div>
+@endif
 
 
 <!-- INVEST-NOW MODAL -->
@@ -147,133 +161,48 @@
 <!-- INVEST-NOW MODAL -->
 
 
-@if($basic->theme == 'deepblue')
-    @push('script')
+@push('script')
+    <script>
+        "use strict";
+        (function ($) {
+            $(document).on('click', '.investNow', function () {
+                // $("#investNowModal").toggleClass("modal-open");
+                var planModal = new bootstrap.Modal(document.getElementById('investNowModal'))
+                planModal.show()
+                let data = $(this).data('resource');
+                let price = $(this).data('price');
+                let symbol = "{{trans($basic->currency_symbol)}}";
+                let currency = "{{trans($basic->currency)}}";
+                $('.price-range').text(`@lang('Invest'): ${price}`);
+
+                if (data.fixed_amount == '0') {
+                    $('.invest-amount').val('');
+                    $('#amount').attr('readonly', false);
+                } else {
+                    $('.invest-amount').val(data.fixed_amount);
+                    $('#amount').attr('readonly', true);
+                }
+
+                $('.profit-details').html(`@lang('Interest'): ${(data.profit_type == '1') ? `${data.profit} %` : `${data.profit} ${currency}`}`);
+                $('.profit-validity').html(`@lang('Per') ${data.schedule} @lang('hours') ,  ${(data.is_lifetime == '0') ? `${data.repeatable} @lang('times')` : `@lang('Lifetime')`}`);
+                $('.plan-name').text(data.name);
+                $('.plan-id').val(data.id);
+                $('.show-currency').text("{{config('basic.currency')}}");
+            });
+
+            $(document).on('click', '.close-success', function () {
+                $('.investment-success').hide();
+            })
+
+        })(jQuery);
+
+    </script>
+
+    @if(count($errors) > 0 )
         <script>
-            "use strict";
-            (function ($) {
-                $(document).on('click', '.investNow', function () {
-                    $("#investNowModal").toggleClass("modal-open");
-                    let data = $(this).data('resource');
-                    let price = $(this).data('price');
-                    let symbol = "{{trans($basic->currency_symbol)}}";
-                    let currency = "{{trans($basic->currency)}}";
-                    $('.price-range').text(`@lang('Invest'): ${price}`);
-
-                    if (data.fixed_amount == '0') {
-                        $('.invest-amount').val('');
-                        $('#amount').attr('readonly', false);
-                    } else {
-                        $('.invest-amount').val(data.fixed_amount);
-                        $('#amount').attr('readonly', true);
-                    }
-
-                    $('.profit-details').html(`<strong> @lang('Interest'): ${(data.profit_type == '1') ? `${data.profit} %` : `${data.profit} ${currency}`}  </strong>`);
-                    $('.profit-validity').html(`<strong>  @lang('Per') ${data.schedule} @lang('hours') ,  ${(data.is_lifetime == '0') ? `${data.repeatable} @lang('times')` : `@lang('Lifetime')`} </strong>`);
-                    $('.plan-name').text(data.name);
-                    $('.plan-id').val(data.id);
-                });
-
-                $(".btn-close-investment").on('click',function(){
-                    $("#investNowModal").removeClass("modal-open");
-                });
-
-            })(jQuery);
+            @foreach($errors->all() as $key => $error)
+            Notiflix.Notify.Failure("@lang($error)");
+            @endforeach
         </script>
-
-        @if(count($errors) > 0 )
-            <script>
-                @foreach($errors->all() as $key => $error)
-                Notiflix.Notify.Failure("@lang($error)");
-                @endforeach
-            </script>
-        @endif
-    @endpush
-@elseif($basic->theme == 'deepblack')
-    @push('script')
-        <script>
-            "use strict";
-            (function ($) {
-                $(document).on('click', '.investNow', function () {
-                    // $("#investNowModal").toggleClass("modal-open");
-                    var planModal = new bootstrap.Modal(document.getElementById('investNowModal'))
-                    planModal.show()
-                    let data = $(this).data('resource');
-                    let price = $(this).data('price');
-                    let symbol = "{{trans($basic->currency_symbol)}}";
-                    let currency = "{{trans($basic->currency)}}";
-                    $('.price-range').text(`@lang('Invest'): ${price}`);
-
-                    if (data.fixed_amount == '0') {
-                        $('.invest-amount').val('');
-                        $('#amount').attr('readonly', false);
-                    } else {
-                        $('.invest-amount').val(data.fixed_amount);
-                        $('#amount').attr('readonly', true);
-                    }
-
-                    $('.profit-details').html(`@lang('Interest'): ${(data.profit_type == '1') ? `${data.profit} %` : `${data.profit} ${currency}`}`);
-                    $('.profit-validity').html(`@lang('Per') ${data.schedule} @lang('hours') ,  ${(data.is_lifetime == '0') ? `${data.repeatable} @lang('times')` : `@lang('Lifetime')`}`);
-                    $('.plan-name').text(data.name);
-                    $('.plan-id').val(data.id);
-                    $('.show-currency').text("{{config('basic.currency')}}");
-                });
-
-            })(jQuery);
-
-        </script>
-
-        @if(count($errors) > 0 )
-            <script>
-                @foreach($errors->all() as $key => $error)
-                Notiflix.Notify.Failure("@lang($error)");
-                @endforeach
-            </script>
-        @endif
-    @endpush
-@else
-    @push('script')
-        <script>
-            "use strict";
-            (function ($) {
-                $(document).on('click', '.investNow', function () {
-                    $("#modal-login").toggleClass("modal-open");
-                    let data = $(this).data('resource');
-                    let price = $(this).data('price');
-
-
-                    let symbol = "{{trans($basic->currency_symbol)}}";
-                    let currency = "{{trans($basic->currency)}}";
-
-
-                    $('.price-range').text(`@lang('Invest'): ${price}`);
-
-                    if (data.fixed_amount == '0') {
-                        $('.invest-amount').val('');
-                        $('#amount').attr('readonly', false);
-                    } else {
-                        $('.invest-amount').val(data.fixed_amount);
-                        $('#amount').attr('readonly', true);
-                    }
-
-                    $('.profit-details').html(`<strong> @lang('Interest'): ${(data.profit_type == '1') ? `${data.profit} %` : `${data.profit} ${currency}`}  </strong>`);
-                    $('.profit-validity').html(`<strong>  @lang('Per') ${data.schedule} @lang('hours') ,  ${(data.is_lifetime == '0') ? `${data.repeatable} @lang('times')` : `@lang('Lifetime')`} </strong>`);
-                    $('.plan-name').text(data.name);
-                    $('.plan-id').val(data.id);
-                });
-            })(jQuery);
-
-
-        </script>
-
-
-        @if(count($errors) > 0 )
-            <script>
-                @foreach($errors->all() as $key => $error)
-                Notiflix.Notify.Failure("@lang($error)");
-                @endforeach
-            </script>
-        @endif
-
-    @endpush
-@endif
+    @endif
+@endpush

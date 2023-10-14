@@ -151,7 +151,6 @@ function googleTranslateElementInit() { new google.translate.TranslateElement({p
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="https://ticket.goldentigerfund.com/js/script"></script>
 <script>
     'use strict';
     let pushNotificationArea = new Vue({

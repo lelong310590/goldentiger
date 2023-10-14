@@ -185,7 +185,6 @@
 <script src="{{asset('assets/global/js/axios.min.js')}}"></script>
 <!-- custom script -->
 <script src="{{asset($themeTrue.'js/script.js')}}"></script>
-<script src="https://ticket.goldentigerfund.com/js/script"></script>
 <script type="text/javascript">
 function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
 }

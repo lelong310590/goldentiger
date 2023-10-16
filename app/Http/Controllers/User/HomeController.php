@@ -618,10 +618,7 @@ class HomeController extends Controller
 
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
-        $msg = 'and gain '.$plan->profit.'%';
-        if ($plan->is_lifetime == 1) {
-            $msg .= '- lifetime earning';
-        }
+        $msg = $plan->name;
         return back()->with('invest-success', $msg);
     }
 

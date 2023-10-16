@@ -75,7 +75,7 @@
         <h2 class="investment-success-title text-center">CONGRATULATIONS!</h2>
         <div class="investment-success-content text-center">
             <p>You are successfully registered</p>
-            <p>{{session('invest-success')}}</p>
+            <p>for <span class="investment-success-content-plan">{{session('invest-success')}}</span> plan</p>
         </div>
         <div class="investment-success-button d-flex justify-content-center">
             <a href="javascript:;" class="gold-btn btn close-success d-flex justify-content-center align-items-center mt-3">Continue</a>

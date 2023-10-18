@@ -778,21 +778,22 @@ class HomeController extends Controller
         $goldenTigerPlan = 4;
         $goldenTigerPlanProfitRatio = 0.03;
         $diamondPlan = 5;
+        $starterPlan = 1;
         $diamondPlanProfitRatio = 0.05;
         $dayOfMonth = 30;
         $investValidStakings = Investment::where('user_id', $this->user->id)
         ->where('is_join_staked', 0)
         ->where('type', 1)
         ->where('status', 1)
-        ->whereIn('plan_id', [$goldenTigerPlan, $diamondPlan])
+        ->whereIn('plan_id', [$goldenTigerPlan, $starterPlan])
         ->get();
 
         $gtfBalance = getAmount($this->user->gtf_balance);
 
         $configure = $this->getConfigure();
 
-        if($gtfBalance < 10000) {
-            session()->flash('flash_message', 'You must join the Golden Tiger, Diamond Plan, or GTF with a balance greater than 10,000 GTF.');
+        if($gtfBalance < 1000) {
+            session()->flash('flash_message', 'You must join the Golden Tiger, Starter Plan, or GTF with a balance greater than 1,000 GTF.');
             return redirect()->back();
         }
         try {

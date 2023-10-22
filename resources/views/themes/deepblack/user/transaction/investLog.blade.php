@@ -46,7 +46,7 @@
                     <div class="header-text-full d-flex justify-content-between">
                         <h2>{{trans('Invest History')}}</h2>
                         @if ($checkOldInvest)
-                            <button class="gold-btn btn">Combine Plan</button>
+                            <button class="gold-btn btn combinePlan">Combine Plan</button>
                         @endif
                     </div>
                 </div>
@@ -110,40 +110,72 @@
             </div>
         </div>
     </section>
-    <!-- INVEST-NOW MODAL -->
-<div class="modal fade addFundModal" id="investNowModal" tabindex="-1" data-bs-backdrop="static"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title golden-text" id="exampleModalLabel">@lang('Are you sure to cancel?')</h3>
-        </div>
-        <div class="modal-body">
-            <div class="form-block">
-                <form class="login-form" id="invest-form" action="{{route('user.cancel-plan')}}" method="post">
-                    @csrf
-                    <div class="signin ">
-                        <input type="hidden" name="invest_id" class="invest-id">
-                        <div class="d-flex btn-area mb-30 modal-footer border-top-0 p-0">
-                            <button type="submit" class="gold-btn">@lang('Yes')</button>
-                            <button
-                                type="button"
-                                data-bs-dismiss="modal"
-                                class="gold-btn"
-                                aria-label="Close"
-                            >
-                                @lang('No')
-                            </button>
-                        </div>
-
+<!-- CANCEL PLAN MODAL -->
+<div class="modal fade addFundModal" id="cancelModal" tabindex="-1" data-bs-backdrop="static"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title golden-text" id="exampleModalLabel">@lang('Are you sure to cancel?')</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-block">
+            <form class="login-form" id="invest-form" action="{{route('user.cancel-plan')}}" method="post">
+                @csrf
+                <div class="signin ">
+                    <input type="hidden" name="invest_id" class="invest-id">
+                    <div class="d-flex btn-area mb-30 modal-footer border-top-0 p-0">
+                        <button type="submit" class="gold-btn">@lang('Yes')</button>
+                        <button
+                            type="button"
+                            data-bs-dismiss="modal"
+                            class="gold-btn"
+                            aria-label="Close"
+                        >
+                            @lang('No')
+                        </button>
                     </div>
-                </form>
-            </div>
-
+                </div>
+            </form>
         </div>
-      </div>
     </div>
   </div>
-<!-- INVEST-NOW MODAL -->
+</div>
+</div>
+<!-- CANCEL PLAN MODAL -->
+
+    <!-- COMBINE PLAN MODAL -->
+    <div class="modal fade addFundModal" id="combinePlan" tabindex="-1" data-bs-backdrop="static"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title golden-text" id="exampleModalLabel">@lang('Are you sure to combine?')</h3>
+                </div>
+                <div class="modal-body">
+                    <p>You will combine all old investment packages into a new investment package corresponding to your total investment amount and enjoy more attractive interest rates.</p>
+                    <div class="form-block">
+                        <form class="login-form" id="invest-form" action="{{route('user.combine-plan')}}" method="post">
+                            @csrf
+                            <div class="signin ">
+                                <input type="hidden" name="invest_id" class="invest-id">
+                                <div class="d-flex btn-area mb-30 modal-footer border-top-0 p-0">
+                                    <button type="submit" class="gold-btn">@lang('Yes')</button>
+                                    <button
+                                        type="button"
+                                        data-bs-dismiss="modal"
+                                        class="gold-btn"
+                                        aria-label="Close"
+                                    >
+                                        @lang('No')
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- COMBINE PLAN MODAL -->
 @endsection
 
 @push('script')
@@ -151,11 +183,17 @@
     "use strict";
     (function ($) {
         $(document).on('click', '.cancelInvest', function () {
-            // $("#investNowModal").toggleClass("modal-open");
-            var planModal = new bootstrap.Modal(document.getElementById('investNowModal'))
+            // $("#cancelModal").toggleClass("modal-open");
+            var planModal = new bootstrap.Modal(document.getElementById('cancelModal'))
             planModal.show()
             let investId = $(this).data('invest');
             $('.invest-id').val(investId);
+        });
+
+        $(document).on('click', '.combinePlan', function () {
+            // $("#cancelModal").toggleClass("modal-open");
+            var planModal = new bootstrap.Modal(document.getElementById('combinePlan'))
+            planModal.show()
         });
 
     })(jQuery);

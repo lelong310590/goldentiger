@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
             Route::get('invest-plan', 'User\HomeController@investPlan')->name('invest-plan');
             Route::post('/cancel-plan', 'User\HomeController@cancelPlan')->name('cancel-plan');
 
+            Route::post('combine-plan', 'User\HomeController@combinePlan')->name('combine-plan');
+
 
             Route::get('/referral', 'User\HomeController@referral')->name('referral');
             Route::get('/referral-bonus', 'User\HomeController@referralBonus')->name('referral.bonus');

@@ -553,25 +553,26 @@ class HomeController extends Controller
             // 16/03/2023 reject bonus level 3
             // Change condition from $userRef->total_invest_f1/10000 > $userRef->times_recieve_reward + 1
             // => false
-            if(false) {
-                $userRef->times_recieve_reward += 1;
-                $userRef->referral_balance += 500;
 
-                $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
-                BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
-
-                // Add bonus log
-                $bonus = new ReferralBonus();
-                $bonus->from_user_id = $user->id;
-                $bonus->to_user_id = $userRef->id;
-                $bonus->level = 1;
-                $bonus->amount = getAmount(500);
-                $bonus->main_balance = $userRef->referral_balance;
-                $bonus->transaction = $trx;
-                $bonus->type = $balance_type;
-                $bonus->remarks = $remarksReachInvestF1;
-                $bonus->save();
-            }
+//            if(false) {
+//                $userRef->times_recieve_reward += 1;
+//                $userRef->referral_balance += 500;
+//
+//                $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
+//                BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
+//
+//                // Add bonus log
+//                $bonus = new ReferralBonus();
+//                $bonus->from_user_id = $user->id;
+//                $bonus->to_user_id = $userRef->id;
+//                $bonus->level = 1;
+//                $bonus->amount = getAmount(500);
+//                $bonus->main_balance = $userRef->referral_balance;
+//                $bonus->transaction = $trx;
+//                $bonus->type = $balance_type;
+//                $bonus->remarks = $remarksReachInvestF1;
+//                $bonus->save();
+//            }
             $userRef->save();
         }
         // Update referral F1-> F6
@@ -610,11 +611,11 @@ class HomeController extends Controller
             'currency' => $basic->currency_symbol,
             'plan_name' => $plan->name
         ];
+
         $action = [
             "link" => route('admin.user.plan-purchaseLog', $user->id),
             "icon" => "fa fa-money-bill-alt "
         ];
-
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
         $msg = $plan->name;
@@ -625,25 +626,25 @@ class HomeController extends Controller
         $basic = (object)config('basic');
         // reject receive commission level3 16/03/2023
         return;
-        if($user->total_referral_invest/10000 > $user->times_recieve_reward + 1) {
-            $user->times_recieve_reward += 1;
-            $user->referral_balance += 500;
-
-            $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
-            BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
-
-            // Add bonus log
-            $bonus = new ReferralBonus();
-            $bonus->from_user_id = $user->id;
-            $bonus->to_user_id = $user->id;
-            $bonus->level = 1;
-            $bonus->amount = getAmount(500);
-            $bonus->main_balance = $user->referral_balance;
-            $bonus->transaction = $trx;
-            $bonus->type = $balance_type;
-            $bonus->remarks = $remarksReachInvestF1;
-            $bonus->save();
-        }
+//        if($user->total_referral_invest/10000 > $user->times_recieve_reward + 1) {
+//            $user->times_recieve_reward += 1;
+//            $user->referral_balance += 500;
+//
+//            $remarksReachInvestF1 =  getAmount(500) . ' ' . $basic->currency . ' Total referral reach 10.000';
+//            BasicService::makeTransaction($user, 500, 0, $trx_type = '+', $balance_type = 'referral_balance',  $trx = strRandom(), $remarksReachInvestF1);
+//
+//            // Add bonus log
+//            $bonus = new ReferralBonus();
+//            $bonus->from_user_id = $user->id;
+//            $bonus->to_user_id = $user->id;
+//            $bonus->level = 1;
+//            $bonus->amount = getAmount(500);
+//            $bonus->main_balance = $user->referral_balance;
+//            $bonus->transaction = $trx;
+//            $bonus->type = $balance_type;
+//            $bonus->remarks = $remarksReachInvestF1;
+//            $bonus->save();
+//        }
 
         $user->save();
     }
@@ -906,6 +907,69 @@ class HomeController extends Controller
         session()->forget('plan_id');
 
         return view($this->theme . 'user.plan', $data);
+    }
+
+    public function combinePlan(Request $request) {
+        $oldInvesmentEloquent = $this->user->invests()->where('created_at', '<=', Carbon::parse('2023/10/17'));
+        $totalInvestAmount = $oldInvesmentEloquent->sum('amount');
+        $oldInvestment = $oldInvesmentEloquent->get();
+        $newPlan = ManagePlan::query()->where('maximum_amount', '>=', $totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();
+        $timeManage = ManageTime::where('time', $newPlan->schedule)->first();
+
+        // cancel all old plan
+        foreach ($oldInvestment as $invest) {
+//            $createdInvest = new DateTime($invest->created_at);
+//            $now = new DateTime(now());
+//            $interval = $now->diff($createdInvest);
+//            $days = intval($interval->format('%a'));
+            if($invest) {
+                $invest->status = 2;
+                $invest->cancel_date = now();
+//                if ($days < 30) {
+//                    $cashBack = $invest->amount * 70/100;
+//                } elseif ($days < 60) {
+//                    $cashBack = $invest->amount * 80/100;
+//                } elseif ($days < 90) {
+//                    $cashBack = $invest->amount * 90/100;
+//                } else {
+//                    $cashBack = $invest->amount;
+//                }
+                $invest->save();
+                $invest->delete();
+
+//                $this->user->balance += $cashBack;
+//                $this->user->save();
+            }
+        }
+
+        //combine to new plan
+        $trx = strRandom();
+        $profit = ($newPlan->profit_type == 1) ? ($totalInvestAmount * $newPlan->profit) / 100 : $newPlan->profit;
+        $maturity = ($newPlan->is_lifetime == 1) ? '-1' : $newPlan->repeatable;
+        BasicService::makeInvest($this->user, $newPlan, $totalInvestAmount, $profit, $maturity, $timeManage, $trx);
+        $basic = (object)config('basic');
+        $this->sendMailSms($this->user, $type = 'PLAN_COMBINE', [
+            'transaction_id' => $trx,
+            'amount' => getAmount($totalInvestAmount),
+            'currency' => $basic->currency_symbol,
+            'profit_amount' => $profit,
+        ]);
+
+        $msg = [
+            'username' => $this->user->username,
+            'amount' => getAmount($totalInvestAmount),
+            'currency' => $basic->currency_symbol,
+            'plan_name' => $newPlan->name
+        ];
+
+        $action = [
+            "link" => route('admin.user.plan-purchaseLog', $this->user->id),
+            "icon" => "fa fa-money-bill-alt "
+        ];
+
+        $this->adminPushNotification('PLAN_COMBINE', $msg, $action);
+        $msg = $newPlan->name;
+        return back()->with('combine-success', $msg);
     }
 
     public function cancelPlan(Request $request)

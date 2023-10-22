@@ -84,6 +84,21 @@
 </div>
 @endif
 
+@if (session('combine-success'))
+    <div class="investment-success">
+        <div class="investment-success-wrapper">
+            <h2 class="investment-success-title text-center">CONGRATULATIONS!</h2>
+            <div class="investment-success-content text-center">
+                <p>You are successfully combine all old plans</p>
+                <p>to new <span class="investment-success-content-plan">{{session('combine-success')}}</span> plan</p>
+            </div>
+            <div class="investment-success-button d-flex justify-content-center">
+                <a href="javascript:;" class="gold-btn btn close-success d-flex justify-content-center align-items-center mt-3">Continue</a>
+            </div>
+        </div>
+    </div>
+@endif
+
 
 <!-- INVEST-NOW MODAL -->
 <div class="modal fade addFundModal" id="investNowModal" tabindex="-1" data-bs-backdrop="static"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >

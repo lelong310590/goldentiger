@@ -28,7 +28,6 @@ use Carbon\Carbon;
 use DateTime;
 use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
@@ -724,7 +723,10 @@ class HomeController extends Controller
         session()->forget('plan_id');
 
         $investments = $this->user->invests()->paginate(config('basic.paginate'));
-        return view($this->theme . 'user.transaction.investLog', compact('investments', 'data'));
+
+        $oldInvest = $this->user->invests()->where('created_at', '<=', Carbon::parse('2023/10/17'))->count();
+        $checkOldInvest = $oldInvest > 0;
+        return view($this->theme . 'user.transaction.investLog', compact('investments', 'data', 'checkOldInvest'));
     }
 
     public function staking()

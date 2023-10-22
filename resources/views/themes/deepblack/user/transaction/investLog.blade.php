@@ -43,8 +43,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <div class="header-text-full">
+                    <div class="header-text-full d-flex justify-content-between">
                         <h2>{{trans('Invest History')}}</h2>
+                        @if ($checkOldInvest)
+                            <button class="gold-btn btn">Combine Plan</button>
+                        @endif
                     </div>
                 </div>
             </div>

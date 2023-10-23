@@ -31,7 +31,7 @@
   'transfer_charge' => '0',
   'bonus_amount' => '0',
   'joining_bonus' => 0,
-  'error_log' => 0,
+  'error_log' => 1,
   'strong_password' => 0,
   'registration' => 1,
   'address_verification' => 0,

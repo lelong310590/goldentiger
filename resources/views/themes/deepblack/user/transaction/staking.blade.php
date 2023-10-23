@@ -269,7 +269,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <button disabled class="cancelStaking gold-btn gold-btn-custom"
+                                            <button class="cancelStaking gold-btn gold-btn-custom"
                                                 data-staking="{{ $staking->id }}">Cancel</button>
                                         </td>
                                     </tr>

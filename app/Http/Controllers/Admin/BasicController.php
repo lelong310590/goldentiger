@@ -80,10 +80,10 @@ class BasicController extends Controller
         fclose($fp);
 
         // Calculate the amount of gtf after change the price
-        $this->calculateAmountGTF($reqData['price_gtf']);
+//        $this->calculateAmountGTF($reqData['price_gtf']);
 
         // Adjust profit staking
-        $this->adjustProfitStaking($reqData['price_gtf']);
+//        $this->adjustProfitStaking($reqData['price_gtf']);
 
 		$configure->is_active_cron_notification = (int) $reqData['cron_set_up_pop_up'];
         $configure->fill($reqData)->save();
@@ -136,7 +136,7 @@ class BasicController extends Controller
         })
         ->update(['gtf_balance' => DB::raw("`subquery`.`totalAmountInvest` / $priceGTF")]);
     }
-    
+
     public function adjustProfitStaking($priceGTF)
     {
         $goldenTigerPlan = 4;

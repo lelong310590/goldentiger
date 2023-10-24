@@ -43,10 +43,15 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['totalPlan'] = ManagePlan::count();
-        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL   THEN amount END) AS totalAmountReceived')
-            ->selectRaw('SUM(CASE WHEN status = 1 THEN charge END) AS totalChargeReceived')
-            ->selectRaw('SUM((CASE WHEN created_at >= CURDATE() AND status = 1 AND plan_id IS NULL  THEN amount END)) AS todayDeposit')
+//        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL   THEN amount END) AS totalAmountReceived')
+//            ->selectRaw('SUM(CASE WHEN status = 1 THEN charge END) AS totalChargeReceived')
+//            ->selectRaw('SUM((CASE WHEN created_at >= CURDATE() AND status = 1 AND plan_id IS NULL  THEN amount END)) AS todayDeposit')
+//            ->get()->toArray())->collapse();
+
+        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL AND created_at >= "2023-10-01 00:00:00" THEN amount END) AS totalAmountReceived')
             ->get()->toArray())->collapse();
+
+//        dd($data['funding']);
 
         $data['userRecord'] = collect(User::selectRaw('COUNT(id) AS totalUser')
             ->selectRaw('count(CASE WHEN status = 1  THEN id END) AS activeUser')
@@ -140,10 +145,16 @@ class DashboardController extends Controller
         $statistics['payout'] = $dailyPayout;
         $statistics['schedule'] = $this->dayList();
 
+//        $data['payout'] = collect(PayoutLog::selectRaw('COUNT(CASE WHEN status = 1  THEN id END) AS pending')
+//            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >= CURDATE()  THEN amount END)) AS todayPayoutAmount')
+//            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyPayoutAmount')
+//            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN charge END)) AS monthlyPayoutCharge')
+//            ->get()->toArray())->collapse();
+
         $data['payout'] = collect(PayoutLog::selectRaw('COUNT(CASE WHEN status = 1  THEN id END) AS pending')
-            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >= CURDATE()  THEN amount END)) AS todayPayoutAmount')
-            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyPayoutAmount')
-            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN charge END)) AS monthlyPayoutCharge')
+            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >= "2023-10-10 00:00:00"  THEN amount END)) AS todayPayoutAmount')
+//            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyPayoutAmount')
+//            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN charge END)) AS monthlyPayoutCharge')
             ->get()->toArray())->collapse();
 
 

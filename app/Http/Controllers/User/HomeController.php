@@ -722,11 +722,9 @@ class HomeController extends Controller
 
         session()->forget('amount');
         session()->forget('plan_id');
-
-        $investments = $this->user->invests()->paginate(config('basic.paginate'));
-
-        $oldInvest = $this->user->invests()->where('created_at', '<=', Carbon::parse('2023/10/17'))->count();
-        $checkOldInvest = $oldInvest > 0;
+        $investmentsEloquent = $this->user->invests();
+        $investments = $investmentsEloquent->paginate(config('basic.paginate'));
+        $checkOldInvest = $investmentsEloquent->where('status', 1)->count() > 1;
         return view($this->theme . 'user.transaction.investLog', compact('investments', 'data', 'checkOldInvest'));
     }
 
@@ -910,7 +908,7 @@ class HomeController extends Controller
     }
 
     public function combinePlan(Request $request) {
-        $oldInvesmentEloquent = $this->user->invests()->where('created_at', '<=', Carbon::parse('2023/10/17'));
+        $oldInvesmentEloquent = $this->user->invests()->where('status', 1);
         $totalInvestAmount = $oldInvesmentEloquent->sum('amount');
         $oldInvestment = $oldInvesmentEloquent->get();
         $newPlan = ManagePlan::query()->where('maximum_amount', '>=', $totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();

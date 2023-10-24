@@ -22,3 +22,4 @@ public/assets/themes/deepblack/scss/style.min.css
 bootstrap/cache/*.*
 composer.lock
 config/basic.php
+config/basic.php

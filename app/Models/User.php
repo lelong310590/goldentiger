@@ -116,6 +116,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Investment::class)->where('type', 1)->latest();
     }
 
+    public function stakes()
+    {
+        return $this->hasMany(Investment::class)->where('type', 2);
+    }
+
     public function scopeLevel()
     {
         $count = 0;

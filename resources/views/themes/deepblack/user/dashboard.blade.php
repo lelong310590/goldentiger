@@ -68,6 +68,22 @@
                     <h2>{{getAmount($gtfInterestBalance, config('basic.fraction_number'))}}</h2>
                 </div>
             </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div
+                    class="box"
+                    {{--                    data-aos="fade-up"--}}
+                    {{--                    data-aos-duration="800"--}}
+                    {{--                    data-aos-anchor-placement="center-bottom"--}}
+                >
+                    <div class="img-box">
+                        <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
+                    </div>
+                    <h4>@lang('GTF Invest')</h4>
+                    <h2>{{getAmount($gtfInvest, config('basic.fraction_number'))}}</h2>
+                </div>
+            </div>
+
             <div class="col-md-6 col-lg-3 mb-4">
                 <div
                     class="box"

@@ -43,14 +43,14 @@
                 </div>
             </div>
             <div class="sc-hgRTRy iSqzXS ClaimMdx"
-                style="background-image: url('{{ asset($themeTrue . 'img/reward.png') }}')">
+                 style="background-image: url('{{ asset($themeTrue . 'img/reward.png') }}')">
                 <div class="sc-jKmXuR iWXIBe">
                     <div class="sc-iIHSe hZYvbF">
                         <div class="css-zkfaav" style="cursor: pointer;">
                             <div class="sc-gldTML cJuebY">GTF Price</div>
                             <img width="16px" height="16px"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAWpJREFUOE+d0zFIV1EUx/HPJXQLGoWopTExaYgGN2lxaahMh7aWqCBws6UpQYiCiiIiRByiWlpaxFFoLXRw0KGWwCAwiArixXmcB9cHf6Tu8rjnnvO9v9+55xW91TTNSVzFORzP409YxfNSymZdUrpN0zTDuIdrONQH5/4PnmCulPI7Yi0gi99hMhM38LEHGcNoxtYwFZAO8BA3qoJL+IJjGfuMEbyuch6VUm6W9PyhJ/siZjGEX6n0Jd5UgLBzKgD3casnNwBH8SwcIvY/e4AoeRCA8BudjxVK4sbFVLCDXZxBKLidasYzfzMAezicxfF0L7CUgB/4mr0IQDzvlXzSgHyvAXfxDdcxgwmczZveYx0reIojqaYFdBbuZPJpLA+YgwvYyrPIby10TewA3XcAQ53XNjEaGM0Ljws4P6gy428xj8vtM+YkxiCF91fYPgBwAtN43A7SgFE+gGH/KFeQ//uZ6uv+9Xf+CyULgPnMo2oEAAAAAElFTkSuQmCC"
-                                alt="claim">
+                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAWpJREFUOE+d0zFIV1EUx/HPJXQLGoWopTExaYgGN2lxaahMh7aWqCBws6UpQYiCiiIiRByiWlpaxFFoLXRw0KGWwCAwiArixXmcB9cHf6Tu8rjnnvO9v9+55xW91TTNSVzFORzP409YxfNSymZdUrpN0zTDuIdrONQH5/4PnmCulPI7Yi0gi99hMhM38LEHGcNoxtYwFZAO8BA3qoJL+IJjGfuMEbyuch6VUm6W9PyhJ/siZjGEX6n0Jd5UgLBzKgD3casnNwBH8SwcIvY/e4AoeRCA8BudjxVK4sbFVLCDXZxBKLidasYzfzMAezicxfF0L7CUgB/4mr0IQDzvlXzSgHyvAXfxDdcxgwmczZveYx0reIojqaYFdBbuZPJpLA+YgwvYyrPIby10TewA3XcAQ53XNjEaGM0Ljws4P6gy428xj8vtM+YkxiCF91fYPgBwAtN43A7SgFE+gGH/KFeQ//uZ6uv+9Xf+CyULgPnMo2oEAAAAAElFTkSuQmCC"
+                                 alt="claim">
                         </div>
                         <div class="sc-feryYK emsNPc">{{ $price_gtf }}$</div>
                     </div>
@@ -58,8 +58,8 @@
                         <div class="css-zkfaav" style="cursor: pointer;">
                             <div class="sc-gldTML cJuebY">GTF Interest Balance</div>
                             <img width="16px" height="16px"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAAXNSR0IArs4c6QAAAF1QTFRFAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////USr75QAAAB50Uk5TAAYJGSssbG1ub4+TlJqbnaWnq6y8vtTb3N3w8vz9E7rVugAAAI1JREFUGNNlj8ESgjAMRAMUUlorWrGoLfv/n2nSMh5kL5m8ySYbIpFxKefkDDV1vqCq+K72K35alVywB57fCzM/4cVfEIbJvhYeiVEMOcCyjsd+lOooAcy1f2hNlBuIfcTtDuQDfKTHtik4LMIxW7XIUp5aCra6tJ5l1TRc9Sx5CWYrCbsGO0c/Pff3/hcLqREOD2zvsQAAAABJRU5ErkJggg=="
-                                alt="extract">
+                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAAXNSR0IArs4c6QAAAF1QTFRFAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////USr75QAAAB50Uk5TAAYJGSssbG1ub4+TlJqbnaWnq6y8vtTb3N3w8vz9E7rVugAAAI1JREFUGNNlj8ESgjAMRAMUUlorWrGoLfv/n2nSMh5kL5m8ySYbIpFxKefkDDV1vqCq+K72K35alVywB57fCzM/4cVfEIbJvhYeiVEMOcCyjsd+lOooAcy1f2hNlBuIfcTtDuQDfKTHtik4LMIxW7XIUp5aCra6tJ5l1TRc9Sx5CWYrCbsGO0c/Pff3/hcLqREOD2zvsQAAAABJRU5ErkJggg=="
+                                 alt="extract">
                         </div>
                         <div class="sc-feryYK emsNPc">{{ $gtfInterestBalance }}</div>
                     </div>
@@ -76,11 +76,66 @@
                                     <div id="InputRow" class="sc-cLQEGU hAfotE">
                                         <div id="RightContentDiv" class="sc-daURTG isZsJa">
                                             <div class="sc-bXGyLb gffPBZ">
+                                                <input id="usdt" class="sc-hMFtBS kfBjC token-amount-input" readonly
+                                                       font-size="24px" inputmode="decimal" title="Token Amount"
+                                                       autocomplete="off" autocorrect="off" type="number"
+                                                       pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0" minlength="1"
+                                                       maxlength="79" spellcheck="false" value="">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="gtf-to-usdt sc-gqPbQI hNPUBP open-currency-select-button">
+                                            <span class="sc-bMVAic itTpBY">
+                                                <img class="fvzzkg" src="{{ asset($themeTrue . 'img/icon/usdt.png') }}" alt="@lang('Exchange icon')" />
+                                                <span class="sc-bMVAic itTpBY">
+                                                    <span class="sc-exAgwC dFGAgQ token-symbol-container">USDT</span>
+                                                </span>
+                                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
+                                                     color="#48587B" class="sc-bAeIUo iHLDof">
+                                                    <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <button type="button" class="usdt-to-gtf sc-gqPbQI hNPUBP open-currency-select-button" style="display: none">
+                                            <span class="sc-bMVAic itTpBY">
+                                                <img width="25" height="25" src="{{ asset('assets/uploads/logo/favicon.png') }}" alt="@lang('GTF amount')" />
+                                                <span class="sc-bMVAic itTpBY">
+                                                    <span class="sc-exAgwC dFGAgQ token-symbol-container">GTF</span>
+                                                </span>
+                                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
+                                                     color="#48587B" class="sc-bAeIUo iHLDof">
+                                                    <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="exchangeIcon" class="sc-gqjmRU sc-jTzLTM sc-cSHVUG loDFqx"
+                                 style="flex-wrap: revert; position: relative;">
+                                <div size="48" class="sc-rBLzX bmMWlQ" onclick="exchangeAction()">
+                                    <img src="{{ asset($themeTrue . 'img/icon/ex-change.svg') }}" alt="@lang('Exchange icon')" />
+                                </div>
+                                <div class="css-16cxqow"
+                                     style="position: absolute; right: 0px; top: 13px; cursor: pointer; padding: 2px 8px; border-radius: 8px;">
+                                    <div class="css-vurnku">Limit order</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="swap-currency-output" class="sc-iujRgT klLNRk">
+                                <div class="sc-GMQeP cDdCcR">
+                                    <div id="InputRow" class="sc-cLQEGU hAfotE">
+                                        <div id="RightContentDiv" class="sc-daURTG isZsJa">
+                                            <div class="sc-bXGyLb gffPBZ">
                                                 <input class="sc-hMFtBS kfBjC token-amount-input" name="gtf_amount"
-                                                    font-size="24px" inputmode="decimal" title="Token Amount"
-                                                    autocomplete="off" autocorrect="off" type="number"
-                                                    pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0" minlength="1"
-                                                    maxlength="79" spellcheck="false" value="">
+                                                       font-size="24px" inputmode="decimal" title="Token Amount"
+                                                       autocomplete="off" autocorrect="off" type="number"
+                                                       pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0" minlength="1"
+                                                       maxlength="79" spellcheck="false" value="">
                                             </div>
                                             <div class="sc-gojNiO jknDzv">
                                                 <div class="sc-hORach kpDIPd">
@@ -95,7 +150,7 @@
                                                     <span class="sc-exAgwC dFGAgQ token-symbol-container">GTF</span>
                                                 </span>
                                                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
-                                                    color="#48587B" class="sc-bAeIUo iHLDof">
+                                                     color="#48587B" class="sc-bAeIUo iHLDof">
                                                     <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
                                                 </svg>
                                             </span>
@@ -116,61 +171,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="exchangeIcon" class="sc-gqjmRU sc-jTzLTM sc-cSHVUG loDFqx"
-                                style="flex-wrap: revert; position: relative;">
-                                <div size="48" class="sc-rBLzX bmMWlQ" onclick="exchangeAction()">
-                                    <img src="{{ asset($themeTrue . 'img/icon/ex-change.svg') }}" alt="@lang('Exchange icon')" />
-                                </div>
-                                <div class="css-16cxqow"
-                                    style="position: absolute; right: 0px; top: 13px; cursor: pointer; padding: 2px 8px; border-radius: 8px;">
-                                    <div class="css-vurnku">Limit order</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div id="swap-currency-output" class="sc-iujRgT klLNRk">
-                                <div class="sc-GMQeP cDdCcR">
-                                    <div id="InputRow" class="sc-cLQEGU hAfotE">
-                                        <div id="RightContentDiv" class="sc-daURTG isZsJa">
-                                            <div class="sc-bXGyLb gffPBZ">
-                                                <input id="usdt" class="sc-hMFtBS kfBjC token-amount-input" readonly
-                                                    font-size="24px" inputmode="decimal" title="Token Amount"
-                                                    autocomplete="off" autocorrect="off" type="number"
-                                                    pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0" minlength="1"
-                                                    maxlength="79" spellcheck="false" value="">
-                                            </div>
-                                        </div>
-                                        <button type="button" class="gtf-to-usdt sc-gqPbQI hNPUBP open-currency-select-button">
-                                            <span class="sc-bMVAic itTpBY">
-                                                <img class="fvzzkg" src="{{ asset($themeTrue . 'img/icon/usdt.png') }}" alt="@lang('Exchange icon')" />
-                                                <span class="sc-bMVAic itTpBY">
-                                                    <span class="sc-exAgwC dFGAgQ token-symbol-container">USDT</span>
-                                                </span>
-                                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
-                                                    color="#48587B" class="sc-bAeIUo iHLDof">
-                                                    <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
-                                                </svg>
-                                            </span>
-                                        </button>
-                                        <button type="button" class="usdt-to-gtf sc-gqPbQI hNPUBP open-currency-select-button" style="display: none">
-                                            <span class="sc-bMVAic itTpBY">
-                                                <img width="25" height="25" src="{{ asset('assets/uploads/logo/favicon.png') }}" alt="@lang('GTF amount')" />
-                                                <span class="sc-bMVAic itTpBY">
-                                                    <span class="sc-exAgwC dFGAgQ token-symbol-container">GTF</span>
-                                                </span>
-                                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
-                                                    color="#48587B" class="sc-bAeIUo iHLDof">
-                                                    <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
-                                                </svg>
-                                            </span>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -225,59 +225,59 @@
                     <div class="table-parent table-responsive">
                         <table class="table table-striped mb-5">
                             <thead>
-                                <tr>
-                                    <th scope="col">@lang('SL')</th>
-                                    <th scope="col">@lang('Plan')</th>
-                                    <th scope="col">@lang('Return Interest')</th>
-                                    <th scope="col">@lang('Received Amount')</th>
-                                    <th scope="col">@lang('Upcoming Payment')</th>
-                                    <th scope="col">@lang('Action')</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">@lang('SL')</th>
+                                <th scope="col">@lang('Plan')</th>
+                                <th scope="col">@lang('Return Interest')</th>
+                                <th scope="col">@lang('Received Amount')</th>
+                                <th scope="col">@lang('Upcoming Payment')</th>
+                                <th scope="col">@lang('Action')</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @forelse($stakings as $key => $staking)
-                                    <tr>
-                                        <td>{{ loopIndex($stakings) + $key }}</td>
-                                        <td>
-                                            {{ number_format($staking->amount) }} GTF
-                                        </td>
-                                        <td>
-                                            {{ getAmount($staking->profit) }} GTF
-                                            {{ $staking->period == '-1' ? trans('For Lifetime') : 'per ' . trans($staking->point_in_text) }}
-                                            <br>
-                                            {{ $staking->capital_status == '1' ? '+ ' . trans('Capital') : '' }}
-                                        </td>
-                                        <td>
-                                            {{ $staking->recurring_time }} x {{ $staking->profit }} =
-                                            {{ getAmount($staking->recurring_time * $staking->profit) }}
-                                            GTF
-                                        </td>
-                                        <td>
-                                            @if ($staking->status == 1)
-                                                <p id="counter{{ $staking->id }}" class="mb-2"></p>
-                                                <script>
-                                                    getCountDown("counter{{ $staking->id }}", {{ \Carbon\Carbon::parse($staking->afterward)->diffInSeconds() }});
-                                                </script>
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-striped bg-danger"
-                                                        role="progressbar" style="width: {{ $staking->nextPayment }}"
-                                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                        {{ $staking->nextPayment }}</div>
-                                                </div>
-                                            @else
-                                                <span class="badge badge-success">@lang('Completed')</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button class="cancelStaking gold-btn gold-btn-custom"
+                            @forelse($stakings as $key => $staking)
+                                <tr>
+                                    <td>{{ loopIndex($stakings) + $key }}</td>
+                                    <td>
+                                        {{ number_format($staking->amount) }} GTF
+                                    </td>
+                                    <td>
+                                        {{ getAmount($staking->profit) }} GTF
+                                        {{ $staking->period == '-1' ? trans('For Lifetime') : 'per ' . trans($staking->point_in_text) }}
+                                        <br>
+                                        {{ $staking->capital_status == '1' ? '+ ' . trans('Capital') : '' }}
+                                    </td>
+                                    <td>
+                                        {{ $staking->recurring_time }} x {{ $staking->profit }} =
+                                        {{ getAmount($staking->recurring_time * $staking->profit) }}
+                                        GTF
+                                    </td>
+                                    <td>
+                                        @if ($staking->status == 1)
+                                            <p id="counter{{ $staking->id }}" class="mb-2"></p>
+                                            <script>
+                                                getCountDown("counter{{ $staking->id }}", {{ \Carbon\Carbon::parse($staking->afterward)->diffInSeconds() }});
+                                            </script>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped bg-danger"
+                                                     role="progressbar" style="width: {{ $staking->nextPayment }}"
+                                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    {{ $staking->nextPayment }}</div>
+                                            </div>
+                                        @else
+                                            <span class="badge badge-success">@lang('Completed')</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button class="cancelStaking gold-btn gold-btn-custom"
                                                 data-staking="{{ $staking->id }}">Cancel</button>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr class="text-center">
-                                        <td colspan="100%">{{ trans('No Data Found!') }}</td>
-                                    </tr>
-                                @endforelse
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr class="text-center">
+                                    <td colspan="100%">{{ trans('No Data Found!') }}</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -287,7 +287,7 @@
     </section>
     <!-- INVEST-NOW MODAL -->
     <div class="modal fade addFundModal" id="stakingNowModal" tabindex="-1" data-bs-backdrop="static" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -296,7 +296,7 @@
                 <div class="modal-body">
                     <div class="form-block">
                         <form class="login-form" id="invest-form" action="{{ route('user.cancel-staking') }}"
-                            method="post">
+                              method="post">
                             @csrf
                             <div class="signin ">
                                 <input type="hidden" name="invest_id" class="staking-id">
@@ -346,19 +346,19 @@
 
         })(jQuery);
 
-        function exchangeAction() {
-            swapTypeUsdtToGtf = !swapTypeUsdtToGtf;
-            if(swapTypeUsdtToGtf) {
-            }
-            $('.usdt-to-gtf').toggle();
-            $('.gtf-to-usdt').toggle();
-        }
+        // function exchangeAction() {
+        //     swapTypeUsdtToGtf = !swapTypeUsdtToGtf;
+        //     if(swapTypeUsdtToGtf) {
+        //     }
+        //     $('.usdt-to-gtf').toggle();
+        //     $('.gtf-to-usdt').toggle();
+        // }
     </script>
 
     @if (count($errors) > 0)
         <script>
             @foreach ($errors->all() as $key => $error)
-                Notiflix.Notify.Failure("@lang($error)");
+            Notiflix.Notify.Failure("@lang($error)");
             @endforeach
         </script>
     @endif

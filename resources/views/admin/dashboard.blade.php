@@ -13,14 +13,14 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group mb-0 d-flex">
                             <label for="" class="mb-0">From date</label>
-                            <input type="date" class="form-control" name="from-date">
+                            <input type="date" class="form-control" name="from-date" value="{{Request::get('from-date')}}">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4">
                         <div class="form-group mb-0 d-flex">
                             <label for="" class="mb-0">To date</label>
-                            <input type="date" class="form-control" name="to-date">
+                            <input type="date" class="form-control" name="to-date" value="{{Request::get('to-date')}}">
                         </div>
                     </div>
 

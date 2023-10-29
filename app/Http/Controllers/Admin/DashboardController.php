@@ -65,15 +65,15 @@ class DashboardController extends Controller
             ->selectRaw('COUNT((CASE WHEN created_at >= CURDATE()  THEN id END)) AS todayJoin')
             ->get()->makeHidden(['fullname', 'mobile'])->toArray())->collapse();
 
-        $data['investment'] = collect(Investment::selectRaw('COUNT(id) AS total')
-            ->selectRaw('SUM(amount) AS totalInvestAmount')
-            ->selectRaw('COUNT(CASE WHEN status = 1  THEN status END) AS running')
-            ->selectRaw('COUNT(CASE WHEN status = 0  THEN status END) AS complete')
-            ->selectRaw('COUNT((CASE WHEN created_at >= CURDATE()  THEN id END)) AS todayInvest')
-            ->selectRaw('SUM((CASE WHEN created_at >= CURDATE()  THEN amount END)) AS todayInvestmentAmount')
-            ->selectRaw('SUM((CASE WHEN created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyInvestmentAmount')
-            ->where('type', 1)
-            ->get()->makeHidden('nextPayment')->toArray())->collapse();
+//        $data['investment'] = collect(Investment::selectRaw('COUNT(id) AS total')
+//            ->selectRaw('SUM(amount) AS totalInvestAmount')
+//            ->selectRaw('COUNT(CASE WHEN status = 1  THEN status END) AS running')
+//            ->selectRaw('COUNT(CASE WHEN status = 0  THEN status END) AS complete')
+//            ->selectRaw('COUNT((CASE WHEN created_at >= CURDATE()  THEN id END)) AS todayInvest')
+//            ->selectRaw('SUM((CASE WHEN created_at >= CURDATE()  THEN amount END)) AS todayInvestmentAmount')
+//            ->selectRaw('SUM((CASE WHEN created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyInvestmentAmount')
+//            ->where('type', 1)
+//            ->get()->makeHidden('nextPayment')->toArray())->collapse();
 
         $data['tickets'] = collect(Ticket::where('created_at', '>', Carbon::now()->subDays(30))
             ->selectRaw('count(CASE WHEN status = 3  THEN status END) AS closed')

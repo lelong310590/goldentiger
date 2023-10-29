@@ -40,16 +40,21 @@ class DashboardController extends Controller
     }
 
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
+        $fromDate = $request->get('from-date');
+        $toDate = $request->get('to-date');
+        $fromDate = Carbon::parse($fromDate)->format('Y-m-d 00:00:00');
+        $toDate = Carbon::parse($toDate)->format('Y-m-d 00:00:00');
+
         $data['totalPlan'] = ManagePlan::count();
 //        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL   THEN amount END) AS totalAmountReceived')
 //            ->selectRaw('SUM(CASE WHEN status = 1 THEN charge END) AS totalChargeReceived')
 //            ->selectRaw('SUM((CASE WHEN created_at >= CURDATE() AND status = 1 AND plan_id IS NULL  THEN amount END)) AS todayDeposit')
 //            ->get()->toArray())->collapse();
-
-        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL AND created_at >= "2023-10-01 00:00:00" THEN amount END) AS totalAmountReceived')
+        $data['funding'] = collect(Fund::selectRaw('SUM(CASE WHEN status = 1 AND plan_id IS NULL AND created_at >= "'.$fromDate.'" AND created_at <= "'.$toDate.'" THEN amount END) AS totalAmountReceived')
             ->get()->toArray())->collapse();
+
 
 //        dd($data['funding']);
 
@@ -152,7 +157,7 @@ class DashboardController extends Controller
 //            ->get()->toArray())->collapse();
 
         $data['payout'] = collect(PayoutLog::selectRaw('COUNT(CASE WHEN status = 1  THEN id END) AS pending')
-            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >= "2023-10-10 00:00:00"  THEN amount END)) AS todayPayoutAmount')
+            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >= "'.$fromDate.'" AND created_at <= "'.$toDate.'" THEN amount END)) AS todayPayoutAmount')
 //            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN amount END)) AS monthlyPayoutAmount')
 //            ->selectRaw('SUM((CASE WHEN status = 2 AND created_at >=  DATE_SUB(CURRENT_DATE() , INTERVAL DAYOFMONTH(CURRENT_DATE)-1 DAY) THEN charge END)) AS monthlyPayoutCharge')
             ->get()->toArray())->collapse();

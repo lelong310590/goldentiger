@@ -6,6 +6,33 @@
 
 
     <div class="container-fluid">
+
+        <div class="page-header card card-primary m-mb-4 p-3 shadow">
+            <form action="" method="get">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="form-group mb-0 d-flex">
+                            <label for="" class="mb-0">From date</label>
+                            <input type="date" class="form-control" name="from-date">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="form-group mb-0 d-flex">
+                            <label for="" class="mb-0">To date</label>
+                            <input type="date" class="form-control" name="to-date">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn waves-effect waves-light btn-primary mb-0"><i class="fas fa-search"></i> Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="row">
 
 {{--            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">--}}
@@ -522,93 +549,93 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-        @if(adminAccessRoute(config('role.user_management.access.view')))
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h4 class="card-title">@lang('Latest User')</h4>
-                            <div class="table-responsive">
-                                <table class="categories-show-table table table-hover table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">@lang('Name')</th>
-                                        <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Balance')</th>
-                                        <th scope="col">@lang('Interest Balance')</th>
-                                        <th scope="col">@lang('Status')</th>
-                                        @if(adminAccessRoute(config('role.user_management.access.edit')))
-                                            <th scope="col">@lang('Action')</th>
-                                        @endif
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @forelse($latestUser as $user)
-                                        <tr>
-                                            <td data-label="@lang('Name')">
-                                                <a href="{{route('admin.user-edit',[$user->id])}}" target="_blank">
-                                                    <div class="d-flex no-block align-items-center">
-                                                        <div class="mr-3"><img src="{{getFile(config('location.user.path').$user->image) }}" alt="user" class="rounded-circle" width="45" height="45"></div>
-                                                        <div class="">
-                                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">@lang($user->firstname) @lang($user->lastname)</h5>
-                                                                <span class="text-muted font-14"><span>@</span>@lang($user->username)</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td data-label="@lang('Email')">@lang($user->email)</td>
-                                            <td data-label="@lang('Balance')">{{trans($basic->currency_symbol)}}{{getAmount($user->balance, config('basic.fraction_number'))}}</td>
-                                            <td data-label="@lang('Interest Balance')">{{trans($basic->currency_symbol)}}{{getAmount($user->interest_balance, config('basic.fraction_number'))}}</td>
-                                            <td data-label="@lang('Status')">
-                                            <span
-                                                class="badge badge-pill {{ $user->status == 0 ? 'badge-danger' : 'badge-success' }}">{{ $user->status == 0 ? 'Inactive' : 'Active' }}</span>
-                                            </td>
-                                            @if(adminAccessRoute(config('role.user_management.access.edit')))
-                                                <td data-label="@lang('Action')">
-                                                    <div class="dropdown show">
-                                                        <a class="dropdown-toggle p-3" href="#" id="dropdownMenuLink"
-                                                           data-toggle="dropdown"
-                                                           aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item"
-                                                               href="{{ route('admin.user-edit',$user->id) }}">
-                                                                <i class="fa fa-edit text-warning pr-2"
-                                                                   aria-hidden="true"></i> @lang('Edit')
-                                                            </a>
+{{--        @if(adminAccessRoute(config('role.user_management.access.view')))--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="card shadow">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <h4 class="card-title">@lang('Latest User')</h4>--}}
+{{--                            <div class="table-responsive">--}}
+{{--                                <table class="categories-show-table table table-hover table-striped table-bordered">--}}
+{{--                                    <thead class="thead-dark">--}}
+{{--                                    <tr>--}}
+{{--                                        <th scope="col">@lang('Name')</th>--}}
+{{--                                        <th scope="col">@lang('Email')</th>--}}
+{{--                                        <th scope="col">@lang('Balance')</th>--}}
+{{--                                        <th scope="col">@lang('Interest Balance')</th>--}}
+{{--                                        <th scope="col">@lang('Status')</th>--}}
+{{--                                        @if(adminAccessRoute(config('role.user_management.access.edit')))--}}
+{{--                                            <th scope="col">@lang('Action')</th>--}}
+{{--                                        @endif--}}
+{{--                                    </tr>--}}
+{{--                                    </thead>--}}
+{{--                                    <tbody>--}}
+{{--                                    @forelse($latestUser as $user)--}}
+{{--                                        <tr>--}}
+{{--                                            <td data-label="@lang('Name')">--}}
+{{--                                                <a href="{{route('admin.user-edit',[$user->id])}}" target="_blank">--}}
+{{--                                                    <div class="d-flex no-block align-items-center">--}}
+{{--                                                        <div class="mr-3"><img src="{{getFile(config('location.user.path').$user->image) }}" alt="user" class="rounded-circle" width="45" height="45"></div>--}}
+{{--                                                        <div class="">--}}
+{{--                                                                <h5 class="text-dark mb-0 font-16 font-weight-medium">@lang($user->firstname) @lang($user->lastname)</h5>--}}
+{{--                                                                <span class="text-muted font-14"><span>@</span>@lang($user->username)</span>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </a>--}}
+{{--                                            </td>--}}
+{{--                                            <td data-label="@lang('Email')">@lang($user->email)</td>--}}
+{{--                                            <td data-label="@lang('Balance')">{{trans($basic->currency_symbol)}}{{getAmount($user->balance, config('basic.fraction_number'))}}</td>--}}
+{{--                                            <td data-label="@lang('Interest Balance')">{{trans($basic->currency_symbol)}}{{getAmount($user->interest_balance, config('basic.fraction_number'))}}</td>--}}
+{{--                                            <td data-label="@lang('Status')">--}}
+{{--                                            <span--}}
+{{--                                                class="badge badge-pill {{ $user->status == 0 ? 'badge-danger' : 'badge-success' }}">{{ $user->status == 0 ? 'Inactive' : 'Active' }}</span>--}}
+{{--                                            </td>--}}
+{{--                                            @if(adminAccessRoute(config('role.user_management.access.edit')))--}}
+{{--                                                <td data-label="@lang('Action')">--}}
+{{--                                                    <div class="dropdown show">--}}
+{{--                                                        <a class="dropdown-toggle p-3" href="#" id="dropdownMenuLink"--}}
+{{--                                                           data-toggle="dropdown"--}}
+{{--                                                           aria-haspopup="true" aria-expanded="false">--}}
+{{--                                                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>--}}
+{{--                                                        </a>--}}
+{{--                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">--}}
+{{--                                                            <a class="dropdown-item"--}}
+{{--                                                               href="{{ route('admin.user-edit',$user->id) }}">--}}
+{{--                                                                <i class="fa fa-edit text-warning pr-2"--}}
+{{--                                                                   aria-hidden="true"></i> @lang('Edit')--}}
+{{--                                                            </a>--}}
 
-                                                            <a class="dropdown-item"
-                                                               href="{{ route('admin.send-email',$user->id) }}">
-                                                                <i class="fa fa-envelope text-success pr-2"
-                                                                   aria-hidden="true"></i> @lang('Send Email')
-                                                            </a>
-                                                            <a class="dropdown-item loginAccount" type="button"
-                                                                data-toggle="modal"
-                                                                data-target="#signIn"
-                                                                data-route="{{route('admin.login-as-user',$user->id)}}">
-                                                                <i class="fas fa-sign-in-alt text-success pr-2"
-                                                                aria-hidden="true"></i> @lang('Login as User')
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            @endif
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td class="text-center text-danger" colspan="7">@lang('No User Data')</td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
-                                </table>
+{{--                                                            <a class="dropdown-item"--}}
+{{--                                                               href="{{ route('admin.send-email',$user->id) }}">--}}
+{{--                                                                <i class="fa fa-envelope text-success pr-2"--}}
+{{--                                                                   aria-hidden="true"></i> @lang('Send Email')--}}
+{{--                                                            </a>--}}
+{{--                                                            <a class="dropdown-item loginAccount" type="button"--}}
+{{--                                                                data-toggle="modal"--}}
+{{--                                                                data-target="#signIn"--}}
+{{--                                                                data-route="{{route('admin.login-as-user',$user->id)}}">--}}
+{{--                                                                <i class="fas fa-sign-in-alt text-success pr-2"--}}
+{{--                                                                aria-hidden="true"></i> @lang('Login as User')--}}
+{{--                                                            </a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </td>--}}
+{{--                                            @endif--}}
+{{--                                        </tr>--}}
+{{--                                    @empty--}}
+{{--                                        <tr>--}}
+{{--                                            <td class="text-center text-danger" colspan="7">@lang('No User Data')</td>--}}
+{{--                                        </tr>--}}
+{{--                                    @endforelse--}}
+{{--                                    </tbody>--}}
+{{--                                </table>--}}
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endif--}}
 
     </div>
 

@@ -621,7 +621,7 @@ class HomeController extends Controller
         $trx = strRandom();
         $remarks = '1000 GTF Bonus investment plan '.$plan->name;
         BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '-', $gtfBonusType, $trx, $remarks);
-        $user->gtf_balance = (int)$user->gtf_balance + $gtfBonus;
+        $user->gtf_balance = (int)$user->gtf_balance + (int)$amount/2;
         $user->save();
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);

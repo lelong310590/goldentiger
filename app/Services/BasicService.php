@@ -140,8 +140,6 @@ class BasicService
     }
 
 
-
-
     public function setBonus($user, $amount, $commissionType = ''){
 
         $basic = (object) config('basic');

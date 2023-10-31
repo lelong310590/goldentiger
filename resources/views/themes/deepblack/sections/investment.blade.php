@@ -28,7 +28,8 @@
                             >
                             <div class="plan-image">
                                 @php
-                                    $link = $themeTrue.'img/icon/price0'. $k+1 .'.png';
+                                    $numberNo = $k + 1;
+                                    $link = $themeTrue.'img/icon/price0'. $numberNo .'.png';
                                 @endphp
                                 <img src="{{asset($link)}}" alt="price-icon" class="img-fluid">
                             </div>

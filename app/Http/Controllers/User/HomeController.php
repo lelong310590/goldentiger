@@ -524,8 +524,6 @@ class HomeController extends Controller
 
         $new_balance = getAmount($user->$balance_type - $amount);
         $user->$balance_type = $new_balance;
-        $user->gtf_balance = (int)$user->gtf_balance + (int)($amount / $configure->price_gtf);
-        $user->save();
 
         $userRef = $user->referral;
         if($userRef) {
@@ -605,7 +603,6 @@ class HomeController extends Controller
             'profit_amount' => $profit,
         ]);
 
-
         $msg = [
             'username' => $user->username,
             'amount' => getAmount($amount),
@@ -617,6 +614,15 @@ class HomeController extends Controller
             "link" => route('admin.user.plan-purchaseLog', $user->id),
             "icon" => "fa fa-money-bill-alt "
         ];
+
+        //Bonus GTF
+        $gtfBonus = 1000;
+        $gtfBonusType = 'gtf_bonus';
+        $trx = strRandom();
+        $remarks = '1000 GTF Bonus investment plan '.$plan->name;
+        BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '-', $gtfBonusType, $trx, $remarks);
+        $user->gtf_balance = (int)$user->gtf_balance + $gtfBonus;
+        $user->save();
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
         $msg = $plan->name;

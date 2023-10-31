@@ -616,12 +616,14 @@ class HomeController extends Controller
         ];
 
         //Bonus GTF
-        $gtfBonus = 1000;
+        $amountBonus = (int)$amount/2;
+        $gtfRate = (float)$configure->price_gtf;
+        $gtfBonus = $amountBonus / $gtfRate;
         $gtfBonusType = 'gtf_bonus';
         $trx = strRandom();
-        $remarks = '1000 GTF Bonus investment plan '.$plan->name;
-        BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '-', $gtfBonusType, $trx, $remarks);
-        $user->gtf_balance = (int)$user->gtf_balance + (int)$amount/2;
+        $remarks = $gtfBonus.' GTF Bonus investment plan '.$plan->name;
+        BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '+', $gtfBonusType, $trx, $remarks);
+        $user->gtf_balance = (int)$user->gtf_balance + $gtfBonus;
         $user->save();
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
@@ -918,7 +920,7 @@ class HomeController extends Controller
         $oldInvesmentEloquent = $this->user->invests()->where('status', 1);
         $totalInvestAmount = $oldInvesmentEloquent->sum('amount');
         $oldInvestment = $oldInvesmentEloquent->get();
-        $newPlan = ManagePlan::query()->where('maximum_amount', '>=', $totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();
+        $newPlan = ManagePlan::query()->where('maximum_amount', '>=', (int)$totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();
         $timeManage = ManageTime::where('time', $newPlan->schedule)->first();
 
         // cancel all old plan

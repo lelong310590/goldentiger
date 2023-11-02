@@ -920,7 +920,7 @@ class HomeController extends Controller
         $oldInvesmentEloquent = $this->user->invests()->where('status', 1);
         $totalInvestAmount = $oldInvesmentEloquent->sum('amount');
         $oldInvestment = $oldInvesmentEloquent->get();
-        $newPlan = ManagePlan::query()->where('maximum_amount', '>=', (int)$totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();
+        $newPlan = ManagePlan::query()->where('maximum_amount', '>=', (float)$totalInvestAmount)->orderBy('maximum_amount', 'asc')->first();
         $timeManage = ManageTime::where('time', $newPlan->schedule)->first();
 
         // cancel all old plan

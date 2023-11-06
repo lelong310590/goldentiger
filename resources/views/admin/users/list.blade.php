@@ -126,13 +126,13 @@
                                             <i class="fa fa-envelope text-success pr-2"
                                                aria-hidden="true"></i> @lang('Send Email')
                                         </a>
-                                        <a class="dropdown-item loginAccount" type="button"
-                                            data-toggle="modal"
-                                            data-target="#signIn"
-                                            data-route="{{route('admin.login-as-user',$user->id)}}">
-                                            <i class="fas fa-sign-in-alt text-success pr-2"
-                                               aria-hidden="true"></i> @lang('Login as User')
-                                        </a>
+{{--                                        <a class="dropdown-item loginAccount" type="button"--}}
+{{--                                            data-toggle="modal"--}}
+{{--                                            data-target="#signIn"--}}
+{{--                                            data-route="{{route('admin.login-as-user',$user->id)}}">--}}
+{{--                                            <i class="fas fa-sign-in-alt text-success pr-2"--}}
+{{--                                               aria-hidden="true"></i> @lang('Login as User')--}}
+{{--                                        </a>--}}
                                     </div>
                                 </div>
                             </td>

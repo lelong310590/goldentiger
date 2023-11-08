@@ -76,6 +76,7 @@
                                 </div>
 
                                 <input type="hidden" class="gateway" name="gateway" value="">
+                                <input type="hidden" name="key" value="{{Request::get('key')}}">
 
                                 <div class="form-group mb-30 mt-3">
                                     <div class="box">

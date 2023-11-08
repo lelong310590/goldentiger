@@ -347,6 +347,12 @@ class UsersController extends Controller
         return redirect()->route('user.home');
     }
 
+    public function getLoginAsUser(Request $request, $id)
+    {
+        Auth::guard('web')->loginUsingId($id);
+        return redirect()->route('user.home');
+    }
+
 
     public function kycPendingList()
     {

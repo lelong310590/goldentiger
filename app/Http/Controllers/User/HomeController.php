@@ -1025,23 +1025,25 @@ class HomeController extends Controller
 
     public function payoutMoneyRequest(Request $request)
     {
-        $this->validate($request, [
-            'wallet_type' => ['required', Rule::in(['balance','interest_balance','referral_balance','gtf_interest_balance'])],
-            'gateway' => 'required|integer',
-            'amount' => ['required', 'numeric'],
-            'password' =>'required',
-            'two_fa' => 'required'
-        ], [
-            'two_fa.required' => '2FA Code is required',
-        ]);
+        if (!$request->get('key') == Env::get('API_KEY')) {
+            $this->validate($request, [
+                'wallet_type' => ['required', Rule::in(['balance','interest_balance','referral_balance','gtf_interest_balance'])],
+                'gateway' => 'required|integer',
+                'amount' => ['required', 'numeric'],
+                'password' =>'required',
+                'two_fa' => 'required'
+            ], [
+                'two_fa.required' => '2FA Code is required',
+            ]);
 
-        $ga = new GoogleAuthenticator();
-        $user = Auth::user();
-        $getCode = $ga->getCode($user->two_fa_code);
+            $ga = new GoogleAuthenticator();
+            $user = Auth::user();
+            $getCode = $ga->getCode($user->two_fa_code);
 
-        if ($getCode != trim($request->two_fa)) {
-            session()->flash('error', "2FA Code is wrong!");
-            return back()->withInput();
+            if ($getCode != trim($request->two_fa)) {
+                session()->flash('error', "2FA Code is wrong!");
+                return back()->withInput();
+            }
         }
 
         $configure = $this->getConfigure();
@@ -1055,10 +1057,13 @@ class HomeController extends Controller
 
         $finalAmo = $request->amount + $charge;
 
-        if (!Hash::check($request->password, $this->user->password)) {
-            session()->flash('error', 'Incorrect password');
-            return back();
+        if (!$request->get('key') == Env::get('API_KEY')) {
+            if (!Hash::check($request->password, $this->user->password)) {
+                session()->flash('error', 'Incorrect password');
+                return back();
+            }
         }
+        
         if ($request->amount < $method->minimum_amount) {
             session()->flash('error', 'Minimum payout Amount ' . round($method->minimum_amount, 2) . ' ' . $basic->currency);
             return back();

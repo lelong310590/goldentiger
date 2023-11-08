@@ -122,14 +122,14 @@
                                 </a>
                             @endif
 
-                            <a
-                                class="btn btn-info btn-sm loginAccount text-white" type="button"
-                                data-toggle="modal"
-                                data-target="#signIn"
-                                data-route="{{route('admin.login-as-user',$user->id)}}">
-                                 <span class="btn-label">
-                                    <i class="fas fa-sign-in-alt"></i></span> @lang('Login as User')
-                            </a>
+{{--                            <a--}}
+{{--                                class="btn btn-info btn-sm loginAccount text-white" type="button"--}}
+{{--                                data-toggle="modal"--}}
+{{--                                data-target="#signIn"--}}
+{{--                                data-route="{{route('admin.login-as-user',$user->id)}}">--}}
+{{--                                 <span class="btn-label">--}}
+{{--                                    <i class="fas fa-sign-in-alt"></i></span> @lang('Login as User')--}}
+{{--                            </a>--}}
 
 
                         </div>

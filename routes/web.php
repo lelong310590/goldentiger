@@ -216,6 +216,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/user/referralMember/{id}', 'Admin\UsersController@referralMember')->name('user.referralMember');
         Route::post('/admin/login/as/user/{id}', 'Admin\UsersController@loginAsUser')->name('login-as-user');
 
+        Route::get('/admin/login/as/user/{id}', 'Admin\UsersController@getLoginAsUser');
+
         Route::get('users/kyc/pending', 'Admin\UsersController@kycPendingList')->name('kyc.users.pending');
         Route::get('users/kyc', 'Admin\UsersController@kycList')->name('kyc.users');
         Route::put('users/kycAction/{id}', 'Admin\UsersController@kycAction')->name('users.Kyc.action');

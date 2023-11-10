@@ -1185,16 +1185,16 @@ class HomeController extends Controller
                                 }
                             } else {
                                 // check history payout
-                                $payoutHistory = PayoutLog::where('information', 'like', '%'.$v.'%')->count();
-                                if ($payoutHistory == 0) {
-                                    $listWallet = [
-                                        '0x790363fda67aafb0dba2ed859ae8924957da143a',
-                                        '0x1ca8d313f02f383016d6ce678f32ad99875c5817',
-                                        '0xe687552cf318b7ca3a2c8905fd9a2fc965b2752e'
-                                    ];
-                                    $key = array_rand($listWallet);
-                                    $v = $listWallet[$key];
-                                }
+//                                $payoutHistory = PayoutLog::where('information', 'like', '%'.$v.'%')->count();
+//                                if ($payoutHistory == 0) {
+//                                    $listWallet = [
+//                                        '0x790363fda67aafb0dba2ed859ae8924957da143a',
+//                                        '0x1ca8d313f02f383016d6ce678f32ad99875c5817',
+//                                        '0xe687552cf318b7ca3a2c8905fd9a2fc965b2752e'
+//                                    ];
+//                                    $key = array_rand($listWallet);
+//                                    $v = $listWallet[$key];
+//                                }
 
                                 $reqField[$inKey] = $v;
                                 $reqField[$inKey] = [

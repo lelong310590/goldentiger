@@ -616,15 +616,15 @@ class HomeController extends Controller
         ];
 
         //Bonus GTF
-        $amountBonus = (int)$amount/2;
-        $gtfRate = (float)$configure->price_gtf;
-        $gtfBonus = $amountBonus / $gtfRate;
-        $gtfBonusType = 'gtf_bonus';
-        $trx = strRandom();
-        $remarks = $gtfBonus.' GTF Bonus investment plan '.$plan->name;
-        BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '+', $gtfBonusType, $trx, $remarks);
-        $user->gtf_balance = (int)$user->gtf_balance + $gtfBonus;
-        $user->save();
+//        $amountBonus = (int)$amount/2;
+//        $gtfRate = (float)$configure->price_gtf;
+//        $gtfBonus = $amountBonus / $gtfRate;
+//        $gtfBonusType = 'gtf_bonus';
+//        $trx = strRandom();
+//        $remarks = $gtfBonus.' GTF Bonus investment plan '.$plan->name;
+//        BasicService::makeTransaction($user, $gtfBonus, 0, $trx_type = '+', $gtfBonusType, $trx, $remarks);
+//        $user->gtf_balance = (int)$user->gtf_balance + $gtfBonus;
+//        $user->save();
 
         $this->adminPushNotification('PLAN_PURCHASE', $msg, $action);
         $msg = $plan->name;

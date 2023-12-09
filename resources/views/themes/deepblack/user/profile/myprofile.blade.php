@@ -65,6 +65,9 @@
                         <button tab-id="tab4" class="golden-text tab {{ $errors->has('addressVerification') ? 'active' : '' }}">
                             @lang('Address Verification')
                         </button>
+                        <button tab-id="tab5" class="golden-text tab {{ $errors->has('walletVerification') ? 'active' : '' }}">
+                            @lang('Wallet Verification')
+                        </button>
                     </div>
 
                     <div id="tab1" class="content {{ $errors->has('profile') ? ' active' : (($errors->has('password') || $errors->has('identity') || $errors->has('addressVerification')) ? '' :  ' active') }}">
@@ -189,7 +192,6 @@
                                         </div>
                                     @endif
                                 </div>
-
                             </div>
                             <button type="submit" class="gold-btn">@lang('Update User')</button>
                         </form>
@@ -453,6 +455,31 @@
                                 <span> @lang('Your KYC already verified')</span>
                             </div>
                         @endif
+                    </div>
+
+                    <div id="tab5" class="content" {{$errors->has('walletVerification') ? 'active' : ''}}>
+                        <form action="{{ route('user.updateWallet')}}" method="post">
+                            @method('put')
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="real_wallet" class="golden-text">@lang('Wallet Address')</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="real_wallet"
+                                        id="real_wallet"
+                                        value="{{old('real_wallet')?: $user->real_wallet }}"
+                                    />
+                                    @if($errors->has('real_wallet'))
+                                        <div
+                                            class="error text-danger">@lang($errors->first('real_wallet'))
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <button type="submit" class="gold-btn mt-4">@lang('Verify Wallet')</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -329,6 +329,27 @@ class HomeController extends Controller
         return back()->with('success', 'Updated Successfully.');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateWallet(Request $request) {
+        $languages = Language::all()->map(function ($item) {
+            return $item->id;
+        });
+
+        $req = Purify::clean($request->all());
+        $rules = [
+            'real_wallet' => 'required',
+        ];
+        $message = [
+            'real_wallet.required' => 'Wallet field is required',
+        ];
+        $user = $this->user;
+        $user->real_wallet = $req['real_wallet'];
+        $user->save();
+        return back()->with('success', 'Updated Successfully.');
+    }
 
     public function updateInformation(Request $request)
     {

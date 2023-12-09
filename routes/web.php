@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
         Route::get('/profile', 'User\HomeController@profile')->name('profile');
         Route::post('/updateProfile', 'User\HomeController@updateProfile')->name('updateProfile');
         Route::put('/updateInformation', 'User\HomeController@updateInformation')->name('updateInformation');
+        Route::put('/updateWallet', 'User\HomeController@updateWallet')->name('updateWallet');
         Route::post('/updatePassword', 'User\HomeController@updatePassword')->name('updatePassword');
 
         Route::post('/verificationSubmit', 'User\HomeController@verificationSubmit')->name('verificationSubmit');

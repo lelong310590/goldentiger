@@ -637,7 +637,7 @@
                                     <span class="pull-right">Token Hardcap</span>
                                 </div>
                                 <div class="text-center">
-                                    <a class="btn dream-btn mt-30 fadeInUp" data-wow-delay="0.6s" href="#">Buy More tokens</a>
+                                    <a class="btn dream-btn mt-30 fadeInUp" data-wow-delay="0.6s" href="{{route('user.addFund.confirm')}}">Buy More tokens</a>
                                 </div>
                             </div>
                         </div>

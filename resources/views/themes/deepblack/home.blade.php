@@ -11,13 +11,13 @@
     <title>Golden Tiger Fund</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('assets/img/core-img/favicon.ico')}}">
+    <link rel="icon" href="{{asset('assets-v2/img/core-img/favicon.ico')}}">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets-v2/css/style.css')}}">
 
     <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('assets-v2/css/responsive.css')}}">
 
 </head>
 
@@ -37,7 +37,7 @@
             <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                 <!-- Logo -->
-                <a class="nav-brand light" href="#"><img src="{{asset('assets/img/core-img/logo.png')}}" alt="logo"></a>
+                <a class="nav-brand light" href="#"><img src="{{asset('assets-v2/img/core-img/logo.png')}}" alt="logo"></a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler demo">
@@ -55,7 +55,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul id="nav">
-                            <li><a href="#home">Home</a></li>
+                            <li><a href="{{route('home')}}">Home</a></li>
                             <li><a href="#ico">Buy GTF</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#services">Features</a></li>
@@ -65,7 +65,9 @@
                         </ul>
 
                         <!-- Button -->
-{{--                        <a href="#" class="btn login-btn ml-50">Log in</a>--}}
+                        <a href="/login" class="btn login-btn ml-50">
+                            <img src="{{asset('assets-v2/img/icons/metamask.png')}}" alt="" width="25px;" style="margin-right: 5px;"> Metamask Login
+                        </a>
                     </div>
                     <!-- Nav End -->
                 </div>
@@ -77,7 +79,7 @@
 
 <!-- ##### Welcome Area Start ##### -->
 <section class="welcome_area clearfix dzsparallaxer auto-init none fullwidth" data-options='{direction: "normal"}' id="home">
-    <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url({{asset('assets/img/bg-img/bg-5.png')}})"></div>
+    <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url({{asset('assets-v2/img/bg-img/bg-5.png')}})"></div>
 
     <!-- Hero Content -->
     <div class="hero-content transparent">
@@ -133,7 +135,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.2s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/services/token1.svg')}}" alt="">
+                        <img src="{{asset('assets-v2/img/services/token1.svg')}}" alt="">
                     </div>
                     <h6>ADVANCED PLATFORM</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
@@ -144,7 +146,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.3s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/services/token2.svg')}}" alt="">
+                        <img src="{{asset('assets-v2/img/services/token2.svg')}}" alt="">
                     </div>
                     <h6>SECURED CRYPTO WALLETS</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
@@ -155,7 +157,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.4s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/services/token3.svg')}}" alt="">
+                        <img src="{{asset('assets-v2/img/services/token3.svg')}}" alt="">
                     </div>
                     <h6>FOR BUYERS AND SELLERS</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
@@ -173,7 +175,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 offset-lg-0 col-md-12 no-padding-left">
                 <div class="welcome-meter fadeInUp" data-wow-delay="0.7s">
-                    <img src="{{asset('assets/img/svg/about-us-1.svg')}}"  alt="">
+                    <img src="{{asset('assets-v2/img/svg/about-us-1.svg')}}"  alt="">
                 </div>
             </div>
 
@@ -210,25 +212,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="side-feature-list-item">
-                                    <img src="{{asset('assets/img/features/feature-1.svg')}}" class="check-mark-icon" alt="">
+                                    <img src="{{asset('assets-v2/img/features/feature-1.svg')}}" class="check-mark-icon" alt="">
                                     <div class="foot-c-info">Fully Responsive</div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="side-feature-list-item">
-                                    <img src="{{asset('assets/img/features/feature-2.svg')}}" class="check-mark-icon" alt="">
+                                    <img src="{{asset('assets-v2/img/features/feature-2.svg')}}" class="check-mark-icon" alt="">
                                     <div class="foot-c-info">Clean &amp; Modern Design</div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="side-feature-list-item">
-                                    <img src="{{asset('assets/img/features/feature-3.svg')}}" class="check-mark-icon" alt="">
+                                    <img src="{{asset('assets-v2/img/features/feature-3.svg')}}" class="check-mark-icon" alt="">
                                     <div class="foot-c-info">Multi-Device Testing </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="side-feature-list-item">
-                                    <img src="{{asset('assets/img/features/feature-4.svg')}}" class="check-mark-icon" alt="">
+                                    <img src="{{asset('assets-v2/img/features/feature-4.svg')}}" class="check-mark-icon" alt="">
                                     <div class="foot-c-info">great User Experience</div>
                                 </div>
                             </div>
@@ -241,7 +243,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-s no-padding-right">
                 <div class="welcome-meter fadeInUp" data-wow-delay="0.7s">
-                    <img class="img-responsive center-block" alt="" src="{{asset('assets/img/core-img/about-4.png')}}">
+                    <img class="img-responsive center-block" alt="" src="{{asset('assets-v2/img/core-img/about-4.png')}}">
                 </div>
             </div>
 
@@ -257,7 +259,7 @@
         <div class="section-heading text-center">
             <!-- Dream Dots -->
             <div class="dream-dots justify-content-center fadeInUp" data-wow-delay="0.2s">
-                <img src="{{asset('assets/img/svg/section-icon-11.svg')}}" alt="">
+                <img src="{{asset('assets-v2/img/svg/section-icon-11.svg')}}" alt="">
             </div>
             <h2 class="w-text fadeInUp" data-wow-delay="0.3s">Decentralised Video Streaming</h2>
             <p class="g-text fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
@@ -266,7 +268,7 @@
 
         <div class="row">
             <div class="col-12 col-md-12">
-                <img src="{{asset('assets/img/core-img/stream.png')}}" alt="" class="img-responsive center-block">
+                <img src="{{asset('assets-v2/img/core-img/stream.png')}}" alt="" class="img-responsive center-block">
             </div>
         </div>
     </div>
@@ -293,7 +295,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.2s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/1.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/1.png')}}" alt="">
                     </div>
                     <h6>Creative Chart Modules</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -304,7 +306,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.3s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/2.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/2.png')}}" alt="">
                     </div>
                     <h6>Adaptive Social Assistant</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -315,7 +317,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.4s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/3.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/3.png')}}" alt="">
                     </div>
                     <h6>Ecommerce Embedded</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -326,7 +328,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.5s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/4.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/4.png')}}" alt="">
                     </div>
                     <h6>Notification System</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -337,7 +339,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.6s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/5.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/5.png')}}" alt="">
                     </div>
                     <h6>Creative Layout</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -348,7 +350,7 @@
                 <div class="service_single_content text-center mb-100 fadeInUp" data-wow-delay="0.7s">
                     <!-- Icon -->
                     <div class="service_icon">
-                        <img src="{{asset('assets/img/features/6.png')}}" alt="">
+                        <img src="{{asset('assets-v2/img/features/6.png')}}" alt="">
                     </div>
                     <h6>Professional Support</h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque quam, maxi ut accumsan ut, posuere sit Lorem ipsum quam, maximus ut accumsan.</p>
@@ -372,7 +374,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-xs-12">
                 <div class="welcome-meter fadeInUp" data-wow-delay="0.7s">
-                    <img src="{{asset('assets/img/svg/about-us-3.svg')}}" class="center-block" alt="">
+                    <img src="{{asset('assets-v2/img/svg/about-us-3.svg')}}" class="center-block" alt="">
                 </div>
             </div>
             <div class="service-img-wrapper how col-lg-4 col-md-9 col-sm-12 mt-s no-padding-right">
@@ -429,13 +431,13 @@
 
             <div class="col-lg-6 col-xs-12">
                 <div class="welcome-meter fadeInUp" data-wow-delay="0.7s">
-                    <img src="{{asset('assets/img/core-img/whitepaper.png')}}" class="center-block" alt="">
+                    <img src="{{asset('assets-v2/img/core-img/whitepaper.png')}}" class="center-block" alt="">
                 </div>
             </div>
             <div class="col-lg-6 col-xs-12 mt-s">
                 <div class="who-we-contant">
                     <div class="dream-dots text-left fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <img src="{{asset('assets/img/svg/section-icon-11.svg')}}" alt="">
+                        <img src="{{asset('assets-v2/img/svg/section-icon-11.svg')}}" alt="">
                     </div>
                     <h4 class="text-white fadeInUp" data-wow-delay="0.3s">Downoad Our Whitepaper</h4>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore qui iste asperiores harum maiores praesentium facere ullam blanditiis, odio dolorum. Officia quisquam eaque suscipit facere ducimus, sit quaerat. Numquam, corrupti?</p>
@@ -495,18 +497,18 @@
         </div>
         <div class="col-lg-6 col-lg-6 offset-lg-0 col-md-10 offset-md-1 col-sm-12">
             <div class=" mt-s">
-                <img src="{{asset('assets/img/core-img/distribution.png')}}" class="center-block" alt="">
+                <img src="{{asset('assets-v2/img/core-img/distribution.png')}}" class="center-block" alt="">
             </div>
         </div>
     </div>
 
 </section>
 
-<section class="roadmap section-padding-100" style="background: url({{asset('assets/img/bg-img/bread-bg.png')}}) no-repeat center top;background-size: cover;" id="roadmap">
+<section class="roadmap section-padding-100" style="background: url({{asset('assets-v2/img/bg-img/bread-bg.png')}}) no-repeat center top;background-size: cover;" id="roadmap">
     <div class="section-heading text-center">
         <!-- Dream Dots -->
         <div class="dream-dots justify-content-center fadeInUp" data-wow-delay="0.2s">
-            <img src="{{asset('assets/img/svg/section-icon-5.svg')}}" alt="">
+            <img src="{{asset('assets-v2/img/svg/section-icon-5.svg')}}" alt="">
         </div>
         <h2 class="fadeInUp" data-wow-delay="0.3s">Our ICO Roadmap</h2>
         <p class="fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
@@ -518,7 +520,7 @@
                 <div id="section_5-slider-circle">
                     <div style="left:10%" class="data_cir cir_0" data-date="Q2 2017">
                         <div class="data_cir-content">
-                            <div><span class="roadmap_content_info">Emergence and design of the idea</span><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/1.svg')}}" alt=""></span></div>
+                            <div><span class="roadmap_content_info">Emergence and design of the idea</span><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/1.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:20%" class="data_cir cir_1" data-date="Q3 2017">
@@ -532,7 +534,7 @@
                                         <li><span> concept development</span></li>
                                     </ul>
                                 </div>
-                                <span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/2.svg')}}" alt=""></span>
+                                <span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/2.svg')}}" alt=""></span>
                             </div>
                         </div>
                     </div>
@@ -541,7 +543,7 @@
                             <div><div class="roadmap_content_info"><ul><li><span> start development of the ealier version and crypto wallet version</span></li>
                                         <li><span>negotiations on partnerships</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/3.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/3.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:40%" class="data_cir cir_3" data-date="Q1 2018">
@@ -550,7 +552,7 @@
                                         <li><span>White Paper published</span></li>
                                         <li><span>Private and Pre-sale start</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/4.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/4.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:50%" class="data_cir cir_4 red_crc" data-date="Q2 2018">
@@ -559,7 +561,7 @@
                                         <li><span>marketing campaign</span></li>
                                         <li><span>listing to the major exchanges</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/5.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/5.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:60%" class="data_cir cir_5 next" data-date="Q3 2018">
@@ -568,7 +570,7 @@
                                         <li><span>Testnet launch</span></li>
                                         <li><span> Platform ealier version development</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/6.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/6.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:70%" class="data_cir cir_6 next" data-date="Q4 2018">
@@ -577,7 +579,7 @@
                                         <li><span>Explorer</span></li>
                                         <li><span>new partnerships and new marketplace support</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/7.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/7.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:80%" class="data_cir cir_7 next" data-date="Q1 2019">
@@ -586,7 +588,7 @@
                                         <li><span>Wallet beta-version release</span></li>
                                         <li><span>Masternodes implementation</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/8.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/8.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                     <div style="left:90%" class="data_cir cir_8 next" data-date="Q2 2019">
@@ -594,7 +596,7 @@
                             <div><div class="roadmap_content_info"><ul><li><span> Platform integration to electronic marketplaces</span></li>
                                         <li><span>Zero Fee</span></li>
                                     </ul>
-                                </div><span class="roadmap_img"><img src="{{asset('assets/img/roadmap-icons/9.svg')}}" alt=""></span></div>
+                                </div><span class="roadmap_img"><img src="{{asset('assets-v2/img/roadmap-icons/9.svg')}}" alt=""></span></div>
                         </div>
                     </div>
                 </div>
@@ -650,17 +652,17 @@
                     <h4 class="fadeInUp" data-wow-delay="0.3s">Now it is easy to falsify the data because there’s no unified reputation system.</h4>
                     <p class="fadeInUp" data-wow-delay="0.5s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo laboriosam, dolorum ducimus similique aliquam consequuntur saepe numquam suscipit praesentium fuga eveniet error assumenda</p>
                     <div class="lock">
-                        <img src="{{asset('assets/img/icons/lock.png')}}" width="46" height="66" alt="">
+                        <img src="{{asset('assets-v2/img/icons/lock.png')}}" width="46" height="66" alt="">
                         <span class="ball ball_blue"></span>
                         <span class="ball ball_active"></span>
                         <span class="ball ball_active"></span>
                         <span class="ball ball_active"></span>
-                        <img src="{{asset('assets/img/icons/vpn.png')}}"  alt="">
+                        <img src="{{asset('assets-v2/img/icons/vpn.png')}}"  alt="">
                         <span class="ball ball_active"></span>
                         <span class="ball ball_active"></span>
                         <span class="ball ball_blue"></span>
                         <span class="ball ball_blue"></span>
-                        <img src="{{asset('assets/img/icons/lock-opened.png')}}" width="49" height="67" alt="">
+                        <img src="{{asset('assets-v2/img/icons/lock-opened.png')}}" width="49" height="67" alt="">
                     </div>
                     <div class="clearfix"></div>
                     <a class="btn dream-btn mt-30 fadeInUp" data-wow-delay="0.6s" href="#">Read More</a>
@@ -686,7 +688,7 @@
         </div>
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 offset-lg-0 col-md-8 offset-md-2 col-sm-12">
-                <img src="{{asset('assets/img/core-img/0faq.png')}}" alt="" class="center-block img-responsive">
+                <img src="{{asset('assets-v2/img/core-img/0faq.png')}}" alt="" class="center-block img-responsive">
             </div>
             <div class="col-12 col-lg-6 col-md-12">
                 <div class="dream-faq-area mt-s ">
@@ -721,7 +723,7 @@
 <!-- ##### FAQ & Timeline Area End ##### -->
 
 <!-- ##### Footer Area Start ##### -->
-<footer class="footer-area bg-img" style="background-image: url({{asset('assets/img/core-img/pattern.png')}});">
+<footer class="footer-area bg-img" style="background-image: url({{asset('assets-v2/img/core-img/pattern.png')}});">
 
     <!-- ##### Contact Area Start ##### -->
     <div class="contact_us_area section-padding-100-0" id="contact">
@@ -731,7 +733,7 @@
                     <div class="section-heading text-center">
                         <!-- Dream Dots -->
                         <div class="dream-dots justify-content-center fadeInUp" data-wow-delay="0.2s">
-                            <img src="{{asset('assets/img/svg/section-icon-5.svg')}}" alt="">
+                            <img src="{{asset('assets-v2/img/svg/section-icon-5.svg')}}" alt="">
                         </div>
                         <h2 class="fadeInUp" data-wow-delay="0.3s">Contact With Us</h2>
                         <p class="fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
@@ -808,20 +810,20 @@
 
 <!-- ########## All JS ########## -->
 <!-- jQuery js -->
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets-v2/js/jquery.min.js')}}"></script>
 <!-- Popper js -->
-<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets-v2/js/popper.min.js')}}"></script>
 <!-- Bootstrap js -->
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets-v2/js/bootstrap.min.js')}}"></script>
 <!-- All Plugins js -->
-<script src="{{asset('assets/js/plugins.js')}}"></script>
+<script src="{{asset('assets-v2/js/plugins.js')}}"></script>
 <!-- Parallax js -->
-<script src="{{asset('assets/js/dzsparallaxer.js')}}"></script>
+<script src="{{asset('assets-v2/js/dzsparallaxer.js')}}"></script>
 
-<script src="{{asset('assets/js/jquery.syotimer.min.js')}}"></script>
+<script src="{{asset('assets-v2/js/jquery.syotimer.min.js')}}"></script>
 
 <!-- script js -->
-<script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('assets-v2/js/script.js')}}"></script>
 
 </body>
 

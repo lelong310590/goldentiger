@@ -16,6 +16,15 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/bootstrap/bootstrap.min.css')}}" />
 
+    <!-- Favicon -->
+    <link rel="icon" href="{{asset('assets-v2/img/core-img/favicon.ico')}}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{{asset('assets-v2/css/style.css')}}">
+
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="{{asset('assets-v2/css/responsive.css')}}">
+
     @stack('css-lib')
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/animate.css')}}">

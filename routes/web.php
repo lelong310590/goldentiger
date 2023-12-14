@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
 
             Route::get('/dashboard', 'User\HomeController@index')->name('home');
 
+            Route::get('/buy-gtf', 'User\HomeController@buyGtf')->name('buy-gtf');
+
             Route::get('payment', 'User\HomeController@payment')->name('payment');
             Route::get('add-fund', 'User\HomeController@addFund')->name('addFund');
             Route::post('add-fund', 'PaymentController@addFundRequest')->name('addFund.request');

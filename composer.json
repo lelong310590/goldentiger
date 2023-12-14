@@ -16,7 +16,7 @@
         "hisorange/browser-detect": "^4.4",
         "intervention/image": "^2.5",
         "ixudra/curl": "^6.21",
-        "jlang/jsonstringfy": "^3.5",
+        "kornrunner/keccak": "^1.1",
         "laravel/framework": "^8.12",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
@@ -26,8 +26,7 @@
         "phpmailer/phpmailer": "^6.2",
         "pusher/pusher-php-server": "^4.1",
         "securionpay/securionpay-php": "^2.2.0",
-        "stevebauman/purify": "^4.0",
-        "xsoap/init": "^1.0"
+        "stevebauman/purify": "^4.0"
     },
     "require-dev": {
         "authorizenet/authorizenet": "dev-master#ef297d3e2d7c1092ddabd2c376eb485aac1aa66c",

@@ -72,7 +72,7 @@ class HomeController extends Controller
         $configure = $this->getConfigure();
         $data['walletBalance'] = getAmount($this->user->balance);
         $data['priceGtf'] = (float) $configure->price_gtf;
-        $data['gtfBalance'] = getAmount($this->user->gtf_balance);
+        $data['gtfBalance'] = getAmount($this->user->gtf_token);
         $data['gtfInterestBalance'] = getAmount($this->user->gtf_interest_balance);
         $data['gtfInvest'] = getAmount($this->user->stakes()->whereStatus(1)->sum('amount'));
         $data['interestBalance'] = getAmount($this->user->interest_balance);
@@ -188,6 +188,11 @@ class HomeController extends Controller
 
 
         return view($this->theme . 'user.dashboard', $data, compact('monthly', 'latestRegisteredUser'));
+    }
+
+    public function buyGtf()
+    {
+        return view($this->theme . 'user.buy-gtf');
     }
 
 

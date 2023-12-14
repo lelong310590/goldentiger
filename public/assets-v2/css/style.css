@@ -872,6 +872,7 @@ ol {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-image: -webkit-linear-gradient(106deg,#d787f5,#3634bb);
 }
 
 .header-area.sticky {

@@ -16,6 +16,14 @@
     @include('partials.seo')
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/bootstrap/bootstrap.min.css')}}" />
+    <!-- Favicon -->
+    <link rel="icon" href="{{asset('assets-v2/img/core-img/favicon.ico')}}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{{asset('assets-v2/css/style.css')}}">
+
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="{{asset('assets-v2/css/responsive.css')}}">
     @stack('css-lib')
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'assets/plugins/owlcarousel/owl.carousel.min.css')}}">
@@ -37,114 +45,61 @@
     <![endif]-->
 </head>
 
-<body>
+<body class="light-version">
+<!-- Preloader -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="dream-load"></div>
+    </div>
+</div>
 
-<header id="header-section">
-    <div class="overlay">
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid ">
-                <a class="navbar-brand golden-text" href="{{url('/')}}">
-                    <img src="{{getFile(config('location.logoIcon.path').'logo.jpg')}}"
-                         alt="{{config('basic.site_title')}}" width="50">
-                </a>
-                <button class="navbar-toggler p-0 " type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <img src="{{asset($themeTrue.'img/icon/hamburger.png')}}" alt="@lang('hamburger image')" />
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('home') ? 'active' : ''}}" aria-current="page"
-                                href="{{route('home')}}">@lang('Home')</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('plan') ? 'active' : ''}}" href="{{route('plan')}}">{{trans('Plan')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('about') ? 'active' : ''}}" href="{{route('about')}}">@lang('About Us')</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('blog') ? 'active' : ''}}" href="{{route('blog')}}">@lang('Blog')</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('faq') ? 'active' : ''}}" href="{{route('faq')}}">@lang('FAQ')</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{Request::routeIs('contact') ? 'active' : ''}}" href="{{route('contact')}}">@lang('Contact')</a>
-                        </li>
-                    </ul>
+<!-- ##### Header Area Start ##### -->
+<header class="header-area fadeInDown" data-wow-delay="0.2s">
+    <div class="classy-nav-container light breakpoint-off dark left">
+        <div class="container">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar light justify-content-between" id="dreamNav">
+
+                <!-- Logo -->
+                <a class="nav-brand light" href="{{route('home')}}"><img src="{{asset('assets-v2/img/core-img/logo.png')}}" alt="logo"></a>
+
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler demo">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
                 </div>
-                <span class="navbar-text" id="pushNotificationArea">
-                    @auth
-                        <!-- notification panel -->
-                        @include($theme.'partials.pushNotify')
-                    @endauth
 
-                    <!-- user panel -->
-                    <div class="notification-panel user-panel">
-                        <button class="dropdown-toggle">
-                            @guest()
-                                <img src="{{asset($themeTrue.'img/icon/profile.png')}}" class="user-image" alt="@lang('profile')" width="25" height="25"/>
-                            @else
-                                <img src="{{getFile(config('location.user.path').auth()->user()->image)}}" class="user-image" alt="@lang('user img')" width="25" height="25"/>
-                            @endguest
-                        </button>
-                        @guest
-                            <ul class="notification-dropdown user-dropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('login') }}">
-                                        <img src="{{asset($themeTrue.'img/icon/profile.png')}}" alt="@lang('Login')" />
-                                        <span class="golden-text">@lang('Login')</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('register') }}">
-                                        <img src="{{asset($themeTrue.'img/icon/profile.png')}}" alt="@lang('Register')" />
-                                        <span class="golden-text">@lang('Register')</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        @else
-                            <ul class="notification-dropdown user-dropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{{route('user.home')}}">
-                                        <img src="{{asset($themeTrue.'img/icon/layout.png')}}" alt="@lang('Dashboard')"/>
-                                        <span class="golden-text">{{trans('Dashboard')}}</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('user.profile') }}">
-                                        <img src="{{asset($themeTrue.'img/icon/profile.png')}}" alt="@lang('My Profile')"/>
-                                        <span class="golden-text">@lang('My Profile')</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{route('user.twostep.security')}}">
-                                        <img src="{{asset($themeTrue.'/img/icon/padlock.png')}}" alt="@lang('2FA Security')"/>
-                                        <span class="golden-text">@lang('2FA Security')</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                        <img src="{{asset($themeTrue.'/img/icon/log-out.png')}}" alt="@lang('Logout')"/>
-                                        <span class="golden-text">@lang('Logout')</span>
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        @endguest
+                <!-- Menu -->
+                <div class="classy-menu">
+
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                     </div>
-                </span>
-            </div>
-        </nav>
-        <!--/ NAVBAR -->
+
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul id="nav">
+                            <li><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="#ico">Buy GTF</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#roadmap">Roadmap</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+
+                        <!-- Button -->
+                        <a href="#" class="btn login-btn ml-50">
+                            <img src="{{asset('assets-v2/img/icons/metamask.png')}}" alt="" width="25px;" style="margin-right: 5px;"> Metamask Login
+                        </a>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
+<!-- ##### Header Area End ##### -->
 
 
 @include($theme.'partials.banner')
@@ -154,18 +109,6 @@
 @include($theme.'partials.footer')
 
 @stack('extra-content')
-
-
-<!-- scroll top icon -->
-<a href="#" class="scroll-top">
-    <img src="{{asset($themeTrue.'img/icon/up-arrow2.png')}}" alt="@lang('scroll to top')" />
-</a>
-
-{{--<!-- start preloader -->--}}
-{{--<div id="preloader">--}}
-{{--    <img src="{{asset($themeTrue.'img/bitcoin.gif')}}" alt="@lang('preloader')" class="loader" />--}}
-{{--</div>--}}
-{{--<!-- end preloader -->--}}
 
 
 <script src="{{asset($themeTrue.'assets/bootstrap/bootstrap.bundle.min.js')}}"></script>
@@ -185,6 +128,10 @@
 <script src="{{asset('assets/global/js/axios.min.js')}}"></script>
 <!-- custom script -->
 <script src="{{asset($themeTrue.'js/script.js')}}"></script>
+
+<!-- script js -->
+<script src="{{asset('assets-v2/js/script.js')}}"></script>
+
 <script type="text/javascript">
 function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
 }

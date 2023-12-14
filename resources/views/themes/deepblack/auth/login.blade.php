@@ -2,7 +2,6 @@
 @section('title',__('Login'))
 
 @section('content')
-
     <!-- login -->
     <section class="login-section">
         <div class="container">

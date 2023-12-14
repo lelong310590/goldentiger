@@ -73,6 +73,7 @@ class HomeController extends Controller
         $data['walletBalance'] = getAmount($this->user->balance);
         $data['priceGtf'] = (float) $configure->price_gtf;
         $data['gtfBalance'] = getAmount($this->user->gtf_token);
+        $data['gtfOld'] = getAmount($this->user->gtf_balance);
         $data['gtfInterestBalance'] = getAmount($this->user->gtf_interest_balance);
         $data['gtfInvest'] = getAmount($this->user->stakes()->whereStatus(1)->sum('amount'));
         $data['interestBalance'] = getAmount($this->user->interest_balance);
@@ -526,7 +527,6 @@ class HomeController extends Controller
             return back()->with('error', 'Invalid Wallet Type');
         }
 
-
         $amount = $request->amount;
         $basic = (object)config('basic');
         if ($plan->fixed_amount == '0' && $amount < $plan->minimum_amount) {
@@ -689,7 +689,7 @@ class HomeController extends Controller
         if($user->f1_of){
             $userRefF1 = User::find($user->f1_of);
             if($userRefF1) {
-                $userRefF1->total_referral_invest += $amountInvest;
+                $userRefF1->gtf_token += $amountInvest;
                 $userRefF1->save();
                 $this->updateCommissionLevel3($userRefF1);
             }
@@ -697,7 +697,7 @@ class HomeController extends Controller
         if($user->f2_of){
             $userRefF2 = User::find($user->f2_of);
             if($userRefF2) {
-                $userRefF2->total_referral_invest += $amountInvest;
+                $userRefF2->gtf_token += $amountInvest;
                 $userRefF2->save();
                 $this->updateCommissionLevel3($userRefF2);
             }
@@ -705,7 +705,7 @@ class HomeController extends Controller
         if($user->f3_of){
             $userRefF3 = User::find($user->f3_of);
             if($userRefF3) {
-                $userRefF3->total_referral_invest += $amountInvest;
+                $userRefF3->gtf_token += $amountInvest;
                 $userRefF3->save();
                 $this->updateCommissionLevel3($userRefF3);
             }
@@ -713,7 +713,7 @@ class HomeController extends Controller
         if($user->f4_of){
             $userRefF4 = User::find($user->f4_of);
             if($userRefF4) {
-                $userRefF4->total_referral_invest += $amountInvest;
+                $userRefF4->gtf_token += $amountInvest;
                 $userRefF4->save();
                 $this->updateCommissionLevel3($userRefF4);
             }
@@ -721,7 +721,7 @@ class HomeController extends Controller
         if($user->f5_of){
             $userRefF5 = User::find($user->f5_of);
             if($userRefF5) {
-                $userRefF5->total_referral_invest += $amountInvest;
+                $userRefF5->gtf_token += $amountInvest;
                 $userRefF5->save();
                 $this->updateCommissionLevel3($userRefF5);
             }
@@ -729,7 +729,7 @@ class HomeController extends Controller
         if($user->f6_of){
             $userRefF6 = User::find($user->f6_of);
             if($userRefF6) {
-                $userRefF6->total_referral_invest += $amountInvest;
+                $userRefF6->gtf_token += $amountInvest;
                 $userRefF6->save();
                 $this->updateCommissionLevel3($userRefF6);
             }

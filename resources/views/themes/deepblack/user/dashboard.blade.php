@@ -55,6 +55,18 @@
                         <h2>{{getAmount($gtfBalance, config('basic.fraction_number'))}}</h2>
                     </div>
                 </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div
+                        class="box"
+                    >
+                        <div class="img-box">
+                            <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
+                        </div>
+                        <h4>GTF Point (Old GTF)</h4>
+                        <h2>{{getAmount($gtfOld, config('basic.fraction_number'))}}</h2>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

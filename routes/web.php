@@ -380,6 +380,9 @@ Route::post('/subscribe', 'FrontendController@subscribe')->name('subscribe');
 
 Route::get('/{getLink}/{content_id}', 'FrontendController@getLink')->name('getLink');
 
+Route::get('/web3-login-message', 'Web3LoginController@message')->name('web3-mess');
+Route::post('/web3-login-verify', 'Web3LoginController@verify')->name('web-verify');
+
 
 
 

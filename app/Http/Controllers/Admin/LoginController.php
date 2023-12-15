@@ -125,7 +125,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard('guard')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('home');
         // $request->session()->invalidate();
         // return $this->loggedOut($request) ?: redirect()->route('admin.login');
     }

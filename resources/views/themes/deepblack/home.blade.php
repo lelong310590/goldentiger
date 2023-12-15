@@ -39,7 +39,14 @@
             <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                 <!-- Logo -->
-                <a class="nav-brand light" href="#"><img src="{{asset('assets-v2/img/core-img/logo.png')}}" alt="logo"></a>
+                <a class="nav-brand light" href="#"><img src="{{asset('images/logo.jpg')}}" alt="logo" width="60px"></a>
+
+                <!-- Button -->
+                @if (auth()->check())
+                    <a href="javascript:;" class="btn login-btn ml-50 d-md-none d-lg-none" onclick="web3Login()">
+                        <img src="{{asset('assets-v2/img/icons/metamask.png')}}" alt="" width="25px;" style="margin-right: 5px;"> Metamask Login
+                    </a>
+                @endif
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler demo">

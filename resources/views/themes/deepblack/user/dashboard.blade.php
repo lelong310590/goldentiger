@@ -354,7 +354,7 @@
                         <div class="input-group">
                             <input
                                 type="text"
-                                value="{{route('register.sponsor',[Auth::user()->username])}}"
+                                value="{{route('home')}}?ref={{Auth::user()->real_wallet}}"
                                 class="form-control"
                                 id="sponsorURL"
                                 readonly

@@ -203,10 +203,6 @@ class RegisterController extends Controller
             'email_verification' => ($basic->email_verification) ? 0 : 1,
             'sms_verification' => ($basic->sms_verification) ? 0 : 1,
         ]);
-
-
-
-
     }
 
     public function register(Request $request)
@@ -240,7 +236,7 @@ class RegisterController extends Controller
                 ])
             ]);// Url of your choosing
         } catch (\Exception $e) {
-            
+
         }
 
         $this->guard()->login($user);

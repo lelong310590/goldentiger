@@ -22,8 +22,12 @@ class FrontendController extends Controller
         $this->theme = template();
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $ref = $request->ref;
+        if (!$ref) {
+            session()->put('sponsor', $ref);
+        }
         $templateSection = ['hero', 'about-us', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'deposit-withdraw', 'news-letter', 'news-letter-referral', 'testimonial', 'request-a-call', 'investor', 'blog', 'faq', 'we-accept', 'investment'];
         $data['templates'] = Template::templateMedia()->whereIn('section_name', $templateSection)->get()->groupBy('section_name');
 

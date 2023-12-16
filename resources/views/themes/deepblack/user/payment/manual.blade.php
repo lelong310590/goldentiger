@@ -66,7 +66,7 @@
                                                 exactly your total deposit amount:</p>
                                             <div class="d-flex align-items-center flex-column">
                                                 <img
-                                                    src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data=0xB9A34eEa4eF1C83B9239CC9e944f68bADb7f05e9&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L"
+                                                    src="https://api.qrserver.com/v1/create-qr-code/?color=fae15e&amp;bgcolor=222222&amp;data={{auth()->user()->wallet_address}}&amp;qzone=1&amp;margin=0&amp;size=200x200&amp;ecc=L"
                                                     style="width: 200px;" class="mt-4 mb-4 m-auto"><br></p>
                                                 <div class="box refferal-link" style="width: 100%">
                                                     <div class="input-group">

@@ -46,6 +46,30 @@ class FrontendController extends Controller
         return view($this->theme . 'home', $data);
     }
 
+    public function backup(Request $request)
+    {
+        $ref = $request->ref;
+        if (!$ref) {
+            session()->put('sponsor', $ref);
+        }
+        $templateSection = ['hero', 'about-us', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'deposit-withdraw', 'news-letter', 'news-letter-referral', 'testimonial', 'request-a-call', 'investor', 'blog', 'faq', 'we-accept', 'investment'];
+        $data['templates'] = Template::templateMedia()->whereIn('section_name', $templateSection)->get()->groupBy('section_name');
+
+        $contentSection = ['feature', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'testimonial', 'investor', 'blog', 'faq'];
+        $data['contentDetails'] = ContentDetails::select('id', 'content_id', 'description', 'created_at')
+            ->whereHas('content', function ($query) use ($contentSection) {
+                return $query->whereIn('name', $contentSection);
+            })
+            ->with(['content:id,name',
+                'content.contentMedia' => function ($q) {
+                    $q->select(['content_id', 'description']);
+                }])
+            ->get()->groupBy('content.name');
+
+        $data['plans'] = ManagePlan::where(['status' => 1, 'featured' => 1])->get();
+        return view($this->theme . 'home-2', $data);
+    }
+
 
     public function about()
     {

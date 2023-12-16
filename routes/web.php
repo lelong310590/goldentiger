@@ -368,6 +368,7 @@ Route::get('/blog-details/{slug}/{id}', 'FrontendController@blogDetails')->name(
 Route::get('/blog', 'FrontendController@blog')->name('blog');
 
 Route::get('/', 'FrontendController@index')->name('home');
+Route::get('/back-up', 'FrontendController@backup')->name('backup');
 Route::get('/about', 'FrontendController@about')->name('about');
 Route::get('/faq', 'FrontendController@faq')->name('faq');
 

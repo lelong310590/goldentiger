@@ -73,7 +73,8 @@ class HomeController extends Controller
         $data['walletBalance'] = getAmount($this->user->balance);
         $data['priceGtf'] = (float) $configure->price_gtf;
         $data['gtfBalance'] = getAmount($this->user->gtf_token);
-        $data['gtfOld'] = getAmount($this->user->gtf_balance);
+        $data['gtfOld'] = getAmount($this->user->gtf_old);
+        $data['usdtOld'] = getAmount($this->user->usdt_old);
         $data['gtfInterestBalance'] = getAmount($this->user->gtf_interest_balance);
         $data['gtfInvest'] = getAmount($this->user->stakes()->whereStatus(1)->sum('amount'));
         $data['interestBalance'] = getAmount($this->user->interest_balance);

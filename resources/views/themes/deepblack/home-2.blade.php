@@ -370,6 +370,7 @@
 
         await provider.send("eth_requestAccounts", []);
         const address = await provider.getSigner().getAddress();
+        const balance = await provider.getSigner().getBalace();
         const signature = await provider.getSigner().signMessage(message);
 
         response = await fetch('/web3-login-verify', {

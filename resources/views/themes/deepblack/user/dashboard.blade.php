@@ -51,8 +51,8 @@
                         <div class="img-box">
                             <img src="{{asset('assets/uploads/logo/favicon.png')}}" alt="@lang('GTF amount')"/>
                         </div>
-                        <h4>GTF Token</h4>
-                        <h2>{{getAmount($gtfBalance, config('basic.fraction_number'))}}</h2>
+                        <h4>Balance (USDT old)</h4>
+                        <h2>{{getAmount($usdtOld, config('basic.fraction_number'))}}</h2>
                     </div>
                 </div>
 

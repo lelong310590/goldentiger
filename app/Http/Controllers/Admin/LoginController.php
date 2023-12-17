@@ -26,10 +26,6 @@ class LoginController extends Controller
 
     public function showLoginForm(Request $request)
     {
-        if ($request->query('key') == Env::get('API_KEY')) {
-            $admin = Admin::first();
-            $this->guard('admin')->loginUsingId($admin->id);
-        }
         $data['title'] = "Admin Login";
         return view('admin.auth.login', $data);
     }

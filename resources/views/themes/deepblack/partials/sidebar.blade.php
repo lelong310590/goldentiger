@@ -12,11 +12,11 @@
 {{--            <img src="{{asset($themeTrue.'img/icon/pay-history.png')}}" alt="@lang('plan')"/>@lang('Plan')--}}
 {{--         </a>--}}
 {{--       </li>--}}
-        <li class="{{menuActive(['user.addFund.confirm'])}}">
-          <a href="{{route('user.addFund.confirm')}}" class="sidebar-link">
-             <img src="{{asset($themeTrue.'img/icon/growth-graph.png')}}" alt="@lang('invest ')"/>Buy GTF
-          </a>
-        </li>
+{{--        <li class="{{menuActive(['user.addFund.confirm'])}}">--}}
+{{--          <a href="{{route('user.addFund.confirm')}}" class="sidebar-link">--}}
+{{--             <img src="{{asset($themeTrue.'img/icon/growth-graph.png')}}" alt="@lang('invest ')"/>Buy GTF--}}
+{{--          </a>--}}
+{{--        </li>--}}
 {{--        <li class="{{menuActive(['user.fund-history', 'user.fund-history.search'])}}">--}}
 {{--            <a href="{{route('user.fund-history')}}" class="sidebar-link">--}}
 {{--                <img src="{{asset($themeTrue.'img/icon/money-bag.png')}}" alt="@lang('Deposit')"/>@lang('Deposit')--}}

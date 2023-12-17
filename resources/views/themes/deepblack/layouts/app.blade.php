@@ -61,7 +61,7 @@
             <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                 <!-- Logo -->
-                <a class="nav-brand light" href="{{route('home')}}"><img src="{{asset('assets-v2/img/core-img/logo.png')}}" alt="logo"></a>
+                <a class="nav-brand light" href="{{route('home')}}"><img src="{{asset('images/logo.jpg')}}" alt="logo" width="60px"></a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler demo">
@@ -80,18 +80,27 @@
                     <div class="classynav">
                         <ul id="nav">
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="#ico">Buy GTF</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#services">Features</a></li>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#roadmap">Roadmap</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="{{route('home')}}#ico">Buy GTF</a></li>
+                            <li><a href="{{route('home')}}#about">About</a></li>
+                            {{--                            <li><a href="#services">Features</a></li>--}}
+                            {{--                            <li><a href="#faq">FAQ</a></li>--}}
+                            {{--                            <li><a href="#roadmap">Roadmap</a></li>--}}
+                            <li><a href="{{route('home')}}#contact">Contact</a></li>
                         </ul>
 
                         <!-- Button -->
-                        <a href="#" class="btn login-btn ml-50">
-                            <img src="{{asset('assets-v2/img/icons/metamask.png')}}" alt="" width="25px;" style="margin-right: 5px;"> Metamask Login
-                        </a>
+                        @if (auth()->check())
+                            <a href="{{route('user.home')}}" class="btn login-btn ml-50">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="{{route('login')}}" class="btn login-btn ml-50">
+                                Login
+                            </a>
+                            {{--                            <a href="javascript:;" class="btn login-btn ml-50" onclick="web3Login()">--}}
+                            {{--                                <img src="{{asset('assets-v2/img/icons/metamask.png')}}" alt="" width="25px;" style="margin-right: 5px;"> Metamask Login--}}
+                            {{--                            </a>--}}
+                        @endif
                     </div>
                     <!-- Nav End -->
                 </div>

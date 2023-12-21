@@ -67,7 +67,7 @@ class FrontendController extends Controller
             ->get()->groupBy('content.name');
 
         $data['plans'] = ManagePlan::where(['status' => 1, 'featured' => 1])->get();
-        return view($this->theme . 'home-2', $data);
+        return view($this->theme . 'home', $data);
     }
 
 

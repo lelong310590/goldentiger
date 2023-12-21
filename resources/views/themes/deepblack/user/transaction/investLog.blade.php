@@ -85,7 +85,7 @@
                                     </td>
                                     <td>
                                         @if($invest->status == 1)
-                                            <p id="counter{{$invest->id}}" class="mb-2"></p>
+                                            <p id="counter{{$invest->id}}" class="mb-2" style="color: #222"></p>
                                             <script>getCountDown("counter{{$invest->id}}", {{\Carbon\Carbon::parse($invest->afterward)->diffInSeconds()}});</script>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"  style="width: {{$invest->nextPayment}}"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$invest->nextPayment}}</div>
